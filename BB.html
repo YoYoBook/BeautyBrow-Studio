@@ -1,0 +1,1115 @@
+
+
+<!doctype html>
+<html lang="zh-TW">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美眉 ｜ 美學 - 專業霧眉工作室</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      width: 100%;
+      min-height: 100%;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.4s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tab-button {
+      transition: all 0.3s ease;
+    }
+
+    .tab-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .card {
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(199, 162, 144, 0.18);
+    }
+
+    .image-placeholder {
+      background: linear-gradient(135deg, #F5EBE6 0%, #E8D5C8 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.2) 0%, transparent 50%);
+    }
+
+    .scroll-container {
+      scrollbar-width: thin;
+      scrollbar-color: #D4A896 #F5EBE6;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .scroll-container::-webkit-scrollbar-track {
+      background: #F5EBE6;
+      border-radius: 10px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: #D4A896;
+      border-radius: 10px;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <div id="app" class="w-full min-h-screen"></div>
+  <script>
+    const defaultConfig = {
+      brand_name: "美眉 ｜ 美學",
+      brand_tagline: "專業半永久霧眉 · 自然韓系風格”,
+      instagram_handle: "beautybrow_studio",
+      line_id: "@816winfr",
+      background_color: "#FAF8F6",
+      card_background: "#FFFFFF",
+      primary_text: "#5C4A42",
+      primary_action: "#C7A290",
+      secondary_action: "#E8D5C8",
+      font_family: "Noto Sans TC",
+      font_size: 16
+    };
+
+    let currentTab = 'home';
+
+    const tabs = [
+      { id: 'home', name: '首頁', icon: '' },
+      { id: 'pricing', name: '價目表', icon: '' },
+      { id: 'booking', name: '預約須知', icon: '' },
+      { id: 'aftercare', name: '術後護理', icon: '' },
+      { id: 'eyebrow-design', name: '眉型設計', icon: '' },
+      { id: 'portfolio', name: '霧眉作品', icon: '' },
+      { id: 'preparation', name: '術前準備', icon: '' },
+      { id: 'location', name: '工作室地點', icon: '' },
+      { id: 'faq-brow', name: '霧眉Q&A', icon: '' },
+      { id: 'faq-removal', name: '除色Q&A', icon: '' }
+    ];
+
+    function renderHome(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      return `
+        <div class="text-center mb-12 fade-in">
+          <h1 class="mb-4" style="font-size: ${baseFont * 3}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 300; letter-spacing: 4px;">
+            ${config.brand_name || defaultConfig.brand_name}
+          </h1>
+          <p style="font-size: ${baseFont * 1.2}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; letter-spacing: 1px;">
+            ${config.brand_tagline || defaultConfig.brand_tagline}
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-10">
+          <div class="card p-8 rounded-3xl fade-in" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
+            <div class="text-center mb-6">
+              <span style="font-size: ${baseFont * 3}px;">💫</span>
+            </div>
+            <h2 class="text-center mb-4" style="font-size: ${baseFont * 1.8}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+              霧眉服務
+            </h2>
+            <p class="mb-6" style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85; text-align: center;">
+              採用最新韓式技術，打造自然柔霧妝感<br>讓您的眉型更加立體有神
+            </p>
+            <div class="grid grid-cols-2 gap-3">
+              ${['自然霧感', '持久穩定', '專業設計', '個人訂製'].map(feature => `
+                <div class="p-4 rounded-2xl text-center" style="background: ${config.background_color || defaultConfig.background_color};">
+                  <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text};">✓ ${feature}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="card p-8 rounded-3xl fade-in" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
+            <div class="text-center mb-6">
+              <span style="font-size: ${baseFont * 3}px;">✨</span>
+            </div>
+            <h2 class="text-center mb-4" style="font-size: ${baseFont * 1.8}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+              除色服務
+            </h2>
+            <p class="mb-6" style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85; text-align: center;">
+              安全有效的除色技術<br>幫助您重新打造理想眉型
+            </p>
+            <div class="grid grid-cols-2 gap-3">
+              ${['安全無痛', '漸進淡化', '專業評估', ‘無修復期’].map(feature => `
+                <div class="p-4 rounded-2xl text-center" style="background: ${config.background_color || defaultConfig.background_color};">
+                  <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text};">✓ ${feature}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-8 rounded-3xl text-center fade-in" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+          <h3 class="mb-4" style="font-size: ${baseFont * 1.5}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
+            ⚠️ 霧眉預約前｜重要提須知
+          </h3>
+          <div class="max-w-3xl mx-auto" style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.9; opacity: 0.85;">
+            <p class="mb-4">若有以下任一狀況，暫不建議施作霧眉：</p>
+            <p style="line-height: 2;">
+              🚫 蟹足腫、糖尿病、高血壓、心血管疾病、愛滋病、B型肝炎、<br>
+              免疫力失調、服用抗凝血藥物、精神疾病、傳染性疾病、<br>
+              嚴重異位性皮膚炎、嚴重過敏性膚況
+            </p>
+            <div class="mt-6 pt-6" style="border-top: 1px solid rgba(199, 162, 144, 0.2);">
+              <p style="font-size: ${baseFont * 0.9}px; opacity: 0.75;">
+                🌸 每個人顴骨高低、眉型長短都不同，兩邊眉毛不會「完全對稱」是自然現象<br>
+                若您是追求極致完美的眉型控，建議再三考慮後預約唷❤️
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPricing(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const prices = [
+
+        { title: '新客霧眉', price: '$6,800', note: '含 3 個月內免費補色乙次', highlight: true },
+        { title: '6 個月內｜單次補色', price: '$2,000-$2,500', note: '' },
+        { title: '6–12 個月內｜單次補色', price: '$5,000', note: '' },
+        { title: '12–14 個月內｜單次補色', price: '$5,500', note: '' },
+        { title: '14 個月以上｜視為新作', price: '$6,199', note: ’享9折優惠 },
+        { title: '兩人同行優惠', price: '$5,800', note: '現折 $1,000｜須預約不同時段施作', special: true },
+        { title: '男士霧眉', price: '以上費用 +$1,000', note: '', male: true }
+      ];
+
+      return `
+        <div class="mb-8 fade-in">
+          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+            服務價目表
+          </h2>
+          <div class="space-y-4">
+            ${prices.map(item => `
+              <div class="card p-6 rounded-2xl" style="background: ${item.highlight ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, ${item.highlight ? '0.2' : '0.1'}); ${item.special ? `border: 2px solid ${config.primary_action || defaultConfig.primary_action};` : ''}">
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                  <div class="flex-1 min-w-[200px]">
+                    <h3 style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; margin-bottom: 8px;">
+                      ${item.male ? ' ' : ''}${item.title}
+                    </h3>
+                    ${item.note ? `
+                      <p style="font-size: ${baseFont * 0.9}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7;">
+                        ${item.note}
+                      </p>
+                    ` : ''}
+                  </div>
+                  <div class="px-6 py-3 rounded-xl ${item.highlight ? '' : `bg-opacity-50`}" style="background: ${item.highlight ? config.primary_action || defaultConfig.primary_action : config.background_color || defaultConfig.background_color};">
+                    <span style="font-size: ${baseFont * 1.5}px; font-family: ${fontStack}; color: ${item.highlight ? '#FFFFFF' : config.primary_action || defaultConfig.primary_action}; font-weight: 600;">
+                      ${item.price}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderBooking(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const sections = [
+        {
+          title: '預約資訊',
+          icon: '📝',
+          items: [
+            '預約時，請提供姓名、手機號碼、三個理想時段，以利快速安排',
+            '需支付訂金 $1,500 以保留時段，訂金將於施作當日折抵消費，若臨時取消恕不退還'
+          ]
+        },
+        {
+          title: '到店須知',
+          icon: '🏠',
+          items: [
+            '為不影響下位客人權益，請準時赴約（遲到10分鐘可能需改期）',
+            '素顏、帶妝皆可，現場會清潔眉部',
+            '個人工作室，如需攜伴請於公共大廳等候'
+          ]
+        },
+        {
+          title: '施作前提醒',
+          icon: '⏰',
+          items: [
+            '前三週請勿自行修眉，以利設計眉型參考',
+            '施作前 2–3 天請避免飲酒、熬夜，否則痛感會較為明顯',
+            '為維持乾淨舒適的服務品質，請您務必清潔頭髮'
+          ]
+        },
+        {
+          title: '改期與取消',
+          icon: '🔄',
+          items: [
+            '預約如需改期，務必於兩星期前告知，為維護其他預約客人的權益，更改時間僅限一次',
+            '當日臨時取消或未到者，定金不退還'
+          ]
+        },
+        {
+          title: '三個月內免費補色',
+          icon: '💕',
+          items: [
+            '不會另外主動通知，請水水們記得提前預約時間喲！希望下次見面，能讓你的眉毛更完美💕',
+            ‘超過三個月，依照價目表收費’
+          ]
+        }
+      ];
+
+      return `
+        <div class="mb-8 fade-in">
+          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+            預約須知
+          </h2>
+          <div class="space-y-5">
+            ${sections.map(section => `
+              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
+                <div class="flex items-center gap-3 mb-5">
+                  <span style="font-size: ${baseFont * 1.8}px;">${section.icon}</span>
+                  <h3 style="font-size: ${baseFont * 1.4}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+                    ${section.title}
+                  </h3>
+                </div>
+                <ul class="space-y-3">
+                  ${section.items.map(item => `
+                    <li class="flex items-start gap-3 p-3 rounded-xl" style="background: ${config.background_color || defaultConfig.background_color};">
+                      <span style="color: ${config.primary_action || defaultConfig.primary_action}; font-size: ${baseFont}px; flex-shrink: 0; margin-top: 2px;">•</span>
+                      <span style="font-size: ${baseFont}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.8; opacity: 0.9;">
+                        ${item}
+                      </span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAftercare(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const sections = [
+        {
+          title: '施作後 前四天',
+          period: 'Day 1-4',
+          items: [
+            '48小時內避免接觸水，眉毛區域保持乾燥不要揉搓',
+            '早+晚使用生理食鹽水濕敷十分鐘',
+            '使用修復霜薄薄的塗在眉毛上，一粒米大小薄擦雙眉即可'
+          ]
+        },
+        {
+          title: '施作後 1-2週內',
+          period: 'Week 1-2',
+          items: [
+            '避開任何保養品、化妝品、臉部醫美雷射',
+            '避免陽光曝曬與水療活動，以免影響色素穩定性'
+          ]
+        },
+        {
+          title: '正常修復過程',
+          period: '修復期',
+          items: [
+            '操作完有刺痛、泛紅為正常現象，過一陣子會消失',
+            '結痂和脫皮是正常的現象，請勿用手撕拉、搓揉眉毛，可能會影響顏色不均勻'
+          ]
+        },
+        {
+          title: '留意肌膚狀況',
+          period: '注意事項',
+          items: [
+            '如果眉毛區域有紅腫、瘙癢、過敏或其他不適症狀，請立即找專業醫師，以確保最佳修復效果'
+          ],
+          alert: true
+        },
+        {
+          title: '如何提高留色率',
+          period: '保養秘訣',
+          items: [
+            '所有底妝產品、防曬、美白酸類保養品，盡可能避開眉毛',
+            '敷面膜可在眉毛上先塗凡士林、保鮮膜、棉片隔離',
+            '最佳補色期：一個月後、三個月內（超時會按價目表收費用）',
+            '霧眉屬於侵入式，一年內不適宜捐血'
+          ]
+        }
+      ];
+
+      return `
+        <div class="mb-8 fade-in">
+          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+            術後護理注意事項
+          </h2>
+          <div class="space-y-5">
+            ${sections.map(section => `
+              <div class="card p-7 rounded-3xl ${section.alert ? 'border-2' : ''}" style="background: ${section.alert ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.12); ${section.alert ? `border-color: ${config.primary_action || defaultConfig.primary_action};` : ''}">
+                <div class="flex items-center justify-between mb-5 flex-wrap gap-3">
+                  <h3 style="font-size: ${baseFont * 1.4}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+                    ${section.title}
+                  </h3>
+                  <span class="px-4 py-2 rounded-full" style="background: ${config.secondary_action || defaultConfig.secondary_action}; font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
+                    ${section.period}
+                  </span>
+                </div>
+                <ul class="space-y-3">
+                  ${section.items.map(item => `
+                    <li class="flex items-start gap-3 p-4 rounded-xl" style="background: ${config.background_color || defaultConfig.background_color};">
+                      <span style="color: ${config.primary_action || defaultConfig.primary_action}; font-size: ${baseFont * 1.1}px; flex-shrink: 0;">✓</span>
+                      <span style="font-size: ${baseFont}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.8; opacity: 0.9;">
+                        ${item}
+                      </span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderEyebrowDesign(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      return `
+        <div class="mb-8 fade-in">
+          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+            
+         <div class="card p-8 rounded-3xl text-center" style="background: linear-gradient(135deg, #E8D5C8 0%, #FFFFFF 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+            <h3 class="mb-4" style="font-size: 24px; font-family: Noto Sans TC, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #5C4A42; font-weight: 500;">
+              💡 眉型設計理念
+            </h3>
+            <p style="font-size: 16.8px; font-family: Noto Sans TC, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #5C4A42; line-height: 2; opacity: 0.85; max-width: 800px; margin: 0 auto;">
+              每個人的臉型、五官比例都不相同，我們會根據您的特質，<br>
+              設計最適合您的眉型，打造自然協調的完美眉毛 ✨
+            </p>
+          </div>
+    
+            眉型設計展示
+          </h2>
+          
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            ${[1, 2, 3, 4].map(i => `
+              <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
+                <div class="image-placeholder" style="min-height: 280px;">
+                  <div style="text-align: center; z-index: 1; padding: 20px;">
+                    <div style="font-size: ${baseFont * 2.5}px; margin-bottom: 12px;">✨</div>
+                    <p style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7; font-weight: 500;">
+                      眉型設計 ${i}
+                    </p>
+                    <p style="font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.5; margin-top: 8px;">
+                      圖片展示區域
+                    </p>
+                  </div>
+                </div>
+                <div class="p-5" style="background: ${config.background_color || defaultConfig.background_color};">
+                  <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; text-align: center;">
+                    根據臉型量身打造的專屬眉型設計
+                  </p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="card p-8 rounded-3xl text-center" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+            <h3 class="mb-4" style="font-size: ${baseFont * 1.5}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
+              💡 眉型設計理念
+            </h3>
+            <p style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85; max-width: 800px; margin: 0 auto;">
+              每個人的臉型、五官比例都不相同，我們會根據您的特質，<br>
+              設計最適合您的眉型，打造自然協調的完美眉毛 ✨
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPortfolio(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      return `
+        <div class="mb-8 fade-in">
+          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+            霧眉作品集
+          </h2>
+          
+          <div class="grid md:grid-cols-3 gap-5 mb-8">
+            ${[1, 2, 3, 4, 5, 6].map(i => `
+              <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
+                <div class="image-placeholder" style="min-height: 300px;">
+                  <div style="text-align: center; z-index: 1; padding: 20px;">
+                    <div style="font-size: ${baseFont * 2.5}px; margin-bottom: 12px;">🎨</div>
+                    <p style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7; font-weight: 500;">
+                      作品展示 ${i}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-5">
+            ${[
+              { title: '自然系', desc: '淡淡柔霧感，素顏也好看' },
+              { title: '韓系', desc: '時尚妝感，精緻有型' },
+              { title: '混合系', desc: '結合線條與霧感的層次美' }
+            ].map(style => `
+              <div class="card p-6 rounded-2xl text-center" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
+                <h3 class="mb-3" style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+                  ${style.title}
+                </h3>
+                <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; line-height: 1.8;">
+                  ${style.desc}
+                </p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPreparation(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const sections = [
+        {
+          title: '霧眉前三週',
+          icon: '📅',
+          items: [
+            '避免做任何拔毛、修眉，以免影響眉型設計與著色效果',
+            '避免進行果酸換膚、雷射、煥膚等醫美療程',
+            '避免日曬、過度曝曬，以免皮膚受損影響上色'
+          ]
+        },
+        {
+          title: '霧眉前 24 小時內',
+          icon: '⏰',
+          items: [
+            '乾性肌膚者→可用保濕產品加強肌膚保水度；油性肌膚者→可去角質減少油脂分泌',
+            '避免飲酒、咖啡、濃茶、辛辣食物，減少血液循環加速，影響色乳吸收',
+            '停止服用阿斯匹靈、維他命E、魚油等抗凝血藥物（如有長期服用，請先諮詢醫師）',
+            '確保充足睡眠，避免熬夜影響皮膚狀況，否則痛感會較為明顯',
+            '若眉毛有傷口、濕疹、皮膚炎、痘痘等情況，請提前告知，等皮膚穩定後再預約'
+          ]
+        },
+        {
+          title: '霧眉當日',
+          icon: '✨',
+          items: [
+            '為了服務時的品質，請務必清潔頭髮、避免吃重口味食物',
+            '儘量不要攜伴或寵物同行，以確保施作環境無干擾，讓你享受最完美的霧眉體驗'
+          ]
+        }
+      ];
+
+      return `
+        <div class="mb-8 fade-in">
+          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+            術前準備與禁忌
+          </h2>
+          <div class="space-y-5">
+            ${sections.map(section => `
+              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
+                <div class="flex items-center gap-3 mb-5">
+                  <span style="font-size: ${baseFont * 1.8}px;">${section.icon}</span>
+                  <h3 style="font-size: ${baseFont * 1.4}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+                    ${section.title}
+                  </h3>
+                </div>
+                <ul class="space-y-3">
+                  ${section.items.map(item => `
+                    <li class="flex items-start gap-3 p-4 rounded-xl" style="background: ${config.background_color || defaultConfig.background_color};">
+                      <span style="color: ${config.primary_action || defaultConfig.primary_action}; font-size: ${baseFont * 1.1}px; flex-shrink: 0;">✓</span>
+                      <span style="font-size: ${baseFont}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.8; opacity: 0.9;">
+                        ${item}
+                      </span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLocation(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const locations = [
+        {
+          name: '台北大安店',
+          address: '台北市大安區復興南路二段 11-1 號 12 樓',
+          transport: '🚇 捷運大安站 4 號出口 散步約30秒',
+          mapIcon: '📍'
+        },
+        {
+          name: '新北板橋店',
+          address: '新北市板橋區莊敬路140巷10號1樓',
+          transport: '🚇 捷運新埔4號出口 散步4分鐘',
+          mapIcon: '📍'
+        }
+      ];
+
+      return `
+        <div class="mb-8 fade-in">
+          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+            工作室地點
+          </h2>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            ${locations.map(loc => `
+              <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
+                <div class="image-placeholder" style="min-height: 280px;">
+                  <div style="text-align: center; z-index: 1; padding: 20px;">
+                    <div style="font-size: ${baseFont * 3}px; margin-bottom: 12px;">${loc.mapIcon}</div>
+                    <p style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; font-weight: 500;">
+                      ${loc.name}
+                    </p>
+                    <p style="font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.5; margin-top: 8px;">
+                      地圖展示區域
+                    </p>
+                  </div>
+                </div>
+                <div class="p-6" style="background: ${config.background_color || defaultConfig.background_color};">
+                  <h3 class="mb-4" style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+                    ${loc.name}
+                  </h3>
+                  <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                      <span style="font-size: ${baseFont * 1.1}px;">📍</span>
+                      <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.8; opacity: 0.85;">
+                        ${loc.address}
+                      </p>
+                    </div>
+                    <div class="p-3 rounded-xl" style="background: ${config.card_background || defaultConfig.card_background};">
+                      <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+                        ${loc.transport}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="card p-8 rounded-3xl text-center mt-6" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+            <h3 class="mb-3" style="font-size: ${baseFont * 1.4}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
+              🏠 個人工作室，環境舒適安靜
+            </h3>
+            <p style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85;">
+              提供私密舒適的服務空間，讓您放鬆享受美麗時光<br>
+              如需攜伴請於公共大廳等候，感謝配合 🤍
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFAQBrow(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const faqs = [
+        {
+          q: '霧眉跟飄眉的差別是什麼？',
+          a: `<strong>｜霧眉（粉霧感）</strong><br>
+          ・俐落的眉型，像眉粉掃過的柔霧妝感<br>
+          ・濃淡可調：自然 ➜ 韓系 ➜ 妝感<br><br>
+          <strong>✐ 技術方式：</strong><br>
+          ・細針點點堆疊，呈現「噴霧效果」<br>
+          ・顏色均勻、持色度高<br><br>
+          <strong>✓ 適合族群：</strong><br>
+          ・眉毛稀疏、想補眉型/眉色<br>
+          ・平時有化妝，想起床就自帶眉妝的人<br>
+          ・油肌、混合肌超適合<br><br>
+          <strong>｜飄眉（線條感）</strong><br>
+          ・一根一根仿真毛流，超自然像天生眉<br><br>
+          <strong>✐ 技術方式：</strong><br>
+          ・手工刀片 or 機器刻畫線條<br><br>
+          <strong>✓ 適合族群：</strong><br>
+          ・想自然、無妝感眉毛的人<br>
+          ・乾肌、中性肌更持久（油肌線條易糊）`,
+          hasImage: true
+        },
+        {
+          q: '霧眉需要多久？',
+          a: `霧眉施作時間平均約 3～3.5 小時，依個人眉型、膚況與溝通時間會有些差異<br><br>
+          <strong>流程大致如下：</strong><br>
+          ① 諮詢 / 溝通眉型（10–20 分鐘）<br>
+          ② 畫眉設計確認（40–60 分鐘）<br>
+          ③ 敷舒緩膏時間（20–30 分鐘）<br>
+          ④ 正式施作霧眉（90–120 分鐘）<br>
+          ⑤ 術後護理與說明（10分鐘）<br><br>
+          建議預留4小時操作時間，讓我們有足夠時間打造理想眉型，也讓你可以輕鬆自在🤍`
+        },
+        {
+          q: '為什麼會變橘紅眉？',
+          a: `<strong>① 色料氧化變色</strong><br>
+          早期或品質較差的色乳，多含鐵氧化物或偏紅調的顏料。時間久了，這些成分會慢慢浮出表面，因此眉毛就容易出現橘紅色調<br><br>
+          <strong>② 使用偏暖色調的色乳</strong><br>
+          多數咖啡色色乳是由 紅、黃、黑、白 調和而成：<br>
+          ・紅、黃分子大 → 不易代謝<br>
+          ・黑、白分子小 → 代謝最快<br><br>
+          隨著時間推移，黑白色素先被皮膚吸收，剩下紅黃色素，眉毛就會變得偏紅或橘紅`
+        },
+        {
+          q: '霧眉可以維持多久？',
+          a: `霧眉不是一做就永久，會自然淡化，維持約 1～2 年，屬於可隨著流行與臉型變化重新調整的半永久性妝感<br><br>
+          ▴ 實際持久度會依每位客人的膚質、代謝速度、生活習慣（頻繁去角質、強烈日曬、醫美雷射、飲酒）而有所不同`
+        },
+        {
+          q: '霧眉會痛嗎？',
+          a: `敷舒緩膏後還是會有微微刺感，疼痛感會依個人膚況、月經週期、敏感程度略有不同，但普遍都在可接受範圍內<br><br>
+          <strong>霧眉師真誠建議❗️特別怕痛的客人❗️</strong><br>
+          請避開生理期、施作前保持充足睡眠與穩定作息、眉區肌膚加強保濕！！`,
+          hasImage: true
+        },
+        {
+          q: '他店霧眉過，可以來這邊補色嗎？',
+          a: `不同店家使用的色乳、手法與產品都有差異，所以只要不是在本店做的眉毛，都視為「重新操作」<br><br>
+          若原本有底色，請先提供照片讓我評估是否能直接重作或需先除色，以避免白跑一趟唷🤍`
+        },
+        {
+          q: '一定要進行三個月內的補色嗎？',
+          a: `<strong>告訴你三個補色的優點：</strong><br><br>
+          <strong>① 眉色均勻飽滿</strong><br>
+          初次施作時，眉毛的色料會因皮膚代謝、膚質差異而吸收不同，補色能讓顏色更均勻飽滿<br><br>
+          <strong>② 持久度更佳</strong><br>
+          補色後眉色更穩定、更自然，能延長維持時間，避免退色不均<br><br>
+          <strong>③ 眉型更完美</strong><br>
+          第一次施作主要確認眉型，補色時可以微調細節，讓整體效果更精緻`,
+          hasImage: true
+        },
+        {
+          q: '霧眉可以變對稱嗎？',
+          a: `首先，每個人的眉毛與五官天生就存在些微不對稱。眉型設計並非追求「左右完全複製」，而是根據 五官比例、眉骨高度與肌肉動態 去調整，打造視覺上最和諧、最適合你的對稱感<br><br>
+          <strong>✔ 結論</strong><br>
+          霧眉的重點不是追求「機械式對稱」，而是打造與你臉部協調、日常看起來自然平衡的眉型<br><br>
+          <strong>↓ 最終效果會是 ↓</strong><br>
+          看起來對稱、不僵硬、完全貼合你的五官比例`,
+          hasImage: true
+        },
+        {
+          q: '過一陣子要辦婚禮or拍婚紗，適合霧眉嗎？',
+          a: `第一次霧眉會以素顏感、自然系為主，等習慣之後，補色時再依照喜好慢慢調整濃淡與妝感風格<br><br>
+          若近期有拍婚紗或婚禮行程，也建議提前與新秘討論，讓整體妝容更一致唷🤍`
+        },
+        {
+          q: '手工霧眉跟機器霧眉的差別在哪裡？',
+          a: `<strong>手工霧眉特色在於：</strong><br>
+          ・上色方式：手工一點一點上色<br>
+          ・效果：自然輕霧、偏素顏感<br>
+          ・適合膚質：乾肌、正常混合肌<br>
+          ・特色：柔和、輕透、第一眼非常自然`,
+          hasImage: true
+        }
+      ];
+
+      return `
+        <div class="mb-8 fade-in">
+          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+            霧眉常見 Q&A
+          </h2>
+          <div class="space-y-5">
+            ${faqs.map((faq, index) => `
+              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
+                <div class="flex items-start gap-4 mb-4">
+                  <span class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background: ${config.primary_action || defaultConfig.primary_action}; color: white; font-size: ${baseFont * 0.9}px; font-family: ${fontStack}; font-weight: 600;">
+                    ${index + 1}
+                  </span>
+                  <h3 style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500; padding-top: 2px;">
+                    ${faq.q}
+                  </h3>
+                </div>
+                ${faq.hasImage ? `
+                  <div class="image-placeholder mb-5" style="min-height: 200px;">
+                    <div style="text-align: center; z-index: 1; padding: 20px;">
+                      <div style="font-size: ${baseFont * 2}px; margin-bottom: 8px;">📸</div>
+                      <p style="font-size: ${baseFont * 0.9}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.6;">
+                        圖片展示區域
+                      </p>
+                    </div>
+                  </div>
+                ` : ''}
+                <div class="p-5 rounded-2xl" style="background: ${config.background_color || defaultConfig.background_color};">
+                  <p style="font-size: ${baseFont * 0.98}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.9;">
+                    ${faq.a}
+                  </p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFAQRemoval(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const faqs = [
+        {
+          q: '什麼情況需要除色？',
+          a: `<strong>以下情況可能需要除色：</strong><br>
+          ・對現有眉型或顏色不滿意<br>
+          ・眉毛顏色變紅或變藍<br>
+          ・眉型過時，想重新設計<br>
+          ・準備重新施作新的霧眉<br>
+          ・眉毛顏色過深或不自然`,
+          hasImage: true
+        },
+        {
+          q: '除色需要做幾次？',
+          a: `除色次數因人而異，主要取決於：<br><br>
+          ・色料的深淺程度<br>
+          ・色料的種類和品質<br>
+          ・施作的時間長短<br>
+          ・個人膚質和代謝能力<br><br>
+          <strong>一般來說：</strong><br>
+          ・淺色、新做的眉毛：2-3 次<br>
+          ・深色、陳舊的眉毛：4-6 次<br>
+          ・每次間隔 6-8 週`,
+          hasImage: true
+        },
+        {
+          q: '除色會痛嗎？',
+          a: `除色過程會使用舒緩膏，痛感因人而異，大多數客人反應：<br><br>
+          ・比霧眉施作時稍微不舒服一點<br>
+          ・有輕微刺痛和灼熱感<br>
+          ・過程約 30-60 分鐘<br>
+          ・術後會有輕微紅腫，約 1-2 天消退<br><br>
+          <strong>建議：</strong>避開生理期、保持充足睡眠，可降低不適感`,
+          hasImage: true
+        },
+        {
+          q: '除色後多久可以重新霧眉？',
+          a: `<strong>建議時間：</strong><br><br>
+          ・完成所有除色療程後，等待 2-3 個月<br>
+          ・讓皮膚充分修復和代謝<br>
+          ・確保眉部肌膚狀況良好<br>
+          ・由專業師傅評估後再進行新的霧眉<br><br>
+          過早重新施作可能影響上色效果和皮膚健康`
+        },
+        {
+          q: '除色後會留疤嗎？',
+          a: `<strong>正確的除色方式不會留疤：</strong><br><br>
+          ・使用專業除色產品和技術<br>
+          ・由經驗豐富的專業人員操作<br>
+          ・遵循術後護理指示<br>
+          ・避免自行摳抓結痂<br><br>
+          <strong>但以下情況可能增加風險：</strong><br>
+          ・蟹足腫體質<br>
+          ・未遵循術後護理<br>
+          ・過度頻繁除色`,
+          hasImage: true
+        },
+        {
+          q: '除色後的護理要注意什麼？',
+          a: `<strong>除色後護理非常重要：</strong><br><br>
+          <strong>前 7 天：</strong><br>
+          ・避免碰水、流汗<br>
+          ・薄擦修復膏<br>
+          ・不可搓揉或摳抓<br>
+          ・避免化妝品接觸眉部<br><br>
+          <strong>後續 2-4 週：</strong><br>
+          ・加強保濕<br>
+          ・避免日曬<br>
+          ・避免去角質、酸類產品<br>
+          ・避免醫美雷射療程`,
+          hasImage: true
+        }
+      ];
+
+      return `
+        <div class="mb-8 fade-in">
+          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+            除色常見 Q&A
+          </h2>
+          <div class="space-y-5">
+            ${faqs.map((faq, index) => `
+              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
+                <div class="flex items-start gap-4 mb-4">
+                  <span class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background: ${config.primary_action || defaultConfig.primary_action}; color: white; font-size: ${baseFont * 0.9}px; font-family: ${fontStack}; font-weight: 600;">
+                    ${index + 1}
+                  </span>
+                  <h3 style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500; padding-top: 2px;">
+                    ${faq.q}
+                  </h3>
+                </div>
+                ${faq.hasImage ? `
+                  <div class="image-placeholder mb-5" style="min-height: 200px;">
+                    <div style="text-align: center; z-index: 1; padding: 20px;">
+                      <div style="font-size: ${baseFont * 2}px; margin-bottom: 8px;">📸</div>
+                      <p style="font-size: ${baseFont * 0.9}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.6;">
+                        圖片展示區域
+                      </p>
+                    </div>
+                  </div>
+                ` : ''}
+                <div class="p-5 rounded-2xl" style="background: ${config.background_color || defaultConfig.background_color};">
+                  <p style="font-size: ${baseFont * 0.98}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.9;">
+                    ${faq.a}
+                  </p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="card p-8 rounded-3xl text-center mt-6" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+            <h3 class="mb-4" style="font-size: ${baseFont * 1.5}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
+              💡 除色前建議
+            </h3>
+            <p style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85; max-width: 800px; margin: 0 auto;">
+              建議提供現有眉毛的清晰照片，讓我們評估最適合的除色方案<br>
+              每個人的情況不同，專業評估能確保最佳效果 ✨
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderContact(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const instagram = config.instagram_handle || defaultConfig.instagram_handle;
+      const lineId = config.line_id || defaultConfig.line_id;
+      
+      return `
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="https://instagram.com/${instagram}" target="_blank" rel="noopener noreferrer" 
+             class="card px-8 py-4 rounded-full flex items-center gap-3 transition-transform hover:scale-105"
+             style="background: ${config.primary_action || defaultConfig.primary_action}; text-decoration: none; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3);">
+            <span style="font-size: ${baseFont * 1.4}px;">📷</span>
+            <span style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: white; font-weight: 500;">
+              Instagram
+            </span>
+          </a>
+          <button onclick="navigator.clipboard.writeText('${lineId}').then(() => { 
+            const btn = event.target.closest('button');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<span style=\\'font-size: ${baseFont * 1.4}px;\\'>✓</span><span style=\\'font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;\\'>已複製 LINE ID</span>';
+            setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
+          })"
+             class="card px-8 py-4 rounded-full flex items-center gap-3 transition-transform hover:scale-105"
+             style="background: ${config.secondary_action || defaultConfig.secondary_action}; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.2);">
+            <span style="font-size: ${baseFont * 1.4}px;">💬</span>
+            <span style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
+              LINE: ${lineId}
+            </span>
+          </button>
+        </div>
+      `;
+    }
+
+    async function onConfigChange(config) {
+      const app = document.getElementById('app');
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      document.body.style.background = config.background_color || defaultConfig.background_color;
+      
+      let tabContent = '';
+      switch(currentTab) {
+        case 'home': tabContent = renderHome(config); break;
+        case 'pricing': tabContent = renderPricing(config); break;
+        case 'booking': tabContent = renderBooking(config); break;
+        case 'aftercare': tabContent = renderAftercare(config); break;
+        case 'eyebrow-design': tabContent = renderEyebrowDesign(config); break;
+        case 'portfolio': tabContent = renderPortfolio(config); break;
+        case 'preparation': tabContent = renderPreparation(config); break;
+        case 'location': tabContent = renderLocation(config); break;
+        case 'faq-brow': tabContent = renderFAQBrow(config); break;
+        case 'faq-removal': tabContent = renderFAQRemoval(config); break;
+      }
+      
+      app.innerHTML = `
+        <div class="w-full min-h-screen p-4 md:p-6">
+          <div class="max-w-6xl mx-auto">
+            <div class="mb-6 p-3 rounded-3xl scroll-container overflow-x-auto" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 24px rgba(199, 162, 144, 0.18);">
+              <div class="flex gap-2 justify-start md:justify-center min-w-max md:min-w-0">
+                ${tabs.map(tab => `
+                  <button onclick="switchTab('${tab.id}')" 
+                          class="tab-button px-5 py-3 rounded-2xl transition-all flex-shrink-0"
+                          style="background: ${currentTab === tab.id ? (config.primary_action || defaultConfig.primary_action) : 'transparent'}; 
+                                 color: ${currentTab === tab.id ? 'white' : (config.primary_text || defaultConfig.primary_text)}; 
+                                 font-size: ${baseFont * 0.9}px; 
+                                 font-family: ${fontStack}; 
+                                 font-weight: 500; 
+                                 border: none; 
+                                 cursor: pointer;
+                                 white-space: nowrap;">
+                    <span style="margin-right: 6px;">${tab.icon}</span>${tab.name}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="mb-8">
+              ${tabContent}
+            </div>
+
+            <div class="card p-8 rounded-3xl text-center" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+              <h3 class="mb-6" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 400; letter-spacing: 1px;">
+                聯繫我們
+              </h3>
+              ${renderContact(config)}
+              ${currentTab !== 'home' ? `
+                <button onclick="switchTab('home')" 
+                        class="mt-8 px-10 py-4 rounded-full transition-all hover:scale-105"
+                        style="background: ${config.secondary_action || defaultConfig.secondary_action}; 
+                               color: ${config.primary_text || defaultConfig.primary_text}; 
+                               font-size: ${baseFont * 1.05}px; 
+                               font-family: ${fontStack}; 
+                               font-weight: 500; 
+                               border: none; 
+                               cursor: pointer;
+                               box-shadow: 0 3px 12px rgba(199, 162, 144, 0.2);">
+                  🏠 返回首頁
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.switchTab = function(tabId) {
+      currentTab = tabId;
+      if (window.elementSdk && window.elementSdk.config) {
+        onConfigChange(window.elementSdk.config);
+      }
+    };
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.card_background || defaultConfig.card_background,
+              set: (value) => {
+                config.card_background = value;
+                window.elementSdk.setConfig({ card_background: value });
+              }
+            },
+            {
+              get: () => config.primary_text || defaultConfig.primary_text,
+              set: (value) => {
+                config.primary_text = value;
+                window.elementSdk.setConfig({ primary_text: value });
+              }
+            },
+            {
+              get: () => config.primary_action || defaultConfig.primary_action,
+              set: (value) => {
+                config.primary_action = value;
+                window.elementSdk.setConfig({ primary_action: value });
+              }
+            },
+            {
+              get: () => config.secondary_action || defaultConfig.secondary_action,
+              set: (value) => {
+                config.secondary_action = value;
+                window.elementSdk.setConfig({ secondary_action: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["brand_name", config.brand_name || defaultConfig.brand_name],
+          ["brand_tagline", config.brand_tagline || defaultConfig.brand_tagline],
+          ["instagram_handle", config.instagram_handle || defaultConfig.instagram_handle],
+          ["line_id", config.line_id || defaultConfig.line_id]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a8d2f4865374a46',t:'MTc2NDg3MTAzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
