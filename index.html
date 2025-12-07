@@ -50,6 +50,13 @@
       box-shadow: 0 8px 24px rgba(199, 162, 144, 0.18);
     }
 
+    /* 确保联系按钮使用深色背景和圆角 */
+    a[href*="instagram.com"],
+    a[href*="lin.ee"] {
+      background-color: #C7A290 !important;
+      border-radius: 9999px !important;
+    }
+
     .image-placeholder {
       background: linear-gradient(135deg, #F5EBE6 0%, #E8D5C8 100%);
       border-radius: 16px;
@@ -108,7 +115,7 @@
       primary_action: "#C7A290",
       secondary_action: "#E8D5C8",
       font_family: "Noto Sans TC",
-      font_size: 16
+      font_size: 13.5
     };
 
     let currentTab = 'home';
@@ -132,7 +139,7 @@
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
       
       return `
-        <div class="text-center mb-12 fade-in">
+        <div class="text-center mb-8 fade-in">
           <h1 class="mb-4" style="font-size: ${baseFont * 3}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 300; letter-spacing: 4px;">
             ${config.brand_name || defaultConfig.brand_name}
           </h1>
@@ -141,39 +148,37 @@
           </p>
         </div>
 
-        <div class="card p-8 rounded-3xl text-center fade-in mb-10" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
-          <h3 class="mb-4" style="font-size: ${baseFont * 1.5}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
-            ⚠️ 霧眉預約前｜重要提須知，很種要一定要看
+        <div class="card p-8 rounded-3xl text-center fade-in mb-8 -mt-4" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+          <h3 class="mb-4" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
+            ⚠️ 霧眉預約前｜須知請詳閱
           </h3>
-          <div class="max-w-3xl mx-auto" style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.9; opacity: 0.85;">
-            <p class="mb-4">若有以下任一狀況，暫不建議施作霧眉：</p>
-            <p style="line-height: 2;">
-              🚫 蟹足腫、糖尿病、高血壓、心血管疾病、愛滋病、B型肝炎、<br>
-              免疫力失調、服用抗凝血藥物、精神疾病、傳染性疾病、<br>
-              嚴重異位性皮膚炎、嚴重過敏性膚況
+          <div class="max-w-3xl mx-auto" style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.9; opacity: 0.85;">
+            <p class="mb-5">若有以下任一狀況，暫不建議施作霧眉：</p>
+            <p style="line-height:2;">
+              🚫 蟹足腫、糖尿病、高血壓、心血管疾病、愛滋病、B型肝炎、免疫力失調、服用抗凝血藥物、精神疾病、傳染性疾病、嚴重異位性皮膚炎、嚴重過敏性膚況
             </p>
             <div class="mt-6 pt-6" style="border-top: 1px solid rgba(199, 162, 144, 0.2);">
-              <p style="font-size: ${baseFont * 0.9}px; opacity: 0.75;">
+              <p style="font-size: ${baseFont * 1.0}px; opacity: 0.75;">
                 🌸 每個人顴骨高低、眉型長短都不同，兩邊眉毛不會「完全對稱」是自然現象<br>
-                若您是追求極致完美的眉型控，建議再三考慮後預約唷❤️
+                若您是追求極致完美的眉型控，建議再三考慮後預約唷
               </p>
             </div>
           </div>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-8 mb-10">
+        <div class="grid md:grid-cols-2 gap-7 mb-10">
           <div class="card p-8 rounded-3xl fade-in" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
-            <div class="text-center mb-6">
-              <span style="font-size: ${baseFont * 3}px;">💫</span>
+            <div class="text-center mb-1">
+              <span style="font-size: ${baseFont * 3}px;"></span>
             </div>
-            <h2 class="text-center mb-4" style="font-size: ${baseFont * 1.8}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+            <h2 class="text-center mb-2" style="font-size: ${baseFont * 1.8}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
               霧眉服務
             </h2>
             <p class="mb-6" style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85; text-align: center;">
               採用最新韓式技術，打造自然柔霧妝感<br>讓您的眉型更加立體有神
             </p>
             <div class="grid grid-cols-2 gap-3">
-              ${['自然霧感', '持久穩定', '專業設計', '個人訂製'].map(feature => `
+              ${['精緻霧感','持久穩定','專業設計','定製眉形'].map(feature => `
                 <div class="p-4 rounded-2xl text-center" style="background: ${config.background_color || defaultConfig.background_color};">
                   <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text};">✓ ${feature}</span>
                 </div>
@@ -182,17 +187,17 @@
           </div>
 
           <div class="card p-8 rounded-3xl fade-in" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
-            <div class="text-center mb-6">
-              <span style="font-size: ${baseFont * 3}px;">✨</span>
+            <div class="text-center mb-1">
+              <span style="font-size: ${baseFont * 3}px;"></span>
             </div>
-            <h2 class="text-center mb-4" style="font-size: ${baseFont * 1.8}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+            <h2 class="text-center mb-2" style="font-size: ${baseFont * 1.8}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
               除色服務
             </h2>
             <p class="mb-6" style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85; text-align: center;">
               安全有效的除色技術<br>幫助您重新打造理想眉型
             </p>
             <div class="grid grid-cols-2 gap-3">
-              ${['安全無痛', '漸進淡化', '專業評估', '無修復期'].map(feature => `
+              ${['溫和除色','無修復期','漸進淡化','低敏無負擔'].map(feature => `
                 <div class="p-4 rounded-2xl text-center" style="background: ${config.background_color || defaultConfig.background_color};">
                   <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text};">✓ ${feature}</span>
                 </div>
@@ -210,13 +215,13 @@
       
       const prices = [
 
-        { title: '新客霧眉', price: '$6,800', note: '含 3 個月內免費補色乙次', highlight: true },
-        { title: '6 個月內｜單次補色', price: '$2,000-$2,500', note: '' },
-        { title: '6–12 個月內｜單次補色', price: '$5,000', note: '' },
-        { title: '12–14 個月內｜單次補色', price: '$5,500', note: '' },
-        { title: '14 個月以上｜視為新作', price: '$6,199', note: "享9折優惠" },
-        { title: '兩人同行優惠', price: '$5,800', note: '現折 $1,000｜須預約不同時段施作', special: true },
-        { title: '男士霧眉', price: '以上費用 +$1,000', note: '', male: true }
+        { title: '新客霧眉', price: '$6,800', note: '含 3 個月內免費補色乙次', highlight: true , special: true},
+        { title: '6個月內｜單次補色', price: '$2,000-$2,500', note: '', special: true },
+        { title: '6–12個月內｜單次補色', price: '$5,000', note: '', special: true },
+        { title: '12–14個月內｜單次補色', price: '$5,500', note: '' , special: true},
+        { title: '14個月以上｜視為新作', price: '$6,199', note: "享 9 折優惠", special: true },
+        { title: '兩人同行優惠', price: '$5,800', note: '現折 $1,000｜須預約不同時段', special: true },
+        { title: '男士霧眉', price: '以上費用 +$1,000', note: '', special: true }
       ];
 
       return `
@@ -227,22 +232,22 @@
           <div class="space-y-4">
             ${prices.map(item => `
               <div class="card p-6 rounded-2xl" style="background: ${item.highlight ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, ${item.highlight ? '0.2' : '0.1'}); ${item.special ? `border: 2px solid ${config.primary_action || defaultConfig.primary_action};` : ''}">
-                <div class="flex items-center justify-between flex-wrap gap-4">
-                  <div class="flex-1 min-w-[200px]">
-                    <h3 style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; margin-bottom: 8px;">
+                <div>
+                  <div class="flex items-center justify-between gap-4 mb-2">
+                    <h3 style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; white-space: nowrap; flex: 1; min-width: 0;">
                       ${item.male ? ' ' : ''}${item.title}
                     </h3>
-                    ${item.note ? `
-                      <p style="font-size: ${baseFont * 0.9}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7;">
-                        ${item.note}
-                      </p>
-                    ` : ''}
+                    <div class="px-4 py-2 rounded-xl flex-shrink-0 ${item.highlight ? '' : `bg-opacity-50`}" style="background: ${item.highlight ? config.primary_action || defaultConfig.primary_action : config.background_color || defaultConfig.background_color};">
+                      <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${item.highlight ? '#FFFFFF' : config.primary_action || defaultConfig.primary_action}; font-weight: 600; white-space: nowrap;">
+                        ${item.price}
+                      </span>
+                    </div>
                   </div>
-                  <div class="px-6 py-3 rounded-xl ${item.highlight ? '' : `bg-opacity-50`}" style="background: ${item.highlight ? config.primary_action || defaultConfig.primary_action : config.background_color || defaultConfig.background_color};">
-                    <span style="font-size: ${baseFont * 1.5}px; font-family: ${fontStack}; color: ${item.highlight ? '#FFFFFF' : config.primary_action || defaultConfig.primary_action}; font-weight: 600;">
-                      ${item.price}
-                    </span>
-                  </div>
+                  ${item.note ? `
+                    <p style="font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7;">
+                      ${item.note}
+                    </p>
+                  ` : ''}
                 </div>
               </div>
             `).join('')}
@@ -293,10 +298,10 @@
         },
         {
           title: '三個月內免費補色',
-          icon: '💕',
+          icon: '💆🏻‍♀️',
           items: [
-            '不會另外主動通知，請水水們記得提前預約時間喲！希望下次見面，能讓你的眉毛更完美💕',
-            '超過三個月，依照價目表收費'
+            '不會主動通知，請水水們記得提前預約時間喲！希望下次見面，能讓你的眉毛更完美💕',
+            '超過三個月，會依照價目表收費唷'
           ]
         }
       ];
@@ -306,10 +311,10 @@
           <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
             預約須知
           </h2>
-          <div class="space-y-5">
+          <div class="space-y-4">
             ${sections.map(section => `
               <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
-                <div class="flex items-center gap-3 mb-5">
+                <div class="flex items-center gap-3 mb-4">
                   <span style="font-size: ${baseFont * 1.8}px;">${section.icon}</span>
                   <h3 style="font-size: ${baseFont * 1.4}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
                     ${section.title}
@@ -345,7 +350,8 @@
             '48小時內避免接觸水，眉毛區域保持乾燥不要揉搓',
             '早+晚使用生理食鹽水濕敷十分鐘',
             '使用修復霜薄薄的塗在眉毛上，一粒米大小薄擦雙眉即可'
-          ]
+          ],
+          alert: true
         },
         {
           title: '施作後 1-2週內',
@@ -353,7 +359,8 @@
           items: [
             '避開任何保養品、化妝品、臉部醫美雷射',
             '避免陽光曝曬與水療活動，以免影響色素穩定性'
-          ]
+          ],
+          alert: true
         },
         {
           title: '正常修復過程',
@@ -368,11 +375,10 @@
           period: '注意事項',
           items: [
             '如果眉毛區域有紅腫、瘙癢、過敏或其他不適症狀，請立即找專業醫師，以確保最佳修復效果'
-          ],
-          alert: true
+          ]
         },
         {
-          title: '如何提高留色率',
+          title: '如何提高留色率？',
           period: '保養秘訣',
           items: [
             '所有底妝產品、防曬、美白酸類保養品，盡可能避開眉毛',
@@ -386,7 +392,7 @@
       return `
         <div class="mb-8 fade-in">
           <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
-            術後護理注意事項
+            術後護理｜注意事項
           </h2>
           <div class="space-y-5">
             ${sections.map(section => `
@@ -437,37 +443,38 @@
             </p>
           </div>
           
-          <div class="grid md:grid-cols-2 gap-6 mb-8">
-            ${[1, 2, 3, 4].map(i => `
-              <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
-                <div class="image-placeholder" style="min-height: 280px;">
+          <div class="card rounded-3xl overflow-hidden mb-8" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
+            <div class="image-placeholder" style="min-height: 400px; position: relative; overflow: hidden;">
+              <input type="file" id="eyebrow-design-upload" accept="image/*" multiple style="display: none;" onchange="handleMultipleImageUpload(event, 'eyebrow-design-gallery')">
+              <div id="eyebrow-design-gallery" style="width: 100%; height: 100%; position: relative;">
+                <div id="eyebrow-design-empty" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: absolute; top: 0; left: 0;">
                   <div style="text-align: center; z-index: 1; padding: 20px;">
-                    <div style="font-size: ${baseFont * 2.5}px; margin-bottom: 12px;">✨</div>
-                    <p style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7; font-weight: 500;">
-                      眉型設計 ${i}
+                    <div style="font-size: ${baseFont * 2.5}px; margin-bottom: 12px;">📷</div>
+                    <p style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7; font-weight: 500; margin-bottom: 8px;">
+                      上傳眉型設計照片（可多張）
                     </p>
-                    <p style="font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.5; margin-top: 8px;">
-                      圖片展示區域
-                    </p>
+                    <button onclick="document.getElementById('eyebrow-design-upload').click()" 
+                            style="padding: 10px 20px; border-radius: 12px; border: 2px dashed ${config.primary_action || defaultConfig.primary_action}; background: transparent; color: ${config.primary_action || defaultConfig.primary_action}; font-size: ${baseFont * 0.9}px; font-family: ${fontStack}; cursor: pointer; transition: all 0.3s ease;"
+                            onmouseover="this.style.background='${config.secondary_action || defaultConfig.secondary_action}'; this.style.borderColor='${config.primary_action || defaultConfig.primary_action}'"
+                            onmouseout="this.style.background='transparent'; this.style.borderColor='${config.primary_action || defaultConfig.primary_action}'">
+                      點擊選擇照片
+                    </button>
                   </div>
                 </div>
-                <div class="p-5" style="background: ${config.background_color || defaultConfig.background_color};">
-                  <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; text-align: center;">
-                    根據臉型量身打造的專屬眉型設計
-                  </p>
+                <div id="eyebrow-design-carousel" style="display: none; width: 100%; height: 100%; position: relative;">
+                  <div id="eyebrow-design-images-container" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+                  <button id="eyebrow-design-prev" onclick="changeEyebrowImage(-1)" style="display: none; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: white; font-size: 20px; cursor: pointer; z-index: 10; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'">‹</button>
+                  <button id="eyebrow-design-next" onclick="changeEyebrowImage(1)" style="display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: white; font-size: 20px; cursor: pointer; z-index: 10; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'">›</button>
+                  <div id="eyebrow-design-indicator" style="display: none; position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); color: white; padding: 6px 12px; border-radius: 20px; font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; z-index: 10;">1 / 1</div>
+                  <button onclick="document.getElementById('eyebrow-design-upload').click()" style="position: absolute; top: 10px; right: 10px; padding: 8px 16px; border-radius: 8px; border: none; background: rgba(0,0,0,0.6); color: white; font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; cursor: pointer; z-index: 10; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.6)'">+ 新增照片</button>
                 </div>
               </div>
-            `).join('')}
-          </div>
-
-          <div class="card p-8 rounded-3xl text-center" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
-            <h3 class="mb-4" style="font-size: ${baseFont * 1.5}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
-              💡 眉型設計理念
-            </h3>
-            <p style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85; max-width: 800px; margin: 0 auto;">
-              每個人的臉型、五官比例都不相同，我們會根據您的特質，<br>
-              設計最適合您的眉型，打造自然協調的完美眉毛 ✨
-            </p>
+            </div>
+            <div class="p-5" style="background: ${config.background_color || defaultConfig.background_color};">
+              <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; text-align: center;">
+                根據臉型量身打造的專屬眉型設計
+              </p>
+            </div>
           </div>
         </div>
       `;
@@ -926,7 +933,7 @@
       `;
     }
 
-    function renderContact(config) {
+    function renderContact(config, currentTab = 'home') {
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
@@ -936,27 +943,48 @@
       
       return `
         <div class="flex flex-wrap gap-4 justify-center">
-          <a href="https://instagram.com/${instagram}" target="_blank" rel="noopener noreferrer" 
+          <a href="https://www.instagram.com/beautybrow__studio?igsh=MXZrMG1mYmRocHZhcg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" 
              class="card px-8 py-4 rounded-full flex items-center gap-3 transition-transform hover:scale-105"
-             style="background: ${config.primary_action || defaultConfig.primary_action}; text-decoration: none; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3);">
-            <span style="font-size: ${baseFont * 1.4}px;">📷</span>
+             style="background: ${config.primary_action || defaultConfig.primary_action} !important; text-decoration: none; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3); border-radius: 9999px !important;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="white"/>
+            </svg>
             <span style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: white; font-weight: 500;">
-              Instagram
+              beautybrow_studio
             </span>
           </a>
-          <button onclick="navigator.clipboard.writeText('${lineId}').then(() => { 
-            const btn = event.target.closest('button');
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<span style=\\'font-size: ${baseFont * 1.4}px;\\'>✓</span><span style=\\'font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;\\'>已複製 LINE ID</span>';
-            setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
-          })"
+          <a href="https://lin.ee/p4qbS4j" target="_blank" rel="noopener noreferrer"
+             onclick="navigator.clipboard.writeText('${lineId}').then(() => { 
+               const btn = event.target.closest('a');
+               const originalHTML = btn.innerHTML;
+               btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.345 0 .63.285.63.63 0 .349-.285.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.058 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" fill="white"/>
+               </svg><span style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: white; font-weight: 500;\\'>已複製 LINE ID</span>';
+               setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
+             })"
              class="card px-8 py-4 rounded-full flex items-center gap-3 transition-transform hover:scale-105"
-             style="background: ${config.secondary_action || defaultConfig.secondary_action}; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.2);">
-            <span style="font-size: ${baseFont * 1.4}px;">💬</span>
-            <span style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
+             style="background: ${config.primary_action || defaultConfig.primary_action} !important; text-decoration: none; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3); border-radius: 9999px !important;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.345 0 .63.285.63.63 0 .349-.285.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.058 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" fill="white"/>
+            </svg>
+            <span style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: white; font-weight: 500;">
               LINE: ${lineId}
             </span>
-          </button>
+          </a>
+          ${currentTab !== 'home' ? `
+            <button onclick="switchTab('home')" 
+                    class="px-10 py-4 rounded-full transition-all hover:scale-105"
+                    style="background: ${config.secondary_action || defaultConfig.secondary_action}; 
+                           color: ${config.primary_text || defaultConfig.primary_text}; 
+                           font-size: ${baseFont * 1.05}px; 
+                           font-family: ${fontStack}; 
+                           font-weight: 500; 
+                           border: none; 
+                           cursor: pointer;
+                           box-shadow: 0 3px 12px rgba(199, 162, 144, 0.2);
+                           border-radius: 9999px !important;">
+              🏠 返回首頁
+            </button>
+          ` : ''}
         </div>
       `;
     }
@@ -986,10 +1014,11 @@
       app.innerHTML = `
         <div class="w-full min-h-screen p-4 md:p-6">
           <div class="max-w-6xl mx-auto">
-            <div class="mb-6 p-3 rounded-3xl scroll-container overflow-x-auto" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 24px rgba(199, 162, 144, 0.18);">
-              <div class="flex gap-2 justify-start md:justify-center min-w-max md:min-w-0">
+            <div class="mb-6 p-3 rounded-3xl scroll-container overflow-x-auto" id="tabs-scroll-container" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 24px rgba(199, 162, 144, 0.18);">
+              <div class="flex gap-2 justify-start md:justify-center min-w-max md:min-w-0" id="tabs-container">
                 ${tabs.map(tab => `
                   <button onclick="switchTab('${tab.id}')" 
+                          id="tab-btn-${tab.id}"
                           class="tab-button px-5 py-3 rounded-2xl transition-all flex-shrink-0"
                           style="background: ${currentTab === tab.id ? (config.primary_action || defaultConfig.primary_action) : 'transparent'}; 
                                  color: ${currentTab === tab.id ? 'white' : (config.primary_text || defaultConfig.primary_text)}; 
@@ -1013,21 +1042,7 @@
               <h3 class="mb-6" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 400; letter-spacing: 1px;">
                 聯繫我們
               </h3>
-              ${renderContact(config)}
-              ${currentTab !== 'home' ? `
-                <button onclick="switchTab('home')" 
-                        class="mt-8 px-10 py-4 rounded-full transition-all hover:scale-105"
-                        style="background: ${config.secondary_action || defaultConfig.secondary_action}; 
-                               color: ${config.primary_text || defaultConfig.primary_text}; 
-                               font-size: ${baseFont * 1.05}px; 
-                               font-family: ${fontStack}; 
-                               font-weight: 500; 
-                               border: none; 
-                               cursor: pointer;
-                               box-shadow: 0 3px 12px rgba(199, 162, 144, 0.2);">
-                  🏠 返回首頁
-                </button>
-              ` : ''}
+              ${renderContact(config, currentTab)}
             </div>
           </div>
         </div>
@@ -1038,6 +1053,271 @@
       currentTab = tabId;
       const config = window.currentConfig || defaultConfig;
       onConfigChange(config);
+      
+      // 如果切换到眉型设计页签，更新照片显示
+      if (tabId === 'eyebrow-design' && window.updateEyebrowDesignGallery) {
+        setTimeout(() => {
+          window.updateEyebrowDesignGallery();
+        }, 200);
+      }
+      
+      // 滚动到对应的页签按钮
+      setTimeout(() => {
+        const tabButton = document.getElementById(`tab-btn-${tabId}`);
+        const tabsContainer = document.getElementById('tabs-scroll-container');
+        if (tabButton && tabsContainer) {
+          const containerRect = tabsContainer.getBoundingClientRect();
+          const buttonRect = tabButton.getBoundingClientRect();
+          const scrollLeft = tabsContainer.scrollLeft;
+          const buttonLeft = buttonRect.left - containerRect.left + scrollLeft;
+          const buttonWidth = buttonRect.width;
+          const containerWidth = containerRect.width;
+          
+          // 计算需要滚动的位置，让按钮居中或至少可见
+          const targetScroll = buttonLeft - (containerWidth / 2) + (buttonWidth / 2);
+          tabsContainer.scrollTo({
+            left: targetScroll,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    };
+
+    window.handleImageUpload = function(event, previewId) {
+      const file = event.target.files[0];
+      const inputId = event.target.id;
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const preview = document.getElementById(previewId);
+          if (preview) {
+            preview.style.display = 'block';
+            preview.innerHTML = '<img src="' + e.target.result + '" alt="上傳的照片" style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px; display: block;"><button onclick="document.getElementById(\'' + inputId + '\').click()" style="position: absolute; top: 10px; right: 10px; padding: 8px 16px; border-radius: 8px; border: none; background: rgba(0,0,0,0.6); color: white; font-size: 12px; cursor: pointer; z-index: 10;" onmouseover="this.style.background=\'rgba(0,0,0,0.8)\'" onmouseout="this.style.background=\'rgba(0,0,0,0.6)\'">更換照片</button>';
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    // 眉型設計照片管理
+    window.eyebrowDesignImages = [];
+    window.eyebrowDesignCurrentIndex = 0;
+
+    window.handleMultipleImageUpload = function(event, galleryId) {
+      const files = Array.from(event.target.files);
+      if (files.length === 0) return;
+
+      let loadedCount = 0;
+      const totalFiles = files.length;
+
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          if (!window.eyebrowDesignImages) {
+            window.eyebrowDesignImages = [];
+          }
+          window.eyebrowDesignImages.push(e.target.result);
+          loadedCount++;
+          
+          // 所有文件加载完成后更新一次
+          if (loadedCount === totalFiles) {
+            window.eyebrowDesignCurrentIndex = 0;
+            window.updateEyebrowDesignGallery();
+          }
+        };
+        reader.onerror = function() {
+          console.error('图片读取失败');
+          loadedCount++;
+          if (loadedCount === totalFiles) {
+            window.updateEyebrowDesignGallery();
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+      
+      // 清空input，允许重复选择相同文件
+      event.target.value = '';
+    };
+
+    window.updateEyebrowDesignGallery = function() {
+      // 延迟执行，确保DOM已更新
+      setTimeout(function() {
+        const empty = document.getElementById('eyebrow-design-empty');
+        const carousel = document.getElementById('eyebrow-design-carousel');
+        const container = document.getElementById('eyebrow-design-images-container');
+        const prevBtn = document.getElementById('eyebrow-design-prev');
+        const nextBtn = document.getElementById('eyebrow-design-next');
+        const indicator = document.getElementById('eyebrow-design-indicator');
+
+        if (!window.eyebrowDesignImages || window.eyebrowDesignImages.length === 0) {
+          if (empty) empty.style.display = 'flex';
+          if (carousel) carousel.style.display = 'none';
+          return;
+        }
+
+        if (empty) empty.style.display = 'none';
+        if (carousel) carousel.style.display = 'block';
+        
+        window.eyebrowDesignCurrentIndex = Math.min(window.eyebrowDesignCurrentIndex || 0, window.eyebrowDesignImages.length - 1);
+        window.renderEyebrowDesignImage();
+        window.updateEyebrowDesignControls();
+      }, 50);
+    };
+
+    window.renderEyebrowDesignImage = function() {
+      const container = document.getElementById('eyebrow-design-images-container');
+      if (!container || window.eyebrowDesignImages.length === 0) return;
+
+      const currentImage = window.eyebrowDesignImages[window.eyebrowDesignCurrentIndex];
+      const scale = window.eyebrowDesignImageScale || 1;
+      const translateX = window.eyebrowDesignTranslateX || 0;
+      const translateY = window.eyebrowDesignTranslateY || 0;
+
+      container.innerHTML = `
+        <div id="eyebrow-design-image-wrapper" style="width: 100%; height: 100%; position: relative; overflow: hidden; touch-action: none;">
+          <img id="eyebrow-design-image" 
+               src="${currentImage}" 
+               alt="眉型設計照片" 
+               style="width: 100%; height: 100%; object-fit: contain; transform: scale(${scale}) translate(${translateX}px, ${translateY}px); transition: transform 0.1s ease-out; cursor: grab; user-select: none;"
+               draggable="false"
+               onmousedown="startEyebrowImageDrag(event)"
+               ontouchstart="startEyebrowImageTouch(event)"
+               onclick="toggleEyebrowImageZoom(event)">
+        </div>
+      `;
+      
+      window.eyebrowDesignImageScale = 1;
+      window.eyebrowDesignTranslateX = 0;
+      window.eyebrowDesignTranslateY = 0;
+    };
+
+    window.updateEyebrowDesignControls = function() {
+      const prevBtn = document.getElementById('eyebrow-design-prev');
+      const nextBtn = document.getElementById('eyebrow-design-next');
+      const indicator = document.getElementById('eyebrow-design-indicator');
+      const total = window.eyebrowDesignImages.length;
+
+      if (prevBtn) {
+        prevBtn.style.display = total > 1 ? 'block' : 'none';
+      }
+      if (nextBtn) {
+        nextBtn.style.display = total > 1 ? 'block' : 'none';
+      }
+      if (indicator) {
+        indicator.style.display = total > 1 ? 'block' : 'none';
+        indicator.textContent = `${window.eyebrowDesignCurrentIndex + 1} / ${total}`;
+      }
+    };
+
+    window.changeEyebrowImage = function(direction) {
+      const total = window.eyebrowDesignImages.length;
+      if (total <= 1) return;
+      
+      window.eyebrowDesignCurrentIndex = (window.eyebrowDesignCurrentIndex + direction + total) % total;
+      window.eyebrowDesignImageScale = 1;
+      window.eyebrowDesignTranslateX = 0;
+      window.eyebrowDesignTranslateY = 0;
+      renderEyebrowDesignImage();
+      updateEyebrowDesignControls();
+    };
+
+    window.toggleEyebrowImageZoom = function(event) {
+      if (event.detail === 2 || event.type === 'dblclick') {
+        const img = document.getElementById('eyebrow-design-image');
+        if (!img) return;
+        
+        if (window.eyebrowDesignImageScale === 1) {
+          window.eyebrowDesignImageScale = 2;
+        } else {
+          window.eyebrowDesignImageScale = 1;
+          window.eyebrowDesignTranslateX = 0;
+          window.eyebrowDesignTranslateY = 0;
+        }
+        img.style.transform = `scale(${window.eyebrowDesignImageScale}) translate(${window.eyebrowDesignTranslateX}px, ${window.eyebrowDesignTranslateY}px)`;
+      }
+    };
+
+    window.startEyebrowImageDrag = function(event) {
+      if (window.eyebrowDesignImageScale <= 1) return;
+      event.preventDefault();
+      const img = document.getElementById('eyebrow-design-image');
+      if (!img) return;
+
+      const startX = event.clientX - window.eyebrowDesignTranslateX;
+      const startY = event.clientY - window.eyebrowDesignTranslateY;
+
+      const onMouseMove = function(e) {
+        window.eyebrowDesignTranslateX = e.clientX - startX;
+        window.eyebrowDesignTranslateY = e.clientY - startY;
+        img.style.transform = `scale(${window.eyebrowDesignImageScale}) translate(${window.eyebrowDesignTranslateX}px, ${window.eyebrowDesignTranslateY}px)`;
+      };
+
+      const onMouseUp = function() {
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+      };
+
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    };
+
+    window.startEyebrowImageTouch = function(event) {
+      if (event.touches.length === 1) {
+        // 单指滑动切换照片
+        const touch = event.touches[0];
+        window.eyebrowDesignTouchStartX = touch.clientX;
+        window.eyebrowDesignTouchStartY = touch.clientY;
+        
+        const onTouchMove = function(e) {
+          if (e.touches.length === 1) {
+            const deltaX = e.touches[0].clientX - window.eyebrowDesignTouchStartX;
+            const deltaY = e.touches[0].clientY - window.eyebrowDesignTouchStartY;
+            
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
+              if (deltaX > 0) {
+                changeEyebrowImage(-1);
+              } else {
+                changeEyebrowImage(1);
+              }
+              document.removeEventListener('touchmove', onTouchMove);
+              document.removeEventListener('touchend', onTouchEnd);
+            }
+          } else if (e.touches.length === 2) {
+            // 双指缩放
+            const touch1 = e.touches[0];
+            const touch2 = e.touches[1];
+            const distance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
+            
+            if (!window.eyebrowDesignTouchStartDistance) {
+              window.eyebrowDesignTouchStartDistance = distance;
+              window.eyebrowDesignTouchStartScale = window.eyebrowDesignImageScale || 1;
+            }
+            
+            const scale = window.eyebrowDesignTouchStartScale * (distance / window.eyebrowDesignTouchStartDistance);
+            window.eyebrowDesignImageScale = Math.max(1, Math.min(3, scale));
+            
+            const img = document.getElementById('eyebrow-design-image');
+            if (img) {
+              img.style.transform = `scale(${window.eyebrowDesignImageScale}) translate(${window.eyebrowDesignTranslateX || 0}px, ${window.eyebrowDesignTranslateY || 0}px)`;
+            }
+          }
+        };
+
+        const onTouchEnd = function() {
+          window.eyebrowDesignTouchStartDistance = null;
+          document.removeEventListener('touchmove', onTouchMove);
+          document.removeEventListener('touchend', onTouchEnd);
+        };
+
+        document.addEventListener('touchmove', onTouchMove);
+        document.addEventListener('touchend', onTouchEnd);
+      } else if (event.touches.length === 2) {
+        // 双指缩放开始
+        const touch1 = event.touches[0];
+        const touch2 = event.touches[1];
+        window.eyebrowDesignTouchStartDistance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
+        window.eyebrowDesignTouchStartScale = window.eyebrowDesignImageScale || 1;
+      }
     };
 
     // 使用 defaultConfig 初始化頁面
