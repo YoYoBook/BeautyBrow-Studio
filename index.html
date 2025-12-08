@@ -145,10 +145,32 @@
       { id: 'eyebrow-design', name: '眉型設計', icon: '' },
       { id: 'preparation', name: '術前準備', icon: '' },
       { id: 'aftercare', name: '術後護理', icon: '' },
-      { id: 'location', name: '工作室地點', icon: '' },
+      { id: 'location', name: '服務地點', icon: '' },
       { id: 'faq-brow', name: '霧眉Q&A', icon: '' },
       { id: 'faq-removal', name: '除色Q&A', icon: '' }
     ];
+
+    function copyAddress(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+      } finally {
+        document.body.removeChild(textarea);
+      }
+    }
 
     function renderHome(config) {
       const baseFont = config.font_size || defaultConfig.font_size;
@@ -291,7 +313,7 @@
           title: '到店須知',
           icon: '🏠',
           items: [
-            '為不影響下位客人權益，請準時赴約（遲到10分鐘可能需改期）',
+            '為不影響下位客人權益，<strong>請準時赴約</strong>（遲到10分鐘可能需改期）',
             '素顏、帶妝皆可，現場會清潔眉部',
             '個人工作室，如需攜伴請於公共大廳等候'
           ]
@@ -300,7 +322,7 @@
           title: '施作前提醒',
           icon: '⏰',
           items: [
-            '前三週請勿自行修眉，以利設計眉型參考',
+            '<strong>前三週請勿自行修眉</strong>，以利設計眉型參考',
             '施作前 2–3 天請避免飲酒、熬夜，否則痛感會較為明顯',
             '為維持乾淨舒適的服務品質，請您務必清潔頭髮'
           ]
@@ -309,16 +331,17 @@
           title: '改期與取消',
           icon: '🔄',
           items: [
-            '預約如需改期，務必於兩星期前告知，為維護其他預約客人的權益，更改時間僅限一次',
-            '當日臨時取消或未到者，定金不退還'
+            '預約如需改期，務必於兩星期前告知，為維護其他預約客人的權益，更改時間<strong>僅限一次</strong>',
+            '<strong>當日臨時取消或未到者，定金不退還</strong>'
           ]
         },
         {
           title: '三個月內免費補色',
           icon: '💆🏻‍♀️',
           items: [
-            '不會主動通知，請水水們記得提前預約時間喲！希望下次見面，能讓你的眉毛更完美💕',
-            '超過三個月，會依照價目表收費唷'
+             '補色為『<strong>主動預約制</strong>』不會另行通知，請記得提早預約時間唷 ♡ 希望下次見面，能讓你的眉毛更完美',
+             '為維護您的權益，請勿在期限將近時才預約，如因此無法在期限內完成，將視同『<strong>自願放棄免費補色權利，不得要求退費</strong>』',
+            '超過三個月，會依照價目表收費'
           ]
         }
       ];
@@ -447,16 +470,19 @@
       return `
         <div class="mb-8 fade-in">
           <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
-            眉型設計展示
+            💡 眉型設計理念
           </h2>
           
           <div class="card p-8 rounded-3xl text-center mb-8" style="background: linear-gradient(135deg, #E8D5C8 0%, #FFFFFF 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
             <h3 class="mb-4" style="font-size: 24px; font-family: Noto Sans TC, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #5C4A42; font-weight: 500;">
-              💡 眉型設計理念
+              
             </h3>
-            <p style="font-size: 16.8px; font-family: Noto Sans TC, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #5C4A42; line-height: 2; opacity: 0.85; max-width: 800px; margin: 0 auto;">
-              每個人的臉型、五官比例都不相同，我們會根據您的特質，<br>
-              設計最適合您的眉型，打造自然協調的完美眉毛 ✨
+            <p style="font-size: 15px; font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #5C4A42; line-height: 2; opacity: 0.8; max-width: 740px; margin: 0 auto; font-weight: 300;">
+              我的眉型設計，不是追求流行是<br>「客製化美學」<br><br>
+              我深信最完美的眉毛是與五官、臉型、眉骨結構、日常妝感與個人風格完全和諧的存在<br><br>
+              量身打造最自然、最協調的眉，不追求誇張濃度，只呈現剛剛好的精緻與柔和<br>
+              讓眉毛不只是妝容的一部分，而是提升氣質的細節<br><br>
+              希望透過細緻的設計與溫柔的霧感，讓你每天照鏡子都更喜歡自己 ✨
             </p>
           </div>
         </div>
@@ -537,55 +563,78 @@
       
       const locations = [
         {
-          name: '台北大安店',
-          address: '台北市大安區復興南路二段 11-1 號 12 樓',
-          transport: '🚇 捷運大安站 4 號出口 散步約30秒',
-          mapIcon: '📍'
+          name: '台北｜大安店',
+          address: '📍 台北市大安區復興南路二段 11-1 號 12 樓',
+          transport: '🚇 捷運大安站 4 號出口 散步30秒',
+          mapLink: 'https://www.google.com/maps/search/?api=1&query=%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A4%A7%E5%AE%89%E5%8D%80%E5%BE%A9%E8%88%88%E5%8D%97%E8%B7%AF%E4%BA%8C%E6%AE%B5%2011-1%20%E8%99%9F%2012%20%E6%A8%93'
         },
         {
-          name: '新北板橋店',
-          address: '新北市板橋區莊敬路140巷10號1樓',
-          transport: '🚇 捷運新埔4號出口 散步4分鐘',
-          mapIcon: '📍'
+          name: '板橋｜新埔店',
+          address: '📍 新北市板橋區莊敬路 140 巷 10 號 1 樓',
+          transport: '🚇 捷運新埔 4 號出口 散步4分鐘',
+          mapLink: 'https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%8E%8A%E6%95%AC%E8%B7%AF%20140%20%E5%B7%B7%2010%20%E8%99%9F%201%20%E6%A8%93'
         }
       ];
+      
+      const locationImages = {
+        '台北｜大安店': {
+          src: 'sources/studio_env.png',
+          alt: '台北大安店工作室地圖'
+        },
+        '板橋｜新埔店': {
+          src: 'sources/新埔店.png',
+          alt: '板橋新埔店工作室地圖'
+        }
+      };
 
       return `
         <div class="mb-8 fade-in">
           <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
-            工作室地點
+            
           </h2>
           
           <div class="grid md:grid-cols-2 gap-6">
             ${locations.map(loc => `
               <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
-                <div class="image-placeholder" style="min-height: 280px;">
-                  <div style="text-align: center; z-index: 1; padding: 20px;">
-                    <div style="font-size: ${baseFont * 3}px; margin-bottom: 12px;">${loc.mapIcon}</div>
-                    <p style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; font-weight: 500;">
-                      ${loc.name}
-                    </p>
-                    <p style="font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.5; margin-top: 8px;">
-                      地圖展示區域
-                    </p>
-                  </div>
-                </div>
-                <div class="p-6" style="background: ${config.background_color || defaultConfig.background_color};">
+                <div class="p-6" style="background: ${config.background_color || defaultConfig.background_color}; border-bottom: 1px solid rgba(0,0,0,0.04);">
                   <h3 class="mb-4" style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
                     ${loc.name}
                   </h3>
                   <div class="space-y-3">
-                    <div class="flex items-start gap-3">
-                      <span style="font-size: ${baseFont * 1.1}px;">📍</span>
-                      <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.8; opacity: 0.85;">
-                        ${loc.address}
-                      </p>
-                    </div>
-                    <div class="p-3 rounded-xl" style="background: ${config.card_background || defaultConfig.card_background};">
-                      <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
-                        ${loc.transport}
-                      </p>
-                    </div>
+                    ${[
+                      { text: loc.address, highlight: false, mapLink: loc.mapLink },
+                      { text: loc.transport, highlight: true }
+                    ].filter(row => !!row.text).map(row => `
+                      <div class="${row.highlight ? 'rounded-xl' : ''}" style="${row.highlight ? `background: ${config.card_background || defaultConfig.card_background}; padding: 12px 12px 12px 6px; margin-left: -6px;` : ''}">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${row.highlight ? (config.primary_action || defaultConfig.primary_action) : (config.primary_text || defaultConfig.primary_text)}; line-height: 1.8; opacity: 0.85; margin: 0; font-weight: ${row.highlight ? 500 : 400};">
+                            ${row.text}
+                          </p>
+                          ${row.mapLink ? `
+                            <a href="${row.mapLink}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                              <img src="sources/copy-icon.png" alt="查看地圖" style="width: ${baseFont * 1.6}px; height: ${baseFont * 1.6}px; object-fit: contain;">
+                            </a>
+                          ` : ''}
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+                <div style="min-height: 280px; background: transparent;">
+                  <div style="text-align: center; z-index: 1; padding: ${locationImages[loc.name] ? '0' : '20px'}; height: 100%; display: flex; align-items: center; justify-content: center; background: transparent;">
+                    ${locationImages[loc.name]
+                      ? `
+                        <img src="${locationImages[loc.name].src}" alt="${locationImages[loc.name].alt}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 24px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);" />
+                      `
+                      : `
+                        <div style="font-size: ${baseFont * 3}px; margin-bottom: 12px;">${loc.mapIcon}</div>
+                        <p style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; font-weight: 500;">
+                          ${loc.name}
+                        </p>
+                        <p style="font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.5; margin-top: 8px;">
+                          地圖展示區域
+                        </p>
+                      `}
                   </div>
                 </div>
               </div>
@@ -597,8 +646,8 @@
               🏠 個人工作室，環境舒適安靜
             </h3>
             <p style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85;">
-              提供私密舒適的服務空間，讓您放鬆享受美麗時光<br>
-              如需攜伴請於公共大廳等候，感謝配合 🤍
+              提供私密舒適的服務空間，讓您放鬆享受美麗時光，<strong>如攜伴請於公共大廳等候</strong>，感謝配合 ❗️
+              
             </p>
           </div>
         </div>
