@@ -81,22 +81,40 @@
     }
 
     .scroll-container {
-      scrollbar-width: thin;
-      scrollbar-color: #D4A896 #F5EBE6;
+      scrollbar-width: none; /* 隱藏 Firefox 滑桿 */
+      -ms-overflow-style: none; /* 隱藏 IE/Edge 滑桿 */
     }
 
     .scroll-container::-webkit-scrollbar {
-      height: 6px;
+      display: none; /* 隱藏 Chrome/Safari 滑桿 */
     }
 
-    .scroll-container::-webkit-scrollbar-track {
-      background: #F5EBE6;
-      border-radius: 10px;
+    /* 左右漸變遮罩，提示可滑動 - 固定在 segment 容器邊緣 */
+    .scroll-fade-left,
+    .scroll-fade-right {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      pointer-events: none;
+      z-index: 10;
+      transition: opacity 0.3s ease;
+      border-radius: 24px;
     }
 
-    .scroll-container::-webkit-scrollbar-thumb {
-      background: #D4A896;
-      border-radius: 10px;
+    .scroll-fade-left {
+      left: 0;
+      background: linear-gradient(to right, var(--fade-color, rgba(255, 255, 255, 0.95)), transparent);
+    }
+
+    .scroll-fade-right {
+      right: 0;
+      background: linear-gradient(to left, var(--fade-color, rgba(255, 255, 255, 0.95)), transparent);
+    }
+
+    .scroll-fade-left.hidden,
+    .scroll-fade-right.hidden {
+      opacity: 0;
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
@@ -124,10 +142,9 @@
       { id: 'home', name: '首頁', icon: '' },
       { id: 'pricing', name: '價目表', icon: '' },
       { id: 'booking', name: '預約須知', icon: '' },
-      { id: 'aftercare', name: '術後護理', icon: '' },
       { id: 'eyebrow-design', name: '眉型設計', icon: '' },
-      { id: 'portfolio', name: '霧眉作品', icon: '' },
       { id: 'preparation', name: '術前準備', icon: '' },
+      { id: 'aftercare', name: '術後護理', icon: '' },
       { id: 'location', name: '工作室地點', icon: '' },
       { id: 'faq-brow', name: '霧眉Q&A', icon: '' },
       { id: 'faq-removal', name: '除色Q&A', icon: '' }
@@ -441,86 +458,6 @@
               每個人的臉型、五官比例都不相同，我們會根據您的特質，<br>
               設計最適合您的眉型，打造自然協調的完美眉毛 ✨
             </p>
-          </div>
-          
-          <div class="card rounded-3xl overflow-hidden mb-8" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
-            <div class="image-placeholder" style="min-height: 400px; position: relative; overflow: hidden;">
-              <input type="file" id="eyebrow-design-upload" accept="image/*" multiple style="display: none;" onchange="handleMultipleImageUpload(event, 'eyebrow-design-gallery')">
-              <div id="eyebrow-design-gallery" style="width: 100%; height: 100%; position: relative;">
-                <div id="eyebrow-design-empty" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: absolute; top: 0; left: 0;">
-                  <div style="text-align: center; z-index: 1; padding: 20px;">
-                    <div style="font-size: ${baseFont * 2.5}px; margin-bottom: 12px;">📷</div>
-                    <p style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7; font-weight: 500; margin-bottom: 8px;">
-                      上傳眉型設計照片（可多張）
-                    </p>
-                    <button onclick="document.getElementById('eyebrow-design-upload').click()" 
-                            style="padding: 10px 20px; border-radius: 12px; border: 2px dashed ${config.primary_action || defaultConfig.primary_action}; background: transparent; color: ${config.primary_action || defaultConfig.primary_action}; font-size: ${baseFont * 0.9}px; font-family: ${fontStack}; cursor: pointer; transition: all 0.3s ease;"
-                            onmouseover="this.style.background='${config.secondary_action || defaultConfig.secondary_action}'; this.style.borderColor='${config.primary_action || defaultConfig.primary_action}'"
-                            onmouseout="this.style.background='transparent'; this.style.borderColor='${config.primary_action || defaultConfig.primary_action}'">
-                      點擊選擇照片
-                    </button>
-                  </div>
-                </div>
-                <div id="eyebrow-design-carousel" style="display: none; width: 100%; height: 100%; position: relative;">
-                  <div id="eyebrow-design-images-container" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
-                  <button id="eyebrow-design-prev" onclick="changeEyebrowImage(-1)" style="display: none; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: white; font-size: 20px; cursor: pointer; z-index: 10; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'">‹</button>
-                  <button id="eyebrow-design-next" onclick="changeEyebrowImage(1)" style="display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: white; font-size: 20px; cursor: pointer; z-index: 10; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'">›</button>
-                  <div id="eyebrow-design-indicator" style="display: none; position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); color: white; padding: 6px 12px; border-radius: 20px; font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; z-index: 10;">1 / 1</div>
-                  <button onclick="document.getElementById('eyebrow-design-upload').click()" style="position: absolute; top: 10px; right: 10px; padding: 8px 16px; border-radius: 8px; border: none; background: rgba(0,0,0,0.6); color: white; font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; cursor: pointer; z-index: 10; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.6)'">+ 新增照片</button>
-                </div>
-              </div>
-            </div>
-            <div class="p-5" style="background: ${config.background_color || defaultConfig.background_color};">
-              <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; text-align: center;">
-                根據臉型量身打造的專屬眉型設計
-              </p>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderPortfolio(config) {
-      const baseFont = config.font_size || defaultConfig.font_size;
-      const customFont = config.font_family || defaultConfig.font_family;
-      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
-      return `
-        <div class="mb-8 fade-in">
-          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 2.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
-            霧眉作品集
-          </h2>
-          
-          <div class="grid md:grid-cols-3 gap-5 mb-8">
-            ${[1, 2, 3, 4, 5, 6].map(i => `
-              <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
-                <div class="image-placeholder" style="min-height: 300px;">
-                  <div style="text-align: center; z-index: 1; padding: 20px;">
-                    <div style="font-size: ${baseFont * 2.5}px; margin-bottom: 12px;">🎨</div>
-                    <p style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7; font-weight: 500;">
-                      作品展示 ${i}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-
-          <div class="grid md:grid-cols-3 gap-5">
-            ${[
-              { title: '自然系', desc: '淡淡柔霧感，素顏也好看' },
-              { title: '韓系', desc: '時尚妝感，精緻有型' },
-              { title: '混合系', desc: '結合線條與霧感的層次美' }
-            ].map(style => `
-              <div class="card p-6 rounded-2xl text-center" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
-                <h3 class="mb-3" style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
-                  ${style.title}
-                </h3>
-                <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; line-height: 1.8;">
-                  ${style.desc}
-                </p>
-              </div>
-            `).join('')}
           </div>
         </div>
       `;
@@ -995,6 +932,9 @@
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
       
+      // 保存當前的 scroll 位置，避免重新渲染時重置
+      const savedScrollPosition = window.savedTabScrollPosition || 0;
+      
       document.body.style.background = config.background_color || defaultConfig.background_color;
       
       let tabContent = '';
@@ -1004,7 +944,6 @@
         case 'booking': tabContent = renderBooking(config); break;
         case 'aftercare': tabContent = renderAftercare(config); break;
         case 'eyebrow-design': tabContent = renderEyebrowDesign(config); break;
-        case 'portfolio': tabContent = renderPortfolio(config); break;
         case 'preparation': tabContent = renderPreparation(config); break;
         case 'location': tabContent = renderLocation(config); break;
         case 'faq-brow': tabContent = renderFAQBrow(config); break;
@@ -1014,8 +953,11 @@
       app.innerHTML = `
         <div class="w-full min-h-screen p-4 md:p-6">
           <div class="max-w-6xl mx-auto">
-            <div class="mb-6 p-3 rounded-3xl scroll-container overflow-x-auto" id="tabs-scroll-container" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 24px rgba(199, 162, 144, 0.18);">
-              <div class="flex gap-2 justify-start md:justify-center min-w-max md:min-w-0" id="tabs-container">
+            <div class="mb-6 relative" style="--fade-color: ${config.card_background || defaultConfig.card_background};">
+              <div class="scroll-fade-left hidden" id="scroll-fade-left"></div>
+              <div class="scroll-fade-right" id="scroll-fade-right"></div>
+              <div class="p-3 rounded-3xl scroll-container overflow-x-auto" id="tabs-scroll-container" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 24px rgba(199, 162, 144, 0.18);" onscroll="updateScrollFade(this)">
+                <div class="flex gap-2 justify-start md:justify-center min-w-max md:min-w-0" id="tabs-container">
                 ${tabs.map(tab => `
                   <button onclick="switchTab('${tab.id}')" 
                           id="tab-btn-${tab.id}"
@@ -1031,6 +973,7 @@
                     <span style="margin-right: 6px;">${tab.icon}</span>${tab.name}
                   </button>
                 `).join('')}
+                </div>
               </div>
             </div>
 
@@ -1047,40 +990,99 @@
           </div>
         </div>
       `;
+      
+      // 恢復 scroll 位置並初始化遮罩狀態
+      // 使用 requestAnimationFrame 確保 DOM 已完全渲染
+      requestAnimationFrame(() => {
+        const tabsContainer = document.getElementById('tabs-scroll-container');
+        if (tabsContainer) {
+          // 先恢復之前保存的 scroll 位置（如果有的話）
+          if (savedScrollPosition !== undefined && savedScrollPosition !== null) {
+            tabsContainer.scrollLeft = savedScrollPosition;
+          }
+          // 更新遮罩狀態
+          updateScrollFade(tabsContainer);
+        }
+      });
     }
 
+    // 更新滾動遮罩顯示狀態
+    window.updateScrollFade = function(container) {
+      const fadeLeft = document.getElementById('scroll-fade-left');
+      const fadeRight = document.getElementById('scroll-fade-right');
+      if (!fadeLeft || !fadeRight || !container) return;
+      
+      const scrollLeft = container.scrollLeft;
+      const scrollWidth = container.scrollWidth;
+      const clientWidth = container.clientWidth;
+      const isScrollable = scrollWidth > clientWidth;
+      const isAtStart = scrollLeft <= 1;
+      const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 1;
+      
+      // 如果可滾動，顯示對應的遮罩
+      if (isScrollable) {
+        fadeLeft.classList.toggle('hidden', isAtStart);
+        fadeRight.classList.toggle('hidden', isAtEnd);
+      } else {
+        // 如果不可滾動，隱藏所有遮罩
+        fadeLeft.classList.add('hidden');
+        fadeRight.classList.add('hidden');
+      }
+    };
+
     window.switchTab = function(tabId) {
+      // 在重新渲染前保存當前的 scroll 位置
+      const tabsContainer = document.getElementById('tabs-scroll-container');
+      if (tabsContainer) {
+        window.savedTabScrollPosition = tabsContainer.scrollLeft;
+      }
+      
       currentTab = tabId;
       const config = window.currentConfig || defaultConfig;
       onConfigChange(config);
       
-      // 如果切换到眉型设计页签，更新照片显示
-      if (tabId === 'eyebrow-design' && window.updateEyebrowDesignGallery) {
-        setTimeout(() => {
-          window.updateEyebrowDesignGallery();
-        }, 200);
-      }
-      
-      // 滚动到对应的页签按钮
-      setTimeout(() => {
-        const tabButton = document.getElementById(`tab-btn-${tabId}`);
-        const tabsContainer = document.getElementById('tabs-scroll-container');
-        if (tabButton && tabsContainer) {
-          const containerRect = tabsContainer.getBoundingClientRect();
-          const buttonRect = tabButton.getBoundingClientRect();
-          const scrollLeft = tabsContainer.scrollLeft;
-          const buttonLeft = buttonRect.left - containerRect.left + scrollLeft;
-          const buttonWidth = buttonRect.width;
-          const containerWidth = containerRect.width;
-          
-          // 计算需要滚动的位置，让按钮居中或至少可见
-          const targetScroll = buttonLeft - (containerWidth / 2) + (buttonWidth / 2);
-          tabsContainer.scrollTo({
-            left: targetScroll,
-            behavior: 'smooth'
-          });
-        }
-      }, 100);
+      // 恢復 scroll 位置後，檢查按鈕是否需要滾動（只在完全不可見時）
+      // 使用雙重 requestAnimationFrame 確保 scroll 位置已恢復
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const tabButton = document.getElementById(`tab-btn-${tabId}`);
+          const tabsContainer = document.getElementById('tabs-scroll-container');
+          if (tabButton && tabsContainer) {
+            const containerRect = tabsContainer.getBoundingClientRect();
+            const buttonRect = tabButton.getBoundingClientRect();
+            
+            // 檢查按鈕是否完全在可見區域內
+            const buttonLeft = buttonRect.left;
+            const buttonRight = buttonRect.right;
+            const containerLeft = containerRect.left;
+            const containerRight = containerRect.right;
+            const padding = 12; // 考慮一些邊距
+            
+            // 只有當按鈕完全不可見時才滾動
+            const isCompletelyHidden = buttonRight < containerLeft + padding || buttonLeft > containerRight - padding;
+            
+            if (isCompletelyHidden) {
+              // 計算需要滾動的位置（讓按鈕居中顯示）
+              const buttonOffsetLeft = tabButton.offsetLeft;
+              const buttonWidth = buttonRect.width;
+              const containerWidth = tabsContainer.clientWidth;
+              const targetScroll = buttonOffsetLeft - (containerWidth / 2) + (buttonWidth / 2);
+              
+              // 確保滾動位置在有效範圍內
+              const maxScroll = tabsContainer.scrollWidth - containerWidth;
+              const finalScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+              
+              // 直接設置 scrollLeft，避免動畫跳動
+              tabsContainer.scrollLeft = finalScroll;
+              // 更新保存的位置
+              window.savedTabScrollPosition = finalScroll;
+            }
+            
+            // 更新遮罩狀態
+            updateScrollFade(tabsContainer);
+          }
+        });
+      });
     };
 
     window.handleImageUpload = function(event, previewId) {
@@ -1327,9 +1329,23 @@
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
         onConfigChange(window.currentConfig);
+        // 監聽視窗大小改變，更新遮罩狀態
+        window.addEventListener('resize', () => {
+          const tabsContainer = document.getElementById('tabs-scroll-container');
+          if (tabsContainer) {
+            updateScrollFade(tabsContainer);
+          }
+        });
       });
     } else {
       onConfigChange(window.currentConfig);
+      // 監聽視窗大小改變，更新遮罩狀態
+      window.addEventListener('resize', () => {
+        const tabsContainer = document.getElementById('tabs-scroll-container');
+        if (tabsContainer) {
+          updateScrollFade(tabsContainer);
+        }
+      });
     }
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a8d2f4865374a46',t:'MTc2NDg3MTAzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
