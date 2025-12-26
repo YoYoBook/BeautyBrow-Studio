@@ -178,11 +178,11 @@
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
       
       return `
-        <div class="text-center mb-8 fade-in" style="margin-top: -1rem;">
-          <div class="mb-2 flex justify-center">
+        <div class="text-center mb-6 fade-in" style="margin-top: -1rem;">
+          <div class="flex justify-center" style="margin-bottom: -2rem;">
             <img src="sources/logo.png" alt="${config.brand_name || defaultConfig.brand_name}" style="max-width: 200px; height: auto; object-fit: contain; background: transparent;">
           </div>
-          <h1 class="mb-3" style="font-size: ${baseFont * 3}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 300; letter-spacing: 4px;">
+          <h1 class="mb-3" style="font-size: ${baseFont * 3}px; font-family: '可畫書寫行楷-繁', '標楷體', 'BiauKai', 'STKaiti', 'KaiTi', '楷體', 'Noto Serif TC', serif; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 300; letter-spacing: 4px;">
             ${config.brand_name || defaultConfig.brand_name}
           </h1>
           <p style="font-size: ${baseFont * 1.2}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; letter-spacing: 1px;">
