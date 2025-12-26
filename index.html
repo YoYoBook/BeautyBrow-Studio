@@ -1,8 +1,7 @@
-
-
 <!doctype html>
 <html lang="zh-TW">
- <head>
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>美眉 ｜ 美學 - 專業霧眉工作室</title>
@@ -11,7 +10,7 @@
     body {
       box-sizing: border-box;
     }
-    
+
     * {
       margin: 0;
       padding: 0;
@@ -29,8 +28,15 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .tab-button {
@@ -75,18 +81,21 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.2) 0%, transparent 50%);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
     }
 
     .scroll-container {
-      scrollbar-width: none; /* 隱藏 Firefox 滑桿 */
-      -ms-overflow-style: none; /* 隱藏 IE/Edge 滑桿 */
+      scrollbar-width: none;
+      /* 隱藏 Firefox 滑桿 */
+      -ms-overflow-style: none;
+      /* 隱藏 IE/Edge 滑桿 */
     }
 
     .scroll-container::-webkit-scrollbar {
-      display: none; /* 隱藏 Chrome/Safari 滑桿 */
+      display: none;
+      /* 隱藏 Chrome/Safari 滑桿 */
     }
 
     /* 左右漸變遮罩，提示可滑動 - 固定在 segment 容器邊緣 */
@@ -117,9 +126,14 @@
       opacity: 0;
     }
   </style>
-  <style>@view-transition { navigation: auto; }</style>
- </head>
- <body>
+  <style>
+    @view-transition {
+      navigation: auto;
+    }
+  </style>
+</head>
+
+<body>
   <div id="app" class="w-full min-h-screen"></div>
   <script>
     const defaultConfig = {
@@ -136,7 +150,32 @@
       font_size: 13.5
     };
 
+    // 目前 tab（可由網址 hash 指定，例如：index.html#pricing）
     let currentTab = 'home';
+
+    function isValidTabId(tabId) {
+      return tabs.some(t => t.id === tabId);
+    }
+
+    function getTabFromUrl() {
+      // 支援兩種格式：
+      // 1) #pricing
+      // 2) #tab=pricing
+      const raw = (window.location.hash || '').replace(/^#/, '').trim();
+      if (!raw) return null;
+      if (raw.startsWith('tab=')) return raw.slice(4) || null;
+      return raw;
+    }
+
+    function setUrlTab(tabId, { replace = false } = {}) {
+      const url = new URL(window.location.href);
+      url.hash = `#${tabId}`;
+      if (replace) {
+        window.history.replaceState(null, '', url.toString());
+      } else {
+        window.history.pushState(null, '', url.toString());
+      }
+    }
 
     const tabs = [
       { id: 'home', name: '首頁', icon: '' },
@@ -176,7 +215,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       return `
         <div class="text-center mb-6 fade-in" style="margin-top: -1rem;">
           <div class="flex justify-center" style="margin-bottom: -2rem;">
@@ -202,7 +241,7 @@
               採用最新技術，打造自然柔霧妝感<br>讓眉型更加立體有神
             </p>
             <div class="grid grid-cols-2 gap-3">
-              ${['精緻霧感','持久穩定','專業設計','客製眉形'].map(feature => `
+              ${['精緻霧感', '持久穩定', '專業設計', '客製眉形'].map(feature => `
                 <div class="p-4 rounded-2xl text-center" style="background: ${config.background_color || defaultConfig.background_color};">
                   <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text};">✓ ${feature}</span>
                 </div>
@@ -221,7 +260,7 @@
               溫和有效的淡色技術<br>重新打造理想眉型
             </p>
             <div class="grid grid-cols-2 gap-3">
-              ${['溫和淡色','無修復期','漸進淡化','低敏無負擔'].map(feature => `
+              ${['溫和淡色', '無修復期', '漸進淡化', '低敏無負擔'].map(feature => `
                 <div class="p-4 rounded-2xl text-center" style="background: ${config.background_color || defaultConfig.background_color};">
                   <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text};">✓ ${feature}</span>
                 </div>
@@ -254,13 +293,13 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const prices = [
 
-        { title: '新客霧眉', price: '$6,800', note: '含 3 個月內免費補色乙次', highlight: true , special: true},
+        { title: '新客霧眉', price: '$6,800', note: '含 3 個月內免費補色乙次', highlight: true, special: true },
         { title: '6個月內｜單次補色', price: '$2,000-$3,000', note: '', special: true },
         { title: '6–12個月內｜單次補色', price: '$5,000', note: '', special: true },
-        { title: '12–14個月內｜單次補色', price: '$5,500', note: '' , special: true},
+        { title: '12–14個月內｜單次補色', price: '$5,500', note: '', special: true },
         { title: '14個月以上｜視為新作', price: '$6,199', note: "享 9 折優惠", special: true },
         { title: '兩人同行優惠', price: '$5,800', note: '現折 $1,000｜須預約不同時段', special: true },
         { title: '男士霧眉', price: '以上費用 +$1,000', note: '', special: true },
@@ -276,10 +315,10 @@
           </h2>
           <div class="space-y-4">
             ${prices.map((item, index) => {
-              const isRemovalService = item.title.includes('淡色') || item.title.includes('淡化') || item.title.includes('淡色');
-              const showRemovalTitle = isRemovalService && (index === 0 || !(prices[index - 1].title.includes('淡色') || prices[index - 1].title.includes('淡化') || prices[index - 1].title.includes('淡色')));
-              
-              return `
+        const isRemovalService = item.title.includes('淡色') || item.title.includes('淡化') || item.title.includes('淡色');
+        const showRemovalTitle = isRemovalService && (index === 0 || !(prices[index - 1].title.includes('淡色') || prices[index - 1].title.includes('淡化') || prices[index - 1].title.includes('淡色')));
+
+        return `
                 ${showRemovalTitle ? `
                   <h3 class="mt-8 mb-2 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500; letter-spacing: 1px;">
                     無創｜淡色
@@ -310,7 +349,7 @@
                   </div>
                 </div>
               `;
-            }).join('')}
+      }).join('')}
           </div>
         </div>
       `;
@@ -320,7 +359,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const sections = [
         {
           title: '預約資訊',
@@ -360,8 +399,8 @@
           title: '三個月內免費補色',
           icon: '💆🏻‍♀️',
           items: [
-             '補色為『<strong>主動預約制</strong>』不會另行通知，請記得提早預約時間唷 ♡ 希望下次見面，能讓你的眉毛更完美',
-             '為維護您的權益，請勿在期限將近時才預約，如因此無法在期限內完成，將視同『<strong>自願放棄免費補色權利，不得要求退費</strong>』',
+            '補色為『<strong>主動預約制</strong>』不會另行通知，請記得提早預約時間唷 ♡ 希望下次見面，能讓你的眉毛更完美',
+            '為維護您的權益，請勿在期限將近時才預約，如因此無法在期限內完成，將視同『<strong>自願放棄免費補色權利，不得要求退費</strong>』',
             '超過三個月，會依照價目表收費'
           ]
         }
@@ -402,7 +441,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const sections = [
         {
           title: '施作後 前四天',
@@ -487,7 +526,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       return `
         <div class="mb-8 fade-in">
           <h2 class="mb-8 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
@@ -514,7 +553,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const sections = [
         {
           title: '霧眉前三週',
@@ -581,7 +620,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const locations = [
         {
           name: '台北｜大安店',
@@ -596,7 +635,7 @@
           mapLink: 'https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%8E%8A%E6%95%AC%E8%B7%AF%20140%20%E5%B7%B7%2010%20%E8%99%9F%201%20%E6%A8%93'
         }
       ];
-      
+
       const locationImages = {
         '台北｜大安店': {
           src: 'sources/studio_env.png',
@@ -623,9 +662,9 @@
                   </h3>
                   <div class="space-y-3">
                     ${[
-                      { text: loc.address, highlight: false, mapLink: loc.mapLink },
-                      { text: loc.transport, highlight: true }
-                    ].filter(row => !!row.text).map(row => `
+          { text: loc.address, highlight: false, mapLink: loc.mapLink },
+          { text: loc.transport, highlight: true }
+        ].filter(row => !!row.text).map(row => `
                       <div class="${row.highlight ? 'rounded-xl' : ''}" style="${row.highlight ? `background: ${config.card_background || defaultConfig.card_background}; padding: 12px 12px 12px 6px; margin-left: -6px;` : ''}">
                         <div style="display: flex; align-items: center; gap: 8px;">
                           <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${row.highlight ? (config.primary_action || defaultConfig.primary_action) : (config.primary_text || defaultConfig.primary_text)}; line-height: 1.8; opacity: 0.85; margin: 0; font-weight: ${row.highlight ? 500 : 400};">
@@ -644,10 +683,10 @@
                 <div style="min-height: 280px; background: transparent;">
                   <div style="text-align: center; z-index: 1; padding: ${locationImages[loc.name] ? '0' : '20px'}; height: 100%; display: flex; align-items: center; justify-content: center; background: transparent;">
                     ${locationImages[loc.name]
-                      ? `
+          ? `
                         <img src="${locationImages[loc.name].src}" alt="${locationImages[loc.name].alt}" style="width: 100%; height: 100%; object-fit: cover; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);" />
                       `
-                      : `
+          : `
                         <div style="font-size: ${baseFont * 3}px; margin-bottom: 12px;">${loc.mapIcon}</div>
                         <p style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; font-weight: 500;">
                           ${loc.name}
@@ -679,7 +718,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const faqs = [
         {
           q: '霧眉跟飄眉的差別是什麼？',
@@ -803,7 +842,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const faqs = [
         {
           q: '什麼是無創淡色？',
@@ -936,10 +975,10 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const instagram = config.instagram_handle || defaultConfig.instagram_handle;
       const lineId = config.line_id || defaultConfig.line_id;
-      
+
       return `
         <div class="flex flex-wrap gap-4 justify-center">
           <a href="https://www.instagram.com/beautybrow__studio?igsh=MXZrMG1mYmRocHZhcg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" 
@@ -993,14 +1032,14 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       // 保存當前的 scroll 位置，避免重新渲染時重置
       const savedScrollPosition = window.savedTabScrollPosition || 0;
-      
+
       document.body.style.background = config.background_color || defaultConfig.background_color;
-      
+
       let tabContent = '';
-      switch(currentTab) {
+      switch (currentTab) {
         case 'home': tabContent = renderHome(config); break;
         case 'pricing': tabContent = renderPricing(config); break;
         case 'booking': tabContent = renderBooking(config); break;
@@ -1011,7 +1050,7 @@
         case 'faq-brow': tabContent = renderFAQBrow(config); break;
         case 'faq-removal': tabContent = renderFAQRemoval(config); break;
       }
-      
+
       app.innerHTML = `
         <div class="w-full min-h-screen p-4 md:p-6">
           <div class="max-w-6xl mx-auto">
@@ -1052,7 +1091,7 @@
           </div>
         </div>
       `;
-      
+
       // 恢復 scroll 位置並初始化遮罩狀態
       // 使用 requestAnimationFrame 確保 DOM 已完全渲染
       requestAnimationFrame(() => {
@@ -1069,18 +1108,18 @@
     }
 
     // 更新滾動遮罩顯示狀態
-    window.updateScrollFade = function(container) {
+    window.updateScrollFade = function (container) {
       const fadeLeft = document.getElementById('scroll-fade-left');
       const fadeRight = document.getElementById('scroll-fade-right');
       if (!fadeLeft || !fadeRight || !container) return;
-      
+
       const scrollLeft = container.scrollLeft;
       const scrollWidth = container.scrollWidth;
       const clientWidth = container.clientWidth;
       const isScrollable = scrollWidth > clientWidth;
       const isAtStart = scrollLeft <= 1;
       const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 1;
-      
+
       // 如果可滾動，顯示對應的遮罩
       if (isScrollable) {
         fadeLeft.classList.toggle('hidden', isAtStart);
@@ -1092,17 +1131,20 @@
       }
     };
 
-    window.switchTab = function(tabId) {
+    window.switchTab = function (tabId) {
+      if (!isValidTabId(tabId)) tabId = 'home';
       // 在重新渲染前保存當前的 scroll 位置
       const tabsContainer = document.getElementById('tabs-scroll-container');
       if (tabsContainer) {
         window.savedTabScrollPosition = tabsContainer.scrollLeft;
       }
-      
+
       currentTab = tabId;
+      // 更新網址，讓分享連結可直接指定 tab
+      setUrlTab(tabId);
       const config = window.currentConfig || defaultConfig;
       onConfigChange(config);
-      
+
       // 恢復 scroll 位置後，檢查按鈕是否需要滾動（只在完全不可見時）
       // 使用雙重 requestAnimationFrame 確保 scroll 位置已恢復
       requestAnimationFrame(() => {
@@ -1112,34 +1154,34 @@
           if (tabButton && tabsContainer) {
             const containerRect = tabsContainer.getBoundingClientRect();
             const buttonRect = tabButton.getBoundingClientRect();
-            
+
             // 檢查按鈕是否完全在可見區域內
             const buttonLeft = buttonRect.left;
             const buttonRight = buttonRect.right;
             const containerLeft = containerRect.left;
             const containerRight = containerRect.right;
             const padding = 12; // 考慮一些邊距
-            
+
             // 只有當按鈕完全不可見時才滾動
             const isCompletelyHidden = buttonRight < containerLeft + padding || buttonLeft > containerRight - padding;
-            
+
             if (isCompletelyHidden) {
               // 計算需要滾動的位置（讓按鈕居中顯示）
               const buttonOffsetLeft = tabButton.offsetLeft;
               const buttonWidth = buttonRect.width;
               const containerWidth = tabsContainer.clientWidth;
               const targetScroll = buttonOffsetLeft - (containerWidth / 2) + (buttonWidth / 2);
-              
+
               // 確保滾動位置在有效範圍內
               const maxScroll = tabsContainer.scrollWidth - containerWidth;
               const finalScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-              
+
               // 直接設置 scrollLeft，避免動畫跳動
               tabsContainer.scrollLeft = finalScroll;
               // 更新保存的位置
               window.savedTabScrollPosition = finalScroll;
             }
-            
+
             // 更新遮罩狀態
             updateScrollFade(tabsContainer);
           }
@@ -1147,12 +1189,12 @@
       });
     };
 
-    window.handleImageUpload = function(event, previewId) {
+    window.handleImageUpload = function (event, previewId) {
       const file = event.target.files[0];
       const inputId = event.target.id;
       if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
           const preview = document.getElementById(previewId);
           if (preview) {
             preview.style.display = 'block';
@@ -1167,7 +1209,7 @@
     window.eyebrowDesignImages = [];
     window.eyebrowDesignCurrentIndex = 0;
 
-    window.handleMultipleImageUpload = function(event, galleryId) {
+    window.handleMultipleImageUpload = function (event, galleryId) {
       const files = Array.from(event.target.files);
       if (files.length === 0) return;
 
@@ -1176,20 +1218,20 @@
 
       files.forEach(file => {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
           if (!window.eyebrowDesignImages) {
             window.eyebrowDesignImages = [];
           }
           window.eyebrowDesignImages.push(e.target.result);
           loadedCount++;
-          
+
           // 所有文件加载完成后更新一次
           if (loadedCount === totalFiles) {
             window.eyebrowDesignCurrentIndex = 0;
             window.updateEyebrowDesignGallery();
           }
         };
-        reader.onerror = function() {
+        reader.onerror = function () {
           console.error('图片读取失败');
           loadedCount++;
           if (loadedCount === totalFiles) {
@@ -1198,14 +1240,14 @@
         };
         reader.readAsDataURL(file);
       });
-      
+
       // 清空input，允许重复选择相同文件
       event.target.value = '';
     };
 
-    window.updateEyebrowDesignGallery = function() {
+    window.updateEyebrowDesignGallery = function () {
       // 延迟执行，确保DOM已更新
-      setTimeout(function() {
+      setTimeout(function () {
         const empty = document.getElementById('eyebrow-design-empty');
         const carousel = document.getElementById('eyebrow-design-carousel');
         const container = document.getElementById('eyebrow-design-images-container');
@@ -1221,14 +1263,14 @@
 
         if (empty) empty.style.display = 'none';
         if (carousel) carousel.style.display = 'block';
-        
+
         window.eyebrowDesignCurrentIndex = Math.min(window.eyebrowDesignCurrentIndex || 0, window.eyebrowDesignImages.length - 1);
         window.renderEyebrowDesignImage();
         window.updateEyebrowDesignControls();
       }, 50);
     };
 
-    window.renderEyebrowDesignImage = function() {
+    window.renderEyebrowDesignImage = function () {
       const container = document.getElementById('eyebrow-design-images-container');
       if (!container || window.eyebrowDesignImages.length === 0) return;
 
@@ -1249,13 +1291,13 @@
                onclick="toggleEyebrowImageZoom(event)">
         </div>
       `;
-      
+
       window.eyebrowDesignImageScale = 1;
       window.eyebrowDesignTranslateX = 0;
       window.eyebrowDesignTranslateY = 0;
     };
 
-    window.updateEyebrowDesignControls = function() {
+    window.updateEyebrowDesignControls = function () {
       const prevBtn = document.getElementById('eyebrow-design-prev');
       const nextBtn = document.getElementById('eyebrow-design-next');
       const indicator = document.getElementById('eyebrow-design-indicator');
@@ -1273,10 +1315,10 @@
       }
     };
 
-    window.changeEyebrowImage = function(direction) {
+    window.changeEyebrowImage = function (direction) {
       const total = window.eyebrowDesignImages.length;
       if (total <= 1) return;
-      
+
       window.eyebrowDesignCurrentIndex = (window.eyebrowDesignCurrentIndex + direction + total) % total;
       window.eyebrowDesignImageScale = 1;
       window.eyebrowDesignTranslateX = 0;
@@ -1285,11 +1327,11 @@
       updateEyebrowDesignControls();
     };
 
-    window.toggleEyebrowImageZoom = function(event) {
+    window.toggleEyebrowImageZoom = function (event) {
       if (event.detail === 2 || event.type === 'dblclick') {
         const img = document.getElementById('eyebrow-design-image');
         if (!img) return;
-        
+
         if (window.eyebrowDesignImageScale === 1) {
           window.eyebrowDesignImageScale = 2;
         } else {
@@ -1301,7 +1343,7 @@
       }
     };
 
-    window.startEyebrowImageDrag = function(event) {
+    window.startEyebrowImageDrag = function (event) {
       if (window.eyebrowDesignImageScale <= 1) return;
       event.preventDefault();
       const img = document.getElementById('eyebrow-design-image');
@@ -1310,13 +1352,13 @@
       const startX = event.clientX - window.eyebrowDesignTranslateX;
       const startY = event.clientY - window.eyebrowDesignTranslateY;
 
-      const onMouseMove = function(e) {
+      const onMouseMove = function (e) {
         window.eyebrowDesignTranslateX = e.clientX - startX;
         window.eyebrowDesignTranslateY = e.clientY - startY;
         img.style.transform = `scale(${window.eyebrowDesignImageScale}) translate(${window.eyebrowDesignTranslateX}px, ${window.eyebrowDesignTranslateY}px)`;
       };
 
-      const onMouseUp = function() {
+      const onMouseUp = function () {
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
       };
@@ -1325,18 +1367,18 @@
       document.addEventListener('mouseup', onMouseUp);
     };
 
-    window.startEyebrowImageTouch = function(event) {
+    window.startEyebrowImageTouch = function (event) {
       if (event.touches.length === 1) {
         // 单指滑动切换照片
         const touch = event.touches[0];
         window.eyebrowDesignTouchStartX = touch.clientX;
         window.eyebrowDesignTouchStartY = touch.clientY;
-        
-        const onTouchMove = function(e) {
+
+        const onTouchMove = function (e) {
           if (e.touches.length === 1) {
             const deltaX = e.touches[0].clientX - window.eyebrowDesignTouchStartX;
             const deltaY = e.touches[0].clientY - window.eyebrowDesignTouchStartY;
-            
+
             if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
               if (deltaX > 0) {
                 changeEyebrowImage(-1);
@@ -1351,15 +1393,15 @@
             const touch1 = e.touches[0];
             const touch2 = e.touches[1];
             const distance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
-            
+
             if (!window.eyebrowDesignTouchStartDistance) {
               window.eyebrowDesignTouchStartDistance = distance;
               window.eyebrowDesignTouchStartScale = window.eyebrowDesignImageScale || 1;
             }
-            
+
             const scale = window.eyebrowDesignTouchStartScale * (distance / window.eyebrowDesignTouchStartDistance);
             window.eyebrowDesignImageScale = Math.max(1, Math.min(3, scale));
-            
+
             const img = document.getElementById('eyebrow-design-image');
             if (img) {
               img.style.transform = `scale(${window.eyebrowDesignImageScale}) translate(${window.eyebrowDesignTranslateX || 0}px, ${window.eyebrowDesignTranslateY || 0}px)`;
@@ -1367,7 +1409,7 @@
           }
         };
 
-        const onTouchEnd = function() {
+        const onTouchEnd = function () {
           window.eyebrowDesignTouchStartDistance = null;
           document.removeEventListener('touchmove', onTouchMove);
           document.removeEventListener('touchend', onTouchEnd);
@@ -1386,10 +1428,19 @@
 
     // 使用 defaultConfig 初始化頁面
     window.currentConfig = { ...defaultConfig };
-    
+
     // 頁面載入完成後自動初始化
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
+        // 讀取網址 hash，支援分享指定 tab
+        const initialTab = getTabFromUrl();
+        if (initialTab && isValidTabId(initialTab)) {
+          currentTab = initialTab;
+        } else {
+          // 沒帶 hash 或不合法時，固定成 home（並把網址整理成 #home）
+          currentTab = 'home';
+          setUrlTab('home', { replace: true });
+        }
         onConfigChange(window.currentConfig);
         // 監聽視窗大小改變，更新遮罩狀態
         window.addEventListener('resize', () => {
@@ -1400,6 +1451,14 @@
         });
       });
     } else {
+      // 讀取網址 hash，支援分享指定 tab
+      const initialTab = getTabFromUrl();
+      if (initialTab && isValidTabId(initialTab)) {
+        currentTab = initialTab;
+      } else {
+        currentTab = 'home';
+        setUrlTab('home', { replace: true });
+      }
       onConfigChange(window.currentConfig);
       // 監聽視窗大小改變，更新遮罩狀態
       window.addEventListener('resize', () => {
@@ -1409,6 +1468,21 @@
         }
       });
     }
+
+    // 支援瀏覽器上一頁/下一頁，以及手動修改 hash（同步 tab）
+    function syncTabFromUrl() {
+      const tabFromUrl = getTabFromUrl();
+      const nextTab = (tabFromUrl && isValidTabId(tabFromUrl)) ? tabFromUrl : 'home';
+      if (nextTab !== currentTab) {
+        currentTab = nextTab;
+        onConfigChange(window.currentConfig || defaultConfig);
+      }
+    }
+
+    window.addEventListener('popstate', syncTabFromUrl);
+    window.addEventListener('hashchange', syncTabFromUrl);
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a8d2f4865374a46',t:'MTc2NDg3MTAzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9a8d2f4865374a46',t:'MTc2NDg3MTAzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
 </html>
