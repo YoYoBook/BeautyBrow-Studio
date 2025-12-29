@@ -181,7 +181,6 @@
       { id: 'home', name: '首頁', icon: '' },
       { id: 'pricing', name: '價目表', icon: '' },
       { id: 'booking', name: '預約須知', icon: '' },
-      { id: 'eyebrow-design', name: '眉型設計', icon: '' },
       { id: 'preparation', name: '術前準備', icon: '' },
       { id: 'aftercare', name: '術後護理', icon: '' },
       { id: 'location', name: '服務地點', icon: '' },
@@ -227,6 +226,19 @@
           <p style="font-size: ${baseFont * 1.2}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; letter-spacing: 1px;">
             ${config.brand_tagline || defaultConfig.brand_tagline}
           </p>
+        </div>
+
+        <!-- 眉型設計理念 -->
+        <div class="mb-8 fade-in">
+          <div class="card p-8 rounded-3xl text-center" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+            <p style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85; max-width: 740px; margin: 0 auto; font-weight: 300;">
+              我的眉型設計不是追求流行<br>是「客製化美學」<br><br>
+              我深信最完美的眉毛是與五官、臉型、眉骨結構、日常妝感與個人風格完全和諧的存在<br><br>
+              量身打造最自然、最協調的眉，不追求誇張濃度，只呈現剛剛好的精緻與柔和<br>
+              讓眉毛不只是妝容的一部分，而是提升氣質的細節<br><br>
+              希望透過細緻的設計與溫柔的霧感，讓你每天照鏡子都更喜歡自己 ✨
+            </p>
+          </div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-7 mb-10">
@@ -294,62 +306,87 @@
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
 
-      const prices = [
-
+      // 霧眉價格列表
+      const browPrices = [
         { title: '新客霧眉', price: '$6,800', note: '含 3 個月內免費補色乙次', highlight: true, special: true },
         { title: '6個月內｜單次補色', price: '$2,000-$3,000', note: '', special: true },
         { title: '6–12個月內｜單次補色', price: '$5,000', note: '', special: true },
         { title: '12–14個月內｜單次補色', price: '$5,500', note: '', special: true },
         { title: '14個月以上｜視為新作', price: '$6,199', note: "享 9 折優惠", special: true },
         { title: '兩人同行優惠', price: '$5,800', note: '現折 $1,000｜須預約不同時段', special: true },
-        { title: '男士霧眉', price: '以上費用 +$1,000', note: '', special: true },
+        { title: '男士霧眉', price: '以上費用 +$1,000', note: '', special: true }
+      ];
+
+      // 淡色價格列表
+      const removalPrices = [
         { title: '淡色單堂', price: '$2,000', note: '體驗價', special: true },
         { title: '紅/橘眉淡化', price: '$5,400', note: '建議課程 3 堂（平均 $1,800／堂）', special: true },
         { title: '藍/灰眉淡化', price: '$8,000', note: '建議課程 5 堂（平均 $1,600／堂）', special: true }
       ];
 
+      const renderPriceItem = (item) => {
+        return `
+          <div class="card p-6 rounded-2xl" style="background: ${item.highlight ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, ${item.highlight ? '0.2' : '0.1'}); ${item.special ? `border: 2px solid ${config.primary_action || defaultConfig.primary_action};` : ''}">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-2">
+                <h3 style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; white-space: nowrap; flex: 1; min-width: 0;">
+                  ${item.male ? ' ' : ''}${item.title}
+                </h3>
+                <div class="px-4 py-2 rounded-xl flex-shrink-0 ${item.highlight ? '' : `bg-opacity-50`}" style="background: ${item.highlight ? config.primary_action || defaultConfig.primary_action : config.background_color || defaultConfig.background_color};">
+                  <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${item.highlight ? '#FFFFFF' : config.primary_action || defaultConfig.primary_action}; font-weight: 600; white-space: nowrap;">
+                    ${item.price}
+                  </span>
+                </div>
+              </div>
+              ${item.note ? `
+                <p style="font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7;">
+                  ${item.note}
+                </p>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      };
+
       return `
         <div class="mb-8 fade-in">
-          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
-            原生感｜輕透霧眉
-          </h2>
-          <div class="space-y-4">
-            ${prices.map((item, index) => {
-        const isRemovalService = item.title.includes('淡色') || item.title.includes('淡化') || item.title.includes('淡色');
-        const showRemovalTitle = isRemovalService && (index === 0 || !(prices[index - 1].title.includes('淡色') || prices[index - 1].title.includes('淡化') || prices[index - 1].title.includes('淡色')));
+          <!-- 切換按鈕 -->
+          <div class="flex justify-center gap-4 mb-8">
+            <button id="pricing-btn-brow" onclick="switchPricingType('brow')" 
+                    class="px-8 py-3 rounded-full transition-all"
+                    style="background: ${config.primary_action || defaultConfig.primary_action}; color: white; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3);">
+              霧眉
+            </button>
+            <button id="pricing-btn-removal" onclick="switchPricingType('removal')" 
+                    class="px-8 py-3 rounded-full transition-all"
+                    style="background: ${config.secondary_action || defaultConfig.secondary_action}; color: ${config.primary_text || defaultConfig.primary_text}; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 3px 12px rgba(199, 162, 144, 0.2);">
+              淡色
+            </button>
+          </div>
 
-        return `
-                ${showRemovalTitle ? `
-                  <h3 class="mt-8 mb-2 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500; letter-spacing: 1px;">
-                    無創｜淡色
-                  </h3>
-                  <div class="mb-4 text-center">
-                    <p class="px-4 py-2 rounded-xl inline-block mx-auto" style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; letter-spacing: 0.5px; background: ${config.secondary_action || defaultConfig.secondary_action};">
-                      依照實際情況 專業評估給予堂數建議
-                    </p>
-                  </div>
-                ` : ''}
-                <div class="card p-6 rounded-2xl" style="background: ${item.highlight ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, ${item.highlight ? '0.2' : '0.1'}); ${item.special ? `border: 2px solid ${config.primary_action || defaultConfig.primary_action};` : ''}">
-                  <div>
-                    <div class="flex items-center justify-between gap-4 mb-2">
-                      <h3 style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; white-space: nowrap; flex: 1; min-width: 0;">
-                        ${item.male ? ' ' : ''}${item.title}
-                      </h3>
-                      <div class="px-4 py-2 rounded-xl flex-shrink-0 ${item.highlight ? '' : `bg-opacity-50`}" style="background: ${item.highlight ? config.primary_action || defaultConfig.primary_action : config.background_color || defaultConfig.background_color};">
-                        <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${item.highlight ? '#FFFFFF' : config.primary_action || defaultConfig.primary_action}; font-weight: 600; white-space: nowrap;">
-                          ${item.price}
-                        </span>
-                      </div>
-                    </div>
-                    ${item.note ? `
-                      <p style="font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7;">
-                        ${item.note}
-                      </p>
-                    ` : ''}
-                  </div>
-                </div>
-              `;
-      }).join('')}
+          <!-- 霧眉價格內容 -->
+          <div id="pricing-content-brow">
+            <h2 class="mb-8 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+              原生感｜輕透霧眉
+            </h2>
+            <div class="space-y-4">
+              ${browPrices.map(item => renderPriceItem(item)).join('')}
+            </div>
+          </div>
+
+          <!-- 淡色價格內容 -->
+          <div id="pricing-content-removal" style="display: none;">
+            <h2 class="mb-4 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500; letter-spacing: 1px;">
+              無創｜淡色
+            </h2>
+            <div class="mb-4 text-center">
+              <p class="px-4 py-2 rounded-xl inline-block mx-auto" style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; letter-spacing: 0.5px; background: ${config.secondary_action || defaultConfig.secondary_action};">
+                依照實際情況 專業評估給予堂數建議
+              </p>
+            </div>
+            <div class="space-y-4">
+              ${removalPrices.map(item => renderPriceItem(item)).join('')}
+            </div>
           </div>
         </div>
       `;
@@ -442,14 +479,15 @@
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
 
-      const sections = [
+      // 霧眉護理內容
+      const browSections = [
         {
           title: '施作後 前四天',
           period: 'Day 1-4',
           items: [
-            '48小時內避免接觸水，眉毛區域保持乾燥不要揉搓',
-            '早+晚使用生理食鹽水濕敷十分鐘',
-            '使用修復霜薄薄的塗在眉毛上，一粒米大小薄擦雙眉即可'
+            '48 小時內避免接觸水，眉毛區域保持乾燥不要揉搓',
+            '早 + 晚使用生理食鹽水濕敷十五分鐘',
+            '眉毛乾燥後，使用修復霜薄薄的塗在眉毛上，一粒米大小薄擦雙眉即可'
           ],
           alert: true
         },
@@ -489,61 +527,89 @@
         }
       ];
 
+      // 淡色護理內容
+      const removalSections = [
+        {
+          title: '施作完 當日',
+          period: 'Day 1',
+          items: [
+            '返家可以冰敷 15 分鐘，幫助舒緩肌膚',
+            '當天即可正常碰水'
+          ],
+          alert: true
+        },
+        {
+          title: '施作完 隔日起',
+          period: 'Week 1',
+          items: [
+            '隔天可正常化妝',
+            '一週內請避免於眉周使用美白或酸類產品',
+            '一週內請加強保濕與物理性防曬（眉毛區域亦需防曬）'
+          ],
+          alert: true
+        },
+        {
+          title: '正常修復過程',
+          period: '修復期',
+          items: [
+            '3 天內眉毛可能出現 👉 微紅、微癢、緊繃乾燥、顏色暫時變深都屬正常反應'
+          ]
+        }
+      ];
+
+      const renderSections = (sections) => {
+        return sections.map(section => `
+          <div class="card p-7 rounded-3xl ${section.alert ? 'border-2' : ''}" style="background: ${section.alert ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.12); ${section.alert ? `border-color: ${config.primary_action || defaultConfig.primary_action};` : ''}">
+            <div class="flex items-center justify-between mb-5 flex-wrap gap-3">
+              <h3 style="font-size: ${baseFont * 1.4}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
+                ${section.title}
+              </h3>
+              <span class="px-4 py-2 rounded-full" style="background: ${config.secondary_action || defaultConfig.secondary_action}; font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
+                ${section.period}
+              </span>
+            </div>
+            <ul class="space-y-3">
+              ${section.items.map(item => `
+                <li class="flex items-start gap-3 p-4 rounded-xl" style="background: ${config.background_color || defaultConfig.background_color};">
+                  <span style="color: ${config.primary_action || defaultConfig.primary_action}; font-size: ${baseFont * 1.1}px; flex-shrink: 0;">✓</span>
+                  <span style="font-size: ${baseFont}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.8; opacity: 0.9;">
+                    ${item}
+                  </span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        `).join('');
+      };
+
       return `
         <div class="mb-8 fade-in">
-          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
+          <h2 class="mb-6 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
             術後護理｜注意事項
           </h2>
-          <div class="space-y-5">
-            ${sections.map(section => `
-              <div class="card p-7 rounded-3xl ${section.alert ? 'border-2' : ''}" style="background: ${section.alert ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.12); ${section.alert ? `border-color: ${config.primary_action || defaultConfig.primary_action};` : ''}">
-                <div class="flex items-center justify-between mb-5 flex-wrap gap-3">
-                  <h3 style="font-size: ${baseFont * 1.4}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
-                    ${section.title}
-                  </h3>
-                  <span class="px-4 py-2 rounded-full" style="background: ${config.secondary_action || defaultConfig.secondary_action}; font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500;">
-                    ${section.period}
-                  </span>
-                </div>
-                <ul class="space-y-3">
-                  ${section.items.map(item => `
-                    <li class="flex items-start gap-3 p-4 rounded-xl" style="background: ${config.background_color || defaultConfig.background_color};">
-                      <span style="color: ${config.primary_action || defaultConfig.primary_action}; font-size: ${baseFont * 1.1}px; flex-shrink: 0;">✓</span>
-                      <span style="font-size: ${baseFont}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.8; opacity: 0.9;">
-                        ${item}
-                      </span>
-                    </li>
-                  `).join('')}
-                </ul>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      `;
-    }
-
-    function renderEyebrowDesign(config) {
-      const baseFont = config.font_size || defaultConfig.font_size;
-      const customFont = config.font_family || defaultConfig.font_family;
-      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-
-      return `
-        <div class="mb-8 fade-in">
-          <h2 class="mb-8 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
-            💡 眉型設計理念
-          </h2>
           
-          <div class="card p-8 rounded-3xl text-center mb-8" style="background: linear-gradient(135deg, #E8D5C8 0%, #FFFFFF 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
-            <h3 class="mb-4" style="font-size: 24px; font-family: Noto Sans TC, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #5C4A42; font-weight: 500;">
-              
-            </h3>
-            <p style="font-size: 15px; font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #5C4A42; line-height: 2; opacity: 0.8; max-width: 740px; margin: 0 auto; font-weight: 300;">
-              我的眉型設計，不是追求流行是<br>「客製化美學」<br><br>
-              我深信最完美的眉毛是與五官、臉型、眉骨結構、日常妝感與個人風格完全和諧的存在<br><br>
-              量身打造最自然、最協調的眉，不追求誇張濃度，只呈現剛剛好的精緻與柔和<br>
-              讓眉毛不只是妝容的一部分，而是提升氣質的細節<br><br>
-              希望透過細緻的設計與溫柔的霧感，讓你每天照鏡子都更喜歡自己 ✨
-            </p>
+          <!-- 切換按鈕 -->
+          <div class="flex justify-center gap-4 mb-8">
+            <button id="aftercare-btn-brow" onclick="switchAftercareType('brow')" 
+                    class="px-8 py-3 rounded-full transition-all"
+                    style="background: ${config.primary_action || defaultConfig.primary_action}; color: white; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3);">
+              霧眉
+            </button>
+            <button id="aftercare-btn-removal" onclick="switchAftercareType('removal')" 
+                    class="px-8 py-3 rounded-full transition-all"
+                    style="background: ${config.secondary_action || defaultConfig.secondary_action}; color: ${config.primary_text || defaultConfig.primary_text}; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 3px 12px rgba(199, 162, 144, 0.2);">
+              淡色
+            </button>
+          </div>
+
+          <!-- 霧眉護理內容 -->
+          <div id="aftercare-content-brow" class="space-y-5">
+            ${renderSections(browSections)}
+          </div>
+
+          <!-- 淡色護理內容 -->
+          <div id="aftercare-content-removal" class="space-y-5" style="display: none;">
+            ${renderSections(removalSections)}
           </div>
         </div>
       `;
@@ -1044,7 +1110,6 @@
         case 'pricing': tabContent = renderPricing(config); break;
         case 'booking': tabContent = renderBooking(config); break;
         case 'aftercare': tabContent = renderAftercare(config); break;
-        case 'eyebrow-design': tabContent = renderEyebrowDesign(config); break;
         case 'preparation': tabContent = renderPreparation(config); break;
         case 'location': tabContent = renderLocation(config); break;
         case 'faq-brow': tabContent = renderFAQBrow(config); break;
@@ -1103,6 +1168,16 @@
           }
           // 更新遮罩狀態
           updateScrollFade(tabsContainer);
+        }
+        
+        // 如果是術後護理頁面，初始化按鈕狀態
+        if (currentTab === 'aftercare') {
+          window.switchAftercareType('brow');
+        }
+        
+        // 如果是價目表頁面，初始化按鈕狀態
+        if (currentTab === 'pricing') {
+          window.switchPricingType('brow');
         }
       });
     }
@@ -1189,240 +1264,85 @@
       });
     };
 
-    window.handleImageUpload = function (event, previewId) {
-      const file = event.target.files[0];
-      const inputId = event.target.id;
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const preview = document.getElementById(previewId);
-          if (preview) {
-            preview.style.display = 'block';
-            preview.innerHTML = '<img src="' + e.target.result + '" alt="上傳的照片" style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px; display: block;"><button onclick="document.getElementById(\'' + inputId + '\').click()" style="position: absolute; top: 10px; right: 10px; padding: 8px 16px; border-radius: 8px; border: none; background: rgba(0,0,0,0.6); color: white; font-size: 12px; cursor: pointer; z-index: 10;" onmouseover="this.style.background=\'rgba(0,0,0,0.8)\'" onmouseout="this.style.background=\'rgba(0,0,0,0.6)\'">更換照片</button>';
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-
-    // 眉型設計照片管理
-    window.eyebrowDesignImages = [];
-    window.eyebrowDesignCurrentIndex = 0;
-
-    window.handleMultipleImageUpload = function (event, galleryId) {
-      const files = Array.from(event.target.files);
-      if (files.length === 0) return;
-
-      let loadedCount = 0;
-      const totalFiles = files.length;
-
-      files.forEach(file => {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          if (!window.eyebrowDesignImages) {
-            window.eyebrowDesignImages = [];
-          }
-          window.eyebrowDesignImages.push(e.target.result);
-          loadedCount++;
-
-          // 所有文件加载完成后更新一次
-          if (loadedCount === totalFiles) {
-            window.eyebrowDesignCurrentIndex = 0;
-            window.updateEyebrowDesignGallery();
-          }
-        };
-        reader.onerror = function () {
-          console.error('图片读取失败');
-          loadedCount++;
-          if (loadedCount === totalFiles) {
-            window.updateEyebrowDesignGallery();
-          }
-        };
-        reader.readAsDataURL(file);
-      });
-
-      // 清空input，允许重复选择相同文件
-      event.target.value = '';
-    };
-
-    window.updateEyebrowDesignGallery = function () {
-      // 延迟执行，确保DOM已更新
-      setTimeout(function () {
-        const empty = document.getElementById('eyebrow-design-empty');
-        const carousel = document.getElementById('eyebrow-design-carousel');
-        const container = document.getElementById('eyebrow-design-images-container');
-        const prevBtn = document.getElementById('eyebrow-design-prev');
-        const nextBtn = document.getElementById('eyebrow-design-next');
-        const indicator = document.getElementById('eyebrow-design-indicator');
-
-        if (!window.eyebrowDesignImages || window.eyebrowDesignImages.length === 0) {
-          if (empty) empty.style.display = 'flex';
-          if (carousel) carousel.style.display = 'none';
-          return;
+    window.switchAftercareType = function (type) {
+      const config = window.currentConfig || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const fontStack = `${config.font_family || defaultConfig.font_family}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const browBtn = document.getElementById('aftercare-btn-brow');
+      const removalBtn = document.getElementById('aftercare-btn-removal');
+      const browContent = document.getElementById('aftercare-content-brow');
+      const removalContent = document.getElementById('aftercare-content-removal');
+      
+      if (type === 'brow') {
+        // 切換到霧眉
+        if (browBtn) {
+          browBtn.style.background = config.primary_action || defaultConfig.primary_action;
+          browBtn.style.color = 'white';
+          browBtn.style.boxShadow = '0 4px 15px rgba(199, 162, 144, 0.3)';
         }
-
-        if (empty) empty.style.display = 'none';
-        if (carousel) carousel.style.display = 'block';
-
-        window.eyebrowDesignCurrentIndex = Math.min(window.eyebrowDesignCurrentIndex || 0, window.eyebrowDesignImages.length - 1);
-        window.renderEyebrowDesignImage();
-        window.updateEyebrowDesignControls();
-      }, 50);
-    };
-
-    window.renderEyebrowDesignImage = function () {
-      const container = document.getElementById('eyebrow-design-images-container');
-      if (!container || window.eyebrowDesignImages.length === 0) return;
-
-      const currentImage = window.eyebrowDesignImages[window.eyebrowDesignCurrentIndex];
-      const scale = window.eyebrowDesignImageScale || 1;
-      const translateX = window.eyebrowDesignTranslateX || 0;
-      const translateY = window.eyebrowDesignTranslateY || 0;
-
-      container.innerHTML = `
-        <div id="eyebrow-design-image-wrapper" style="width: 100%; height: 100%; position: relative; overflow: hidden; touch-action: none;">
-          <img id="eyebrow-design-image" 
-               src="${currentImage}" 
-               alt="眉型設計照片" 
-               style="width: 100%; height: 100%; object-fit: contain; transform: scale(${scale}) translate(${translateX}px, ${translateY}px); transition: transform 0.1s ease-out; cursor: grab; user-select: none;"
-               draggable="false"
-               onmousedown="startEyebrowImageDrag(event)"
-               ontouchstart="startEyebrowImageTouch(event)"
-               onclick="toggleEyebrowImageZoom(event)">
-        </div>
-      `;
-
-      window.eyebrowDesignImageScale = 1;
-      window.eyebrowDesignTranslateX = 0;
-      window.eyebrowDesignTranslateY = 0;
-    };
-
-    window.updateEyebrowDesignControls = function () {
-      const prevBtn = document.getElementById('eyebrow-design-prev');
-      const nextBtn = document.getElementById('eyebrow-design-next');
-      const indicator = document.getElementById('eyebrow-design-indicator');
-      const total = window.eyebrowDesignImages.length;
-
-      if (prevBtn) {
-        prevBtn.style.display = total > 1 ? 'block' : 'none';
-      }
-      if (nextBtn) {
-        nextBtn.style.display = total > 1 ? 'block' : 'none';
-      }
-      if (indicator) {
-        indicator.style.display = total > 1 ? 'block' : 'none';
-        indicator.textContent = `${window.eyebrowDesignCurrentIndex + 1} / ${total}`;
-      }
-    };
-
-    window.changeEyebrowImage = function (direction) {
-      const total = window.eyebrowDesignImages.length;
-      if (total <= 1) return;
-
-      window.eyebrowDesignCurrentIndex = (window.eyebrowDesignCurrentIndex + direction + total) % total;
-      window.eyebrowDesignImageScale = 1;
-      window.eyebrowDesignTranslateX = 0;
-      window.eyebrowDesignTranslateY = 0;
-      renderEyebrowDesignImage();
-      updateEyebrowDesignControls();
-    };
-
-    window.toggleEyebrowImageZoom = function (event) {
-      if (event.detail === 2 || event.type === 'dblclick') {
-        const img = document.getElementById('eyebrow-design-image');
-        if (!img) return;
-
-        if (window.eyebrowDesignImageScale === 1) {
-          window.eyebrowDesignImageScale = 2;
-        } else {
-          window.eyebrowDesignImageScale = 1;
-          window.eyebrowDesignTranslateX = 0;
-          window.eyebrowDesignTranslateY = 0;
+        if (removalBtn) {
+          removalBtn.style.background = config.secondary_action || defaultConfig.secondary_action;
+          removalBtn.style.color = config.primary_text || defaultConfig.primary_text;
+          removalBtn.style.boxShadow = '0 3px 12px rgba(199, 162, 144, 0.2)';
         }
-        img.style.transform = `scale(${window.eyebrowDesignImageScale}) translate(${window.eyebrowDesignTranslateX}px, ${window.eyebrowDesignTranslateY}px)`;
+        if (browContent) browContent.style.display = 'block';
+        if (removalContent) removalContent.style.display = 'none';
+      } else if (type === 'removal') {
+        // 切換到淡色
+        if (browBtn) {
+          browBtn.style.background = config.secondary_action || defaultConfig.secondary_action;
+          browBtn.style.color = config.primary_text || defaultConfig.primary_text;
+          browBtn.style.boxShadow = '0 3px 12px rgba(199, 162, 144, 0.2)';
+        }
+        if (removalBtn) {
+          removalBtn.style.background = config.primary_action || defaultConfig.primary_action;
+          removalBtn.style.color = 'white';
+          removalBtn.style.boxShadow = '0 4px 15px rgba(199, 162, 144, 0.3)';
+        }
+        if (browContent) browContent.style.display = 'none';
+        if (removalContent) removalContent.style.display = 'block';
       }
     };
 
-    window.startEyebrowImageDrag = function (event) {
-      if (window.eyebrowDesignImageScale <= 1) return;
-      event.preventDefault();
-      const img = document.getElementById('eyebrow-design-image');
-      if (!img) return;
-
-      const startX = event.clientX - window.eyebrowDesignTranslateX;
-      const startY = event.clientY - window.eyebrowDesignTranslateY;
-
-      const onMouseMove = function (e) {
-        window.eyebrowDesignTranslateX = e.clientX - startX;
-        window.eyebrowDesignTranslateY = e.clientY - startY;
-        img.style.transform = `scale(${window.eyebrowDesignImageScale}) translate(${window.eyebrowDesignTranslateX}px, ${window.eyebrowDesignTranslateY}px)`;
-      };
-
-      const onMouseUp = function () {
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-      };
-
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
-    };
-
-    window.startEyebrowImageTouch = function (event) {
-      if (event.touches.length === 1) {
-        // 单指滑动切换照片
-        const touch = event.touches[0];
-        window.eyebrowDesignTouchStartX = touch.clientX;
-        window.eyebrowDesignTouchStartY = touch.clientY;
-
-        const onTouchMove = function (e) {
-          if (e.touches.length === 1) {
-            const deltaX = e.touches[0].clientX - window.eyebrowDesignTouchStartX;
-            const deltaY = e.touches[0].clientY - window.eyebrowDesignTouchStartY;
-
-            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
-              if (deltaX > 0) {
-                changeEyebrowImage(-1);
-              } else {
-                changeEyebrowImage(1);
-              }
-              document.removeEventListener('touchmove', onTouchMove);
-              document.removeEventListener('touchend', onTouchEnd);
-            }
-          } else if (e.touches.length === 2) {
-            // 双指缩放
-            const touch1 = e.touches[0];
-            const touch2 = e.touches[1];
-            const distance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
-
-            if (!window.eyebrowDesignTouchStartDistance) {
-              window.eyebrowDesignTouchStartDistance = distance;
-              window.eyebrowDesignTouchStartScale = window.eyebrowDesignImageScale || 1;
-            }
-
-            const scale = window.eyebrowDesignTouchStartScale * (distance / window.eyebrowDesignTouchStartDistance);
-            window.eyebrowDesignImageScale = Math.max(1, Math.min(3, scale));
-
-            const img = document.getElementById('eyebrow-design-image');
-            if (img) {
-              img.style.transform = `scale(${window.eyebrowDesignImageScale}) translate(${window.eyebrowDesignTranslateX || 0}px, ${window.eyebrowDesignTranslateY || 0}px)`;
-            }
-          }
-        };
-
-        const onTouchEnd = function () {
-          window.eyebrowDesignTouchStartDistance = null;
-          document.removeEventListener('touchmove', onTouchMove);
-          document.removeEventListener('touchend', onTouchEnd);
-        };
-
-        document.addEventListener('touchmove', onTouchMove);
-        document.addEventListener('touchend', onTouchEnd);
-      } else if (event.touches.length === 2) {
-        // 双指缩放开始
-        const touch1 = event.touches[0];
-        const touch2 = event.touches[1];
-        window.eyebrowDesignTouchStartDistance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
-        window.eyebrowDesignTouchStartScale = window.eyebrowDesignImageScale || 1;
+    window.switchPricingType = function (type) {
+      const config = window.currentConfig || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const fontStack = `${config.font_family || defaultConfig.font_family}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const browBtn = document.getElementById('pricing-btn-brow');
+      const removalBtn = document.getElementById('pricing-btn-removal');
+      const browContent = document.getElementById('pricing-content-brow');
+      const removalContent = document.getElementById('pricing-content-removal');
+      
+      if (type === 'brow') {
+        // 切換到霧眉
+        if (browBtn) {
+          browBtn.style.background = config.primary_action || defaultConfig.primary_action;
+          browBtn.style.color = 'white';
+          browBtn.style.boxShadow = '0 4px 15px rgba(199, 162, 144, 0.3)';
+        }
+        if (removalBtn) {
+          removalBtn.style.background = config.secondary_action || defaultConfig.secondary_action;
+          removalBtn.style.color = config.primary_text || defaultConfig.primary_text;
+          removalBtn.style.boxShadow = '0 3px 12px rgba(199, 162, 144, 0.2)';
+        }
+        if (browContent) browContent.style.display = 'block';
+        if (removalContent) removalContent.style.display = 'none';
+      } else if (type === 'removal') {
+        // 切換到淡色
+        if (browBtn) {
+          browBtn.style.background = config.secondary_action || defaultConfig.secondary_action;
+          browBtn.style.color = config.primary_text || defaultConfig.primary_text;
+          browBtn.style.boxShadow = '0 3px 12px rgba(199, 162, 144, 0.2)';
+        }
+        if (removalBtn) {
+          removalBtn.style.background = config.primary_action || defaultConfig.primary_action;
+          removalBtn.style.color = 'white';
+          removalBtn.style.boxShadow = '0 4px 15px rgba(199, 162, 144, 0.3)';
+        }
+        if (browContent) browContent.style.display = 'none';
+        if (removalContent) removalContent.style.display = 'block';
       }
     };
 
