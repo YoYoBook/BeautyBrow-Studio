@@ -1179,12 +1179,32 @@
 
         // 如果是施作後照護頁面，初始化按鈕狀態
         if (currentTab === 'aftercare') {
-          window.switchAftercareType('brow');
+          const hash = getTabFromUrl() || '';
+          if (hash.startsWith('aftercare-')) {
+            const subType = hash.replace('aftercare-', '');
+            if (subType === 'brow' || subType === 'removal') {
+              window.switchAftercareType(subType);
+            } else {
+              window.switchAftercareType('brow');
+            }
+          } else {
+            window.switchAftercareType('brow');
+          }
         }
 
         // 如果是價目表頁面，初始化按鈕狀態
         if (currentTab === 'pricing') {
-          window.switchPricingType('brow');
+          const hash = getTabFromUrl() || '';
+          if (hash.startsWith('pricing-')) {
+            const subType = hash.replace('pricing-', '');
+            if (subType === 'brow' || subType === 'removal') {
+              window.switchPricingType(subType);
+            } else {
+              window.switchPricingType('brow');
+            }
+          } else {
+            window.switchPricingType('brow');
+          }
         }
       });
     }
@@ -1363,10 +1383,15 @@
     // 頁面載入完成後自動初始化
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
-        // 讀取網址 hash，支援分享指定 tab
-        const initialTab = getTabFromUrl();
-        if (initialTab && isValidTabId(initialTab)) {
-          currentTab = initialTab;
+        // 讀取網址 hash，支援分享指定 tab（含子 tab）
+        const initialHash = getTabFromUrl();
+        // 解析基本 tab（例如 pricing-brow -> pricing）
+        let baseTab = initialHash || '';
+        if (initialHash && initialHash.includes('-')) {
+          baseTab = initialHash.split('-')[0];
+        }
+        if (baseTab && isValidTabId(baseTab)) {
+          currentTab = baseTab;
         } else {
           // 沒帶 hash 或不合法時，固定成 home（並把網址整理成 #home）
           currentTab = 'home';
@@ -1382,10 +1407,15 @@
         });
       });
     } else {
-      // 讀取網址 hash，支援分享指定 tab
-      const initialTab = getTabFromUrl();
-      if (initialTab && isValidTabId(initialTab)) {
-        currentTab = initialTab;
+      // 讀取網址 hash，支援分享指定 tab（含子 tab）
+      const initialHash = getTabFromUrl();
+      // 解析基本 tab（例如 pricing-brow -> pricing）
+      let baseTab = initialHash || '';
+      if (initialHash && initialHash.includes('-')) {
+        baseTab = initialHash.split('-')[0];
+      }
+      if (baseTab && isValidTabId(baseTab)) {
+        currentTab = baseTab;
       } else {
         currentTab = 'home';
         setUrlTab('home', { replace: true });
@@ -1400,13 +1430,28 @@
       });
     }
 
-    // 支援瀏覽器上一頁/下一頁，以及手動修改 hash（同步 tab）
+    // 支援瀏覽器上一頁/下一頁，以及手動修改 hash（同步 tab 和子 tab）
     function syncTabFromUrl() {
-      const tabFromUrl = getTabFromUrl();
-      const nextTab = (tabFromUrl && isValidTabId(tabFromUrl)) ? tabFromUrl : 'home';
+      const hashFromUrl = getTabFromUrl();
+      // 解析基本 tab（例如 pricing-brow -> pricing）
+      let baseTab = hashFromUrl || '';
+      let subType = null;
+      if (hashFromUrl && hashFromUrl.includes('-')) {
+        const parts = hashFromUrl.split('-');
+        baseTab = parts[0];
+        subType = parts[1];
+      }
+      const nextTab = (baseTab && isValidTabId(baseTab)) ? baseTab : 'home';
       if (nextTab !== currentTab) {
         currentTab = nextTab;
         onConfigChange(window.currentConfig || defaultConfig);
+      } else if (subType) {
+        // 如果基本 tab 沒變，但子 tab 變了，直接切換子 tab
+        if (baseTab === 'pricing' && (subType === 'brow' || subType === 'removal')) {
+          window.switchPricingType(subType);
+        } else if (baseTab === 'aftercare' && (subType === 'brow' || subType === 'removal')) {
+          window.switchAftercareType(subType);
+        }
       }
     }
 
