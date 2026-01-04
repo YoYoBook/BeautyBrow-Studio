@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-TW">
 
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>美眉 ｜ 美學 - 專業霧眉工作室</title>
@@ -10,7 +10,7 @@
     body {
       box-sizing: border-box;
     }
-    
+
     * {
       margin: 0;
       padding: 0;
@@ -81,7 +81,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: 
+      background:
         radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
         radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
     }
@@ -131,9 +131,9 @@
       navigation: auto;
     }
   </style>
- </head>
+</head>
 
- <body>
+<body>
   <div id="app" class="w-full min-h-screen"></div>
   <script>
     const defaultConfig = {
@@ -214,7 +214,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       return `
         <div class="text-center mb-6 fade-in" style="margin-top: -1rem;">
           <div class="flex justify-center" style="margin-bottom: -2rem;">
@@ -305,7 +305,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       // 霧眉價格列表
       const browPrices = [
         { title: '新客霧眉', price: 'VIP $6,800', originalPrice: '原價 $7,500', note: '含 3 個月內免費補色乙次', highlight: true, special: true },
@@ -325,7 +325,7 @@
       ];
 
       const renderPriceItem = (item) => {
-      return `
+        return `
                 <div class="card p-6 rounded-2xl" style="background: ${item.highlight ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, ${item.highlight ? '0.2' : '0.1'}); ${item.special ? `border: 2px solid ${config.primary_action || defaultConfig.primary_action};` : ''}">
                   <div>
                     <div class="flex items-center justify-between gap-4 mb-2">
@@ -403,7 +403,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const sections = [
         {
           title: '預約資訊',
@@ -443,8 +443,8 @@
           title: '三個月內免費補色',
           icon: '💆🏻‍♀️',
           items: [
-             '補色為『<strong>主動預約制</strong>』不會另行通知，請記得提早預約時間唷 ♡ 希望下次見面，能讓你的眉毛更完美',
-             '為維護您的權益，請勿在期限將近時才預約，如因此無法在期限內完成，將視同『<strong>自願放棄免費補色權利，不得要求退費</strong>』',
+            '補色為『<strong>主動預約制</strong>』不會另行通知，請記得提早預約時間唷 ♡ 希望下次見面，能讓你的眉毛更完美',
+            '為維護您的權益，請勿在期限將近時才預約，如因此無法在期限內完成，將視同『<strong>自願放棄免費補色權利，不得要求退費</strong>』',
             '超過三個月，會依照價目表收費'
           ]
         }
@@ -485,7 +485,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       // 霧眉護理內容
       const browSections = [
         {
@@ -588,7 +588,7 @@
               </div>
         `).join('');
       };
-      
+
       return `
         <div class="mb-8 fade-in">
           <h2 class="mb-6 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 2px;">
@@ -626,7 +626,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const sections = [
         {
           title: '霧眉前三週',
@@ -693,7 +693,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const locations = [
         {
           name: '台北｜大安店',
@@ -708,7 +708,7 @@
           mapLink: 'https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E8%8E%8A%E6%95%AC%E8%B7%AF%20140%20%E5%B7%B7%2010%20%E8%99%9F%201%20%E6%A8%93'
         }
       ];
-      
+
       const locationImages = {
         '台北｜大安店': {
           src: 'sources/studio_env.png',
@@ -735,9 +735,9 @@
                   </h3>
                   <div class="space-y-3">
                     ${[
-                      { text: loc.address, highlight: false, mapLink: loc.mapLink },
-                      { text: loc.transport, highlight: true }
-                    ].filter(row => !!row.text).map(row => `
+          { text: loc.address, highlight: false, mapLink: loc.mapLink },
+          { text: loc.transport, highlight: true }
+        ].filter(row => !!row.text).map(row => `
                       <div class="${row.highlight ? 'rounded-xl' : ''}" style="${row.highlight ? `background: ${config.card_background || defaultConfig.card_background}; padding: 12px 12px 12px 6px; margin-left: -6px;` : ''}">
                         <div style="display: flex; align-items: center; gap: 8px;">
                           <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${row.highlight ? (config.primary_action || defaultConfig.primary_action) : (config.primary_text || defaultConfig.primary_text)}; line-height: 1.8; opacity: 0.85; margin: 0; font-weight: ${row.highlight ? 500 : 400};">
@@ -756,10 +756,10 @@
                 <div style="min-height: 280px; background: transparent;">
                   <div style="text-align: center; z-index: 1; padding: ${locationImages[loc.name] ? '0' : '20px'}; height: 100%; display: flex; align-items: center; justify-content: center; background: transparent;">
                     ${locationImages[loc.name]
-                      ? `
+          ? `
                         <img src="${locationImages[loc.name].src}" alt="${locationImages[loc.name].alt}" style="width: 100%; height: 100%; object-fit: cover; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);" />
                       `
-                      : `
+          : `
                         <div style="font-size: ${baseFont * 3}px; margin-bottom: 12px;">${loc.mapIcon}</div>
                         <p style="font-size: ${baseFont * 1.3}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.8; font-weight: 500;">
                           ${loc.name}
@@ -791,7 +791,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const faqs = [
         {
           q: '霧眉跟飄眉的差別是什麼？',
@@ -915,7 +915,7 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const faqs = [
         {
           q: '什麼是無創淡色？',
@@ -1048,10 +1048,10 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const instagram = config.instagram_handle || defaultConfig.instagram_handle;
       const lineId = config.line_id || defaultConfig.line_id;
-      
+
       return `
         <div class="flex flex-wrap gap-4 justify-center">
           <a href="https://www.instagram.com/beautybrow__studio?igsh=MXZrMG1mYmRocHZhcg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" 
@@ -1105,12 +1105,12 @@
       const baseFont = config.font_size || defaultConfig.font_size;
       const customFont = config.font_family || defaultConfig.font_family;
       const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       // 保存當前的 scroll 位置，避免重新渲染時重置
       const savedScrollPosition = window.savedTabScrollPosition || 0;
-      
+
       document.body.style.background = config.background_color || defaultConfig.background_color;
-      
+
       let tabContent = '';
       switch (currentTab) {
         case 'home': tabContent = renderHome(config); break;
@@ -1122,7 +1122,7 @@
         case 'faq-brow': tabContent = renderFAQBrow(config); break;
         case 'faq-removal': tabContent = renderFAQRemoval(config); break;
       }
-      
+
       app.innerHTML = `
         <div class="w-full min-h-screen p-4 md:p-6">
           <div class="max-w-6xl mx-auto">
@@ -1163,7 +1163,7 @@
           </div>
         </div>
       `;
-      
+
       // 恢復 scroll 位置並初始化遮罩狀態
       // 使用 requestAnimationFrame 確保 DOM 已完全渲染
       requestAnimationFrame(() => {
@@ -1176,12 +1176,12 @@
           // 更新遮罩狀態
           updateScrollFade(tabsContainer);
         }
-        
+
         // 如果是施作後照護頁面，初始化按鈕狀態
         if (currentTab === 'aftercare') {
           window.switchAftercareType('brow');
         }
-        
+
         // 如果是價目表頁面，初始化按鈕狀態
         if (currentTab === 'pricing') {
           window.switchPricingType('brow');
@@ -1194,14 +1194,14 @@
       const fadeLeft = document.getElementById('scroll-fade-left');
       const fadeRight = document.getElementById('scroll-fade-right');
       if (!fadeLeft || !fadeRight || !container) return;
-      
+
       const scrollLeft = container.scrollLeft;
       const scrollWidth = container.scrollWidth;
       const clientWidth = container.clientWidth;
       const isScrollable = scrollWidth > clientWidth;
       const isAtStart = scrollLeft <= 1;
       const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 1;
-      
+
       // 如果可滾動，顯示對應的遮罩
       if (isScrollable) {
         fadeLeft.classList.toggle('hidden', isAtStart);
@@ -1220,13 +1220,13 @@
       if (tabsContainer) {
         window.savedTabScrollPosition = tabsContainer.scrollLeft;
       }
-      
+
       currentTab = tabId;
       // 更新網址，讓分享連結可直接指定 tab
       setUrlTab(tabId);
       const config = window.currentConfig || defaultConfig;
       onConfigChange(config);
-      
+
       // 恢復 scroll 位置後，檢查按鈕是否需要滾動（只在完全不可見時）
       // 使用雙重 requestAnimationFrame 確保 scroll 位置已恢復
       requestAnimationFrame(() => {
@@ -1236,34 +1236,34 @@
           if (tabButton && tabsContainer) {
             const containerRect = tabsContainer.getBoundingClientRect();
             const buttonRect = tabButton.getBoundingClientRect();
-            
+
             // 檢查按鈕是否完全在可見區域內
             const buttonLeft = buttonRect.left;
             const buttonRight = buttonRect.right;
             const containerLeft = containerRect.left;
             const containerRight = containerRect.right;
             const padding = 12; // 考慮一些邊距
-            
+
             // 只有當按鈕完全不可見時才滾動
             const isCompletelyHidden = buttonRight < containerLeft + padding || buttonLeft > containerRight - padding;
-            
+
             if (isCompletelyHidden) {
               // 計算需要滾動的位置（讓按鈕居中顯示）
               const buttonOffsetLeft = tabButton.offsetLeft;
               const buttonWidth = buttonRect.width;
               const containerWidth = tabsContainer.clientWidth;
               const targetScroll = buttonOffsetLeft - (containerWidth / 2) + (buttonWidth / 2);
-              
+
               // 確保滾動位置在有效範圍內
               const maxScroll = tabsContainer.scrollWidth - containerWidth;
               const finalScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-              
+
               // 直接設置 scrollLeft，避免動畫跳動
               tabsContainer.scrollLeft = finalScroll;
               // 更新保存的位置
               window.savedTabScrollPosition = finalScroll;
             }
-            
+
             // 更新遮罩狀態
             updateScrollFade(tabsContainer);
           }
@@ -1275,12 +1275,12 @@
       const config = window.currentConfig || defaultConfig;
       const baseFont = config.font_size || defaultConfig.font_size;
       const fontStack = `${config.font_family || defaultConfig.font_family}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const browBtn = document.getElementById('aftercare-btn-brow');
       const removalBtn = document.getElementById('aftercare-btn-removal');
       const browContent = document.getElementById('aftercare-content-brow');
       const removalContent = document.getElementById('aftercare-content-removal');
-      
+
       if (type === 'brow') {
         // 切換到霧眉
         if (browBtn) {
@@ -1310,18 +1310,20 @@
         if (browContent) browContent.style.display = 'none';
         if (removalContent) removalContent.style.display = 'block';
       }
+      // 更新網址 hash
+      setUrlTab(`aftercare-${type}`);
     };
 
     window.switchPricingType = function (type) {
       const config = window.currentConfig || defaultConfig;
       const baseFont = config.font_size || defaultConfig.font_size;
       const fontStack = `${config.font_family || defaultConfig.font_family}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-      
+
       const browBtn = document.getElementById('pricing-btn-brow');
       const removalBtn = document.getElementById('pricing-btn-removal');
       const browContent = document.getElementById('pricing-content-brow');
       const removalContent = document.getElementById('pricing-content-removal');
-      
+
       if (type === 'brow') {
         // 切換到霧眉
         if (browBtn) {
@@ -1351,11 +1353,13 @@
         if (browContent) browContent.style.display = 'none';
         if (removalContent) removalContent.style.display = 'block';
       }
+      // 更新網址 hash
+      setUrlTab(`pricing-${type}`);
     };
 
     // 使用 defaultConfig 初始化頁面
     window.currentConfig = { ...defaultConfig };
-    
+
     // 頁面載入完成後自動初始化
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
