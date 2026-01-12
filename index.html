@@ -308,48 +308,48 @@
 
       // 霧眉價格列表
       const browPrices = [
-        { title: '新客霧眉', price: 'VIP $6,800', originalPrice: '原價 $7,500', note: '含 3 個月內免費補色乙次', highlight: true, special: true },
+        { title: '新客霧眉', price: '活動價 $6,800', originalPrice: '原價 $7,500', note: '含 3 個月內免費補色乙次', highlight: true, special: true },
         { title: '6個月內｜單次補色', price: '$2,000-$3,000', note: '', special: true },
         { title: '6–12個月內｜單次補色', price: '$5,000', note: '', special: true },
         { title: '12–14個月內｜單次補色', price: '$5,500', note: '', special: true },
-        { title: '14個月以上｜視為新作', price: '$6,199', note: "享 9 折優惠", special: true },
+        { title: '14個月以上｜視為新作', price: '$6,375', note: "享原價 85 折優惠", special: true },
         { title: '兩人同行優惠', price: '$5,800', note: '現折 $1,000｜須預約不同時段', special: true },
         { title: '男士霧眉', price: '以上費用 +$1,000', note: '', special: true }
       ];
 
       // 淡色價格列表
       const removalPrices = [
-        { title: '淡色單堂', price: 'VIP $1,500', originalPrice: '原價$1,800', note: '體驗價', special: true },
-        { title: '紅/橘眉淡化', price: '$5,100', note: '建議課程 3 堂（平均 $1,700／堂）', special: true },
-        { title: '藍/灰眉淡化', price: '$8,000', note: '建議課程 5 堂（平均 $1,600／堂）', special: true }
+        { title: '淡色單堂', price: '活動價 $1,499', originalPrice: '原價 $1,799', note: '', special: true },
+        { title: '淡色包堂3次', price: '活動價 $4,199', originalPrice: '原價 $4,999',note: '平均 $1,400／堂', special: true },
+        { title: '淡色包堂5次', price: '活動價 $6,499', originalPrice: '原價 $7,999',note: '平均 $1,300／堂', special: true }
       ];
 
       const renderPriceItem = (item) => {
         return `
-                <div class="card p-6 rounded-2xl" style="background: ${item.highlight ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, ${item.highlight ? '0.2' : '0.1'}); ${item.special ? `border: 2px solid ${config.primary_action || defaultConfig.primary_action};` : ''}">
-                  <div>
-                    <div class="flex items-center justify-between gap-4 mb-2">
-                      <h3 style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; white-space: nowrap; flex: 1; min-width: 0;">
+                <div class="card p-6 rounded-2xl" style="background: ${item.highlight ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, ${item.highlight ? '0.2' : '0.1'}); ${item.special ? `border: 2px solid ${config.primary_action || defaultConfig.primary_action};` : ''}; display: flex; align-items: center;">
+                  <div style="flex: 1;">
+                    <div class="mb-2">
+                      <h3 style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; white-space: nowrap;">
                         ${item.male ? ' ' : ''}${item.title}
                       </h3>
-                      <div class="px-4 py-2 rounded-xl flex-shrink-0 ${item.highlight ? '' : `bg-opacity-50`}" style="background: ${item.highlight ? config.primary_action || defaultConfig.primary_action : config.background_color || defaultConfig.background_color};">
-                  <div style="display: flex; flex-direction: column; align-items: flex-end;">
-                    ${item.originalPrice ? `
-                      <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${item.highlight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(92, 74, 66, 0.6)'}; margin-bottom: 2px;">
-                        ${item.originalPrice}
-                      </span>
-                    ` : ''}
-                        <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${item.highlight ? '#FFFFFF' : config.primary_action || defaultConfig.primary_action}; font-weight: 600; white-space: nowrap;">
-                          ${item.price}
-                        </span>
-                  </div>
-                      </div>
                     </div>
                     ${item.note ? `
                       <p style="font-size: ${baseFont * 0.85}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7;">
                         ${item.note}
                       </p>
                     ` : ''}
+                  </div>
+                  <div class="px-4 py-2 rounded-xl flex-shrink-0 ${item.highlight ? '' : `bg-opacity-50`}" style="background: ${item.highlight ? config.primary_action || defaultConfig.primary_action : config.background_color || defaultConfig.background_color};">
+                    <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                      ${item.originalPrice ? `
+                        <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${item.highlight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(92, 74, 66, 0.6)'}; margin-bottom: 2px;">
+                          ${item.originalPrice}
+                        </span>
+                      ` : ''}
+                      <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${item.highlight ? '#FFFFFF' : config.primary_action || defaultConfig.primary_action}; font-weight: 600; white-space: nowrap;">
+                        ${item.price}
+                      </span>
+                    </div>
                   </div>
                 </div>
               `;
@@ -383,7 +383,7 @@
 
           <!-- 淡色價格內容 -->
           <div id="pricing-content-removal" style="display: none;">
-            <h2 class="mb-4 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500; letter-spacing: 1px;">
+            <h2 class="mb-4 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 400; letter-spacing: 1px;">
               無創｜淡色
             </h2>
             <div class="mb-4 text-center">
@@ -1054,7 +1054,7 @@
 
       return `
         <div class="flex flex-wrap gap-4 justify-center">
-          <a href="https://www.instagram.com/beautybrow__studio?igsh=MXZrMG1mYmRocHZhcg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" 
+          <a href="https://www.instagram.com/beautybrow__studio" target="_blank" rel="noopener noreferrer" 
              class="card px-8 py-4 rounded-full flex items-center gap-3 transition-transform hover:scale-105"
              style="background: ${config.primary_action || defaultConfig.primary_action} !important; text-decoration: none; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3); border-radius: 9999px !important;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
