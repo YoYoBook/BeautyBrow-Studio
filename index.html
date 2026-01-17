@@ -125,6 +125,189 @@
     .scroll-fade-right.hidden {
       opacity: 0;
     }
+
+    /* 浮層樣式 */
+    .face-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+      backdrop-filter: blur(8px);
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    .face-modal.active {
+      display: flex;
+    }
+
+    .face-modal-content {
+      background: white;
+      border-radius: 24px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: modalSlideUp 0.3s ease;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(199, 162, 144, 0.3) transparent;
+    }
+
+    .face-modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .face-modal-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .face-modal-content::-webkit-scrollbar-thumb {
+      background: rgba(199, 162, 144, 0.3);
+      border-radius: 4px;
+    }
+
+    .face-modal-content::-webkit-scrollbar-thumb:hover {
+      background: rgba(199, 162, 144, 0.5);
+    }
+
+    .face-modal-close {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5C4A42;
+      font-size: 28px;
+      font-weight: 300;
+      transition: all 0.3s ease;
+      z-index: 10001;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .face-modal-close:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .face-modal-close:active {
+      transform: scale(0.95);
+    }
+
+    .face-card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .face-card-hint {
+      background: rgba(199, 162, 144, 0.95);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .card:hover .face-card-overlay {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover .face-card-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .face-modal-content {
+        max-height: 90vh;
+        border-radius: 20px;
+        margin: 0 12px;
+      }
+
+      .face-modal-close {
+        top: 12px;
+        right: 12px;
+        width: 44px;
+        height: 44px;
+        font-size: 26px;
+      }
+
+      .face-card-hint {
+        font-size: 12px;
+        padding: 6px 14px;
+      }
+
+      .modal-body-content {
+        padding: 24px 20px !important;
+      }
+
+      .modal-body-content h2 {
+        font-size: 24px !important;
+      }
+
+      .modal-body-content .info-section {
+        padding: 16px !important;
+        margin-bottom: 16px !important;
+      }
+
+      .modal-body-content .info-section h4 {
+        font-size: 15px !important;
+      }
+
+      .modal-body-content .info-section p {
+        font-size: 14px !important;
+      }
+    }
   </style>
   <style>
     @view-transition {
@@ -179,6 +362,7 @@
 
     const tabs = [
       { id: 'home', name: '首頁', icon: '' },
+      { id: 'brow-guide', name: '眉型設計指南', icon: '' },
       { id: 'pricing', name: '價目表', icon: '' },
       { id: 'booking', name: '預約須知', icon: '' },
       { id: 'preparation', name: '施作前準備', icon: '' },
@@ -296,6 +480,104 @@
                 若您是追求極致完美的眉型控，建議再三考慮後預約唷
               </p>
             </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderBrowGuide(config) {
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const fontStack = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+
+      return `
+        <!-- 眉型設計指南 -->
+        <div class="mb-8 fade-in">
+          <h3 class="mb-6 text-center" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500; letter-spacing: 1px;">
+            ✨ 眉型設計指南
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            ${[
+              { 
+                img: 'sources/鵝蛋臉.jpg', 
+                name: '鵝蛋臉', 
+                color: '#E8D5C8',
+                description: '這是最標準的完美臉型！<br>擁有令人稱羨的 1:1.5 黃金長寬比例額頭與下巴的比例恰到好處，線條圓潤流暢，沒有明顯的稜角，整體輪廓流暢給人溫柔舒服的感覺',
+                features: '標準眉、微挑眉 (幾乎適合所有眉型)',
+                eyebrowStyle: '鵝蛋臉本身已具備完美的平衡感，設計的核心在於「襯托氣質」<br><br>▫️眉峰： 微上揚一點，讓精神看起來更好<br>▫️眉尾： 順順地往下，順延眼型弧度',
+                tips: '鵝蛋臉不需要靠眉毛來「修飾」臉型（不用特地拉長或變短），最適合順著眼睛的弧度，做出一對柔和自然的眉毛。<br><br>太刻意強調角度反而會破壞妳原本溫柔的氣質喔！讓我為你保留這份天生的精緻感吧'
+              },
+              { 
+                img: 'sources/心型臉.jpg', 
+                name: '心形臉', 
+                color: '#C7A290',
+                description: '心形臉的特色是額頭較寬、下巴尖細，呈現出優雅的倒三角形',
+                features: '彎月眉、圓弧眉',
+                eyebrowStyle: '縮短額寬視覺 ➕ 柔化尖下巴 <br> ▫️ 眉峰： 圓潤且位置適中。眉峰不宜過高，需用圓滑的線條來平衡下巴的尖銳感<br> ▫️ 眉型： 強調柔霧感與弧度，眉毛長度要適中（不可太短），有助於在視覺上收窄寬闊的額頭<br> <br> ❌ NG 眉型：<br> ▫️歐美眉： 銳利的眉峰會讓原本就寬的額頭看起來更寬，也會讓下巴看起來更尖銳，整張臉會顯得比例失衡',
+                tips: '對於心型臉來說，眉毛是「平衡劑」<br> 拒絕任何生硬的稜角，而是用一條完美的拋物線，去中和臉部的銳利線條<br> <br> 這種設計能把天生的「精緻感」轉化為「甜美感」，讓眼神看起來更溫柔水靈'
+              },
+              { 
+                img: 'sources/長型臉.jpg', 
+                name: '長型臉', 
+                color: '#E8D5C8',
+                description: '臉型長度明顯大於寬度，中庭較長<br>給人氣質的印象，但也容易顯得較為成熟',
+                features: '微平眉',
+                eyebrowStyle: '橫向延伸 ➕ 縮短中庭 <br>▫️眉型： 採用一字平眉或微平眉，利用水平線條來中和臉部的垂直感。<br>▫️眉寬： 建議保留一點粗度，稍微加粗的眉型可以縮短額頭的視覺高度<br><br>❌ NG 眉型：<br>▫️歐美高挑眉、大彎眉： 拱起的眉型會再次拉長臉部比例，讓臉看起來無止盡延伸<br>▫️眉尾下垂過多： 會讓臉部線條看起來往下垮，顯得沒精神',
+                tips: '別讓眉毛「拉長」了妳的臉！ <br>長型臉最適合平直的線條，能起到「橫向擴張」的作用，讓原本窄長的臉型看起來豐潤一些<br> <br>這種設計能有效「縮短臉長」，讓你從成熟姊姊感，瞬間變身溫柔鄰家女孩'
+              },
+              { 
+                img: 'sources/圓型臉.jpg', 
+                name: '圓型臉', 
+                color: '#D4B5A0',
+                description: '最強逆齡的「童顏」臉型！<br>臉部輪廓圓潤、沒有稜角，給人可愛的甜美印象',
+                features: '標準微挑眉',
+                eyebrowStyle: '圓臉的設計核心在於「破除圓潤感，增加立體度」<br><br>▫️眉型：帶點弧度，避免太過生硬的直線<br>▫️眉峰：微上挑，讓圓潤的臉蛋增加稜角與立體感<br>▫️眉尾：眉尾適度拉長，達到收縮臉型的效果<br><br>❌ NG 眉型<br>▫️一字平眉： 會像把臉「壓扁」了，讓五官看起來更分散、臉顯得更圓<br>▫️短眉： 眉尾太短會讓太陽穴留白過多，視覺上臉會變寬',
+                tips: '目標是在視覺上將臉部「垂直拉伸」利用略為上揚的眉型，引導視線向上延伸，打破圓臉的圓潤感<br><br>這不僅能保留妳的可愛，還能幫妳加一點立體輪廓，讓臉看起來更小、更精緻！'
+              },
+              { 
+                img: 'sources/方型臉.jpg', 
+                name: '方形臉', 
+                color: '#D4B5A0',
+                description: '下顎骨骼感較強，臉部線條稜角分明<br>雖然看起來很有個性，但有時會擔心缺乏柔和感，給人比較嚴肅的印象',
+                features: '彎月眉、圓弧眉',
+                eyebrowStyle: '柔化臉部稜角 ➕ 縮窄下顎視覺<br>▫️ 眉峰： 圓潤無稜角。像月亮般的圓弧線條，能視覺上削弱下巴的方形感<br>▫️ 眉寬： 建議保留一定粗度，太細的眉毛會壓不住方臉的份量感<br><br>❌ NG 眉型<br>▫️平眉： 方臉畫平眉是大忌！會讓臉看起來更短、更寬、更方<br>▫️劍眉/銳利眉： 三角形的眉峰會加重臉部的「剛硬感」',
+                tips: '這是標準的「以柔克剛」魔法！<br> 不與臉型對抗，而是利用眉毛的圓弧曲線，去包容並修飾臉部的方正線條<br><br>這種設計能讓妳的臉型看起來更加順暢柔和，瞬間從「嚴肅主管」變身「氣質女神」'
+              },
+              { 
+                img: 'sources/菱形臉.jpg', 
+                name: '菱形臉', 
+                color: '#C7A290',
+                description: '自帶氣場的「鑽石級」骨相！<br>顴骨較寬且明顯，額頭與下巴較窄，太陽穴容易有凹陷感。輪廓分明且個性十足，但有時會顯得比較銳利',
+                features: '柔和小彎眉',
+                eyebrowStyle: '弱化強勢顴骨 ➕ 填補太陽穴凹陷<br><br>▫️眉峰： 靠前、圓滑，將視覺重心內移，不讓視線停留在顴骨最寬處<br>▫️眉尾： 拉長，在視覺上修飾凹陷的太陽穴，讓臉型線條更順暢<br><br>❌ NG 眉型<br>▫️平眉： 會顯得呆板，且對比之下會讓顴骨看起來更寬<br>▫️短眉、歐美高挑眉： 眉尾太短會暴露太陽穴缺點；太銳利的眉峰會讓臉看起來更兇',
+                tips: '利用眉毛的弧度來進行「視覺微整」<br>重點在於拉長眉尾來平衡顴骨的寬度，並用圓潤的眉峰去柔化臉部的稜角<br><br>這樣設計後的眉毛，能讓原本銳利的鑽石臉，瞬間變得流暢又精緻，散發出獨特的知性美'
+              }
+              ].map(face => `
+              <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12); transition: all 0.3s ease; cursor: pointer;" onclick="openFaceModal('${face.name}', '${face.img}', '${face.description}', '${face.features}', '${face.eyebrowStyle}', '${face.tips}')">
+                <div style="position: relative; overflow: hidden; aspect-ratio: 4/5;">
+                  <img src="${face.img}" alt="${face.name}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 20px 16px 12px;">
+                    <p style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: white; font-weight: 500; text-align: center; margin: 0;">
+                      ${face.name}
+                    </p>
+                  </div>
+                  <div class="face-card-overlay">
+                    <div class="face-card-hint">點擊查看詳情</div>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <p class="mt-6 text-center" style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7; line-height: 1.8;">
+            點擊圖片了解更多 · 每種臉型都有最適合的眉型設計，會根據您的臉型、五官比例與個人風格，量身打造專屬於您的完美眉型
+          </p>
+        </div>
+
+        <!-- 臉型浮層 -->
+        <div id="faceModal" class="face-modal" onclick="if(event.target.id === 'faceModal') closeFaceModal()">
+          <button class="face-modal-close" onclick="closeFaceModal()">×</button>
+          <div class="face-modal-content">
+            <div id="faceModalBody"></div>
           </div>
         </div>
       `;
@@ -1115,6 +1397,7 @@
       let tabContent = '';
       switch (currentTab) {
         case 'home': tabContent = renderHome(config); break;
+        case 'brow-guide': tabContent = renderBrowGuide(config); break;
         case 'pricing': tabContent = renderPricing(config); break;
         case 'booking': tabContent = renderBooking(config); break;
         case 'aftercare': tabContent = renderAftercare(config); break;
@@ -1458,6 +1741,85 @@
 
     window.addEventListener('popstate', syncTabFromUrl);
     window.addEventListener('hashchange', syncTabFromUrl);
+
+    // 臉型浮層控制函數
+    window.openFaceModal = function(name, img, description, features, eyebrowStyle, tips) {
+      const config = window.currentConfig || defaultConfig;
+      const baseFont = config.font_size || defaultConfig.font_size;
+      const fontStack = `${config.font_family || defaultConfig.font_family}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      
+      const modal = document.getElementById('faceModal');
+      const modalBody = document.getElementById('faceModalBody');
+      
+      modalBody.innerHTML = `
+        <div style="display: grid; grid-template-columns: 1fr; gap: 0;">
+          <div style="position: relative; width: 100%; aspect-ratio: 4/5; overflow: hidden; border-radius: 24px 24px 0 0;">
+            <img src="${img}" alt="${name}" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 30px 24px 20px;">
+              <h2 style="font-size: ${baseFont * 2}px; font-family: ${fontStack}; color: white; font-weight: 500; margin: 0; text-align: center;">
+                ${name}
+              </h2>
+            </div>
+          </div>
+          <div class="modal-body-content" style="padding: 32px 28px;">
+            <div style="margin-bottom: 24px;">
+              <p style="font-size: ${baseFont * 1.1}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.9; opacity: 0.85; text-align: center;">
+                ${description}
+              </p>
+            </div>
+            
+            <div class="info-section" style="background: ${config.background_color || defaultConfig.background_color}; padding: 20px; border-radius: 16px; margin-bottom: 20px; border-left: 4px solid ${config.primary_action || defaultConfig.primary_action};">
+              <h4 style="font-size: ${baseFont * 1.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
+                <span>✨</span> 推薦眉型
+              </h4>
+              <p style="font-size: ${baseFont * 1.0}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.8; margin: 0; opacity: 0.85;">
+                ${features}
+              </p>
+            </div>
+
+            <div class="info-section" style="background: ${config.background_color || defaultConfig.background_color}; padding: 20px; border-radius: 16px; margin-bottom: 20px; border-left: 4px solid ${config.primary_action || defaultConfig.primary_action};">
+              <h4 style="font-size: ${baseFont * 1.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
+                <span>📝</span> 設計美學
+              </h4>
+              <p style="font-size: ${baseFont * 1.0}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.9; margin: 0; opacity: 0.9;">
+                ${eyebrowStyle}
+              </p>
+            </div>
+
+            <div class="info-section" style="background: ${config.background_color || defaultConfig.background_color}; padding: 20px; border-radius: 16px; border-left: 4px solid ${config.primary_action || defaultConfig.primary_action};">
+              <h4 style="font-size: ${baseFont * 1.2}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
+                <span>💡</span> 設計小巧思
+              </h4>
+              <p style="font-size: ${baseFont * 1.0}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.9; margin: 0; opacity: 0.85;">
+                ${tips}
+              </p>
+            </div>
+
+            <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(199, 162, 144, 0.2); text-align: center;">
+              <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7; line-height: 1.8; margin: 0;">
+                以上為一般建議，實際眉型設計會依照您的五官比例、眉骨結構與個人風格進行客製化調整 💖
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeFaceModal = function() {
+      const modal = document.getElementById('faceModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    // ESC 鍵關閉浮層
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeFaceModal();
+      }
+    });
   </script>
   <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9a8d2f4865374a46',t:'MTc2NDg3MTAzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
 </body>
