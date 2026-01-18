@@ -1,0 +1,345 @@
+/* ===================================================
+   BeautyBrow Studio - Main Stylesheet
+   =================================================== */
+
+/* --- Base Styles --- */
+body {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans TC', '思源黑體', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* --- Animations --- */
+.fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Tab Button Styles --- */
+.tab-button {
+  transition: all 0.25s ease-out;
+  cursor: pointer;
+}
+
+.tab-button:hover {
+  box-shadow: 0 4px 12px rgba(199, 162, 144, 0.25);
+}
+
+/* --- Focus States (Accessibility) --- */
+.tab-button:focus-visible,
+.card:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #C7A290;
+  outline-offset: 2px;
+}
+
+/* --- Card Styles --- */
+.card {
+  transition: all 0.25s ease-out;
+}
+
+.card:hover {
+  box-shadow: 0 12px 28px rgba(199, 162, 144, 0.22);
+}
+
+.clickable-card {
+  cursor: pointer;
+}
+
+/* --- Accessibility: Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Contact Button Overrides --- */
+a[href*="instagram.com"],
+a[href*="lin.ee"] {
+  background-color: #C7A290 !important;
+  border-radius: 9999px !important;
+}
+
+/* --- Image Placeholder --- */
+.image-placeholder {
+  background: linear-gradient(135deg, #F5EBE6 0%, #E8D5C8 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+}
+
+/* --- Scroll Container --- */
+.scroll-container {
+  scrollbar-width: none;
+  /* 隱藏 Firefox 滑桿 */
+  -ms-overflow-style: none;
+  /* 隱藏 IE/Edge 滑桿 */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+  /* 隱藏 Chrome/Safari 滑桿 */
+}
+
+/* --- Scroll Fade Gradients --- */
+.scroll-fade-left,
+.scroll-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+  border-radius: 24px;
+}
+
+.scroll-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--fade-color, rgba(255, 255, 255, 0.95)), transparent);
+}
+
+.scroll-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--fade-color, rgba(255, 255, 255, 0.95)), transparent);
+}
+
+.scroll-fade-left.hidden,
+.scroll-fade-right.hidden {
+  opacity: 0;
+}
+
+/* --- Face Modal Styles --- */
+.face-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+  animation: modalFadeIn 0.3s ease;
+}
+
+.face-modal.active {
+  display: flex;
+}
+
+.face-modal-content {
+  background: white;
+  border-radius: 24px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideUp 0.3s ease;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(199, 162, 144, 0.3) transparent;
+}
+
+.face-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.face-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.face-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(199, 162, 144, 0.3);
+  border-radius: 4px;
+}
+
+.face-modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(199, 162, 144, 0.5);
+}
+
+.face-modal-close {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5C4A42;
+  font-size: 28px;
+  font-weight: 300;
+  transition: all 0.3s ease;
+  z-index: 10001;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.face-modal-close:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+}
+
+.face-modal-close:active {
+  transform: scale(0.95);
+}
+
+/* --- Face Card Overlay --- */
+.face-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.face-card-hint {
+  background: rgba(199, 162, 144, 0.95);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover .face-card-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.card:hover .face-card-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+  .face-modal-content {
+    max-height: 90vh;
+    border-radius: 20px;
+    margin: 0 12px;
+  }
+
+  .face-modal-close {
+    top: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    font-size: 26px;
+  }
+
+  .face-card-hint {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  .modal-body-content {
+    padding: 24px 20px !important;
+  }
+
+  .modal-body-content h2 {
+    font-size: 24px !important;
+  }
+
+  .modal-body-content .info-section {
+    padding: 16px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .modal-body-content .info-section h4 {
+    font-size: 15px !important;
+  }
+
+  .modal-body-content .info-section p {
+    font-size: 14px !important;
+  }
+}
+
+/* --- View Transition API --- */
+@view-transition {
+  navigation: auto;
+}
