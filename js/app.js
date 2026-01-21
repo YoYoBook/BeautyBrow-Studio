@@ -28,14 +28,17 @@
       brand_tagline: "專業半永久霧眉 ·原生感風格",
       instagram_handle: "beautybrow_studio",
       line_id: "@816winfr",
-      background_color: "#FAF8F6",
+      background_color: "#FAF7F4",
       card_background: "#FFFFFF",
-      primary_text: "#5C4A42",
-      primary_action: "#C7A290",
-      secondary_action: "#E8D5C8",
+      primary_text: "#2D2D2D",
+      primary_action: "#9D7E5F",
+      secondary_action: "#E0D4C5",
+      accent_color: "#B89977",
+      light_gray: "#F0EBE6",
+      border_color: "#DED8D0",
       font_family: "Noto Sans TC",
       heading_font_family: "Noto Serif TC",
-      font_size: 13.5
+      font_size: 14
     };
 
     // 目前 tab（可由網址 hash 指定，例如：index.html#pricing）
@@ -121,7 +124,7 @@
 
         <!-- 眉型設計理念 -->
         <div class="mb-8 fade-in">
-          <div class="card p-8 rounded-3xl text-center" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+          <div class="card p-8 rounded-3xl text-center" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(157, 126, 95, 0.18);">
             <p style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 2; opacity: 0.85; max-width: 740px; margin: 0 auto; font-weight: 300;">
               我的眉型設計不是追求流行<br>是「客製化美學」<br><br>
               我深信最完美的眉毛是與五官、臉型、眉骨結構、日常妝感與個人風格完全和諧的存在<br><br>
@@ -133,7 +136,7 @@
         </div>
 
         <div class="grid md:grid-cols-2 gap-7 mb-10">
-          <div class="card p-8 rounded-3xl fade-in" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
+          <div class="card p-8 rounded-3xl fade-in" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(157, 126, 95, 0.15);">
             <div class="text-center mb-1">
               <span style="font-size: ${baseFont * 3}px;"></span>
             </div>
@@ -152,7 +155,7 @@
             </div>
           </div>
 
-          <div class="card p-8 rounded-3xl fade-in" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
+          <div class="card p-8 rounded-3xl fade-in" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(157, 126, 95, 0.15);">
             <div class="text-center mb-1">
               <span style="font-size: ${baseFont * 3}px;"></span>
             </div>
@@ -172,18 +175,18 @@
           </div>
         </div>
 
-        <div class="card p-8 rounded-3xl text-center fade-in mb-8" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+        <div class="card p-8 rounded-3xl text-center fade-in mb-8" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(157, 126, 95, 0.18);">
           <h3 class="mb-4" style="font-size: ${baseFont * 1.6}px; font-family: ${headingFontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px;">
             <span style="color: ${config.primary_action || defaultConfig.primary_action};">${getIcon('alertTriangle', config.primary_action || defaultConfig.primary_action, 28)}</span> 霧眉預約前｜須知請詳閱
           </h3>
           <div class="max-w-3xl mx-auto" style="font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; line-height: 1.9; opacity: 0.85;">
             <p class="mb-5">若有以下任一狀況，暫不建議施作霧眉：</p>
-            <p style="line-height:2; display: flex; align-items: flex-start; gap: 8px; justify-content: center; flex-wrap: wrap;">
-              <span style="color: ${config.primary_action || defaultConfig.primary_action}; flex-shrink: 0;">${getIcon('ban', config.primary_action || defaultConfig.primary_action, 20)}</span> 蟹足腫、糖尿病、高血壓、心血管疾病、愛滋病、B型肝炎、免疫力失調、服用抗凝血藥物、精神疾病、傳染性疾病、嚴重異位性皮膚炎、嚴重過敏性膚況
+            <p style="line-height:2;">
+              蟹足腫、糖尿病、高血壓、心血管疾病、愛滋病、B型肝炎、免疫力失調、服用抗凝血藥物、精神疾病、傳染性疾病、嚴重異位性皮膚炎、嚴重過敏性膚況
             </p>
-            <div class="mt-6 pt-6" style="border-top: 1px solid rgba(199, 162, 144, 0.2);">
-              <p style="font-size: ${baseFont * 1.0}px; opacity: 0.75; display: flex; align-items: flex-start; gap: 8px; justify-content: center; flex-wrap: wrap;">
-                <span style="color: ${config.primary_action || defaultConfig.primary_action}; flex-shrink: 0;">${getIcon('flower', config.primary_action || defaultConfig.primary_action, 20)}</span> 每個人顴骨高低、眉型長短都不同，兩邊眉毛不會「完全對稱」是自然現象<br>
+            <div class="mt-6 pt-6" style="border-top: 1px solid rgba(157, 126, 95, 0.28);">
+              <p style="font-size: ${baseFont * 1.0}px; opacity: 0.75; text-align: center; line-height: 1.8;">
+                每個人顴骨高低、眉型長短都不同，兩邊眉毛不會「完全對稱」是自然現象<br>
                 若您是追求極致完美的眉型控，建議再三考慮後預約唷
               </p>
             </div>
@@ -208,7 +211,7 @@
           {
             img: 'sources/鵝蛋臉.jpg',
             name: '鵝蛋臉',
-            color: '#E8D5C8',
+            color: '#D4C4B0',
             description: '這是最標準的完美臉型！<br>擁有令人稱羨的 1:1.5 黃金長寬比例額頭與下巴的比例恰到好處，線條圓潤流暢，沒有明顯的稜角，整體輪廓流暢給人溫柔舒服的感覺',
             features: '標準眉、微挑眉 (幾乎適合所有眉型)',
             eyebrowStyle: '鵝蛋臉本身已具備完美的平衡感，設計的核心在於「襯托氣質」<br><br>▫️眉峰： 微上揚一點，讓精神看起來更好<br>▫️眉尾： 順順地往下，順延眼型弧度',
@@ -217,7 +220,7 @@
           {
             img: 'sources/心型臉.jpg',
             name: '心形臉',
-            color: '#C7A290',
+            color: '#9D7E5F',
             description: '心形臉的特色是額頭較寬、下巴尖細，呈現出優雅的倒三角形',
             features: '彎月眉、圓弧眉',
             eyebrowStyle: '縮短額寬視覺 ➕ 柔化尖下巴 <br> ▫️ 眉峰： 圓潤且位置適中。眉峰不宜過高，需用圓滑的線條來平衡下巴的尖銳感<br> ▫️ 眉型： 強調柔霧感與弧度，眉毛長度要適中（不可太短），有助於在視覺上收窄寬闊的額頭<br> <br> ❌ NG 眉型：<br> ▫️歐美眉： 銳利的眉峰會讓原本就寬的額頭看起來更寬，也會讓下巴看起來更尖銳，整張臉會顯得比例失衡',
@@ -226,7 +229,7 @@
           {
             img: 'sources/長型臉.jpg',
             name: '長型臉',
-            color: '#E8D5C8',
+            color: '#D4C4B0',
             description: '臉型長度明顯大於寬度，中庭較長<br>給人氣質的印象，但也容易顯得較為成熟',
             features: '微平眉',
             eyebrowStyle: '橫向延伸 ➕ 縮短中庭 <br>▫️眉型： 採用一字平眉或微平眉，利用水平線條來中和臉部的垂直感。<br>▫️眉寬： 建議保留一點粗度，稍微加粗的眉型可以縮短額頭的視覺高度<br><br>❌ NG 眉型：<br>▫️歐美高挑眉、大彎眉： 拱起的眉型會再次拉長臉部比例，讓臉看起來無止盡延伸<br>▫️眉尾下垂過多： 會讓臉部線條看起來往下垮，顯得沒精神',
@@ -235,7 +238,7 @@
           {
             img: 'sources/圓型臉.jpg',
             name: '圓型臉',
-            color: '#D4B5A0',
+            color: '#B89977',
             description: '最強逆齡的「童顏」臉型！<br>臉部輪廓圓潤、沒有稜角，給人可愛的甜美印象',
             features: '標準微挑眉',
             eyebrowStyle: '圓臉的設計核心在於「破除圓潤感，增加立體度」<br><br>▫️眉型：帶點弧度，避免太過生硬的直線<br>▫️眉峰：微上挑，讓圓潤的臉蛋增加稜角與立體感<br>▫️眉尾：眉尾適度拉長，達到收縮臉型的效果<br><br>❌ NG 眉型<br>▫️一字平眉： 會像把臉「壓扁」了，讓五官看起來更分散、臉顯得更圓<br>▫️短眉： 眉尾太短會讓太陽穴留白過多，視覺上臉會變寬',
@@ -244,7 +247,7 @@
           {
             img: 'sources/方型臉.jpg',
             name: '方形臉',
-            color: '#D4B5A0',
+            color: '#B89977',
             description: '下顎骨骼感較強，臉部線條稜角分明<br>雖然看起來很有個性，但有時會擔心缺乏柔和感，給人比較嚴肅的印象',
             features: '彎月眉、圓弧眉',
             eyebrowStyle: '柔化臉部稜角 ➕ 縮窄下顎視覺<br>▫️ 眉峰： 圓潤無稜角。像月亮般的圓弧線條，能視覺上削弱下巴的方形感<br>▫️ 眉寬： 建議保留一定粗度，太細的眉毛會壓不住方臉的份量感<br><br>❌ NG 眉型<br>▫️平眉： 方臉畫平眉是大忌！會讓臉看起來更短、更寬、更方<br>▫️劍眉/銳利眉： 三角形的眉峰會加重臉部的「剛硬感」',
@@ -253,14 +256,14 @@
           {
             img: 'sources/菱形臉.jpg',
             name: '菱形臉',
-            color: '#C7A290',
+            color: '#9D7E5F',
             description: '自帶氣場的「鑽石級」骨相！<br>顴骨較寬且明顯，額頭與下巴較窄，太陽穴容易有凹陷感。輪廓分明且個性十足，但有時會顯得比較銳利',
             features: '柔和小彎眉',
             eyebrowStyle: '弱化強勢顴骨 ➕ 填補太陽穴凹陷<br><br>▫️眉峰： 靠前、圓滑，將視覺重心內移，不讓視線停留在顴骨最寬處<br>▫️眉尾： 拉長，在視覺上修飾凹陷的太陽穴，讓臉型線條更順暢<br><br>❌ NG 眉型<br>▫️平眉： 會顯得呆板，且對比之下會讓顴骨看起來更寬<br>▫️短眉、歐美高挑眉： 眉尾太短會暴露太陽穴缺點；太銳利的眉峰會讓臉看起來更兇',
             tips: '利用眉毛的弧度來進行「視覺微整」<br>重點在於拉長眉尾來平衡顴骨的寬度，並用圓潤的眉峰去柔化臉部的稜角<br><br>這樣設計後的眉毛，能讓原本銳利的鑽石臉，瞬間變得流暢又精緻，散發出獨特的知性美'
           }
         ].map(face => `
-              <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12); transition: all 0.3s ease; cursor: pointer;" onclick="openFaceModal('${face.name}', '${face.img}', '${face.description}', '${face.features}', '${face.eyebrowStyle}', '${face.tips}')">
+              <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(157, 126, 95, 0.16); transition: all 0.3s ease; cursor: pointer;" onclick="openFaceModal('${face.name}', '${face.img}', '${face.description}', '${face.features}', '${face.eyebrowStyle}', '${face.tips}')">
                 <div style="position: relative; overflow: hidden; aspect-ratio: 4/5;">
                   <img src="${face.img}" alt="${face.name}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                   <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 20px 16px 12px;">
@@ -331,7 +334,7 @@
                   <div class="px-4 py-2 rounded-xl flex-shrink-0 ${item.highlight ? '' : `bg-opacity-50`}" style="background: ${item.highlight ? config.primary_action || defaultConfig.primary_action : config.background_color || defaultConfig.background_color};">
                     <div style="display: flex; flex-direction: column; align-items: flex-end;">
                       ${item.originalPrice ? `
-                        <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${item.highlight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(92, 74, 66, 0.6)'}; margin-bottom: 2px;">
+                        <span style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${item.highlight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(45, 45, 45, 0.5)'}; margin-bottom: 2px;">
                           ${item.originalPrice}
                         </span>
                       ` : ''}
@@ -350,12 +353,12 @@
           <div class="flex justify-center gap-4 mb-8">
             <button id="pricing-btn-brow" onclick="switchPricingType('brow')" 
                     class="px-8 py-3 rounded-full transition-all"
-                    style="background: ${config.primary_action || defaultConfig.primary_action}; color: white; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3);">
+                    style="background: ${config.primary_action || defaultConfig.primary_action}; color: white; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(157, 126, 95, 0.35);">
               霧眉
             </button>
             <button id="pricing-btn-removal" onclick="switchPricingType('removal')" 
                     class="px-8 py-3 rounded-full transition-all"
-                    style="background: ${config.secondary_action || defaultConfig.secondary_action}; color: ${config.primary_text || defaultConfig.primary_text}; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 3px 12px rgba(199, 162, 144, 0.2);">
+                    style="background: ${config.secondary_action || defaultConfig.secondary_action}; color: ${config.primary_text || defaultConfig.primary_text}; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 3px 12px rgba(157, 126, 95, 0.28);">
               淡色
             </button>
           </div>
@@ -449,7 +452,7 @@
           </h2>
           <div class="space-y-4">
             ${sections.map(section => `
-              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
+              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(157, 126, 95, 0.14);">
                 <div class="flex items-center gap-3 mb-4">
                   <span style="color: ${config.primary_action || defaultConfig.primary_action};">${getIcon(section.iconName, config.primary_action || defaultConfig.primary_action, 24)}</span>
                   <h3 style="font-size: ${baseFont * 1.4}px; font-family: ${fontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
@@ -532,35 +535,37 @@
       const removalSections = [
         {
           title: '施作完 當日',
-          period: 'Day 1',
+          period: 'Ｄay1',
           items: [
-            '返家可以冰敷 15 分鐘，幫助舒緩肌膚',
-            '當天即可正常碰水'
+            '可以多冰敷，每次 15 分鐘，幫助舒緩肌膚',
+            '可以正常碰水（水溫勿過熱）'
           ],
           alert: true
         },
         {
-          title: '施作完 隔日起',
-          period: 'Week 1',
+          title: '正常修復期',
+          period: 'Ｄay 1-3',
           items: [
-            '隔天可正常化妝',
-            '一週內請避免於眉周使用美白或酸類產品',
-            '一週內請加強保濕與物理性防曬（眉毛區域亦需防曬）'
-          ],
-          alert: true
-        },
-        {
-          title: '正常修復過程',
-          period: '修復期',
-          items: [
-            '3 天內眉毛可能出現 微紅、微癢、緊繃乾燥、顏色暫時變深都屬正常反應'
+            '如有紅腫或微小結痂通常於 1-3 天消退'
           ]
+        },
+        {
+          title: '施作後禁忌',
+          period: 'Week 1-2',
+          items: [
+            '禁止高溫接觸 (汗蒸、桑拿烤箱、蒸臉、曬太陽、游泳、大量流汗)',
+            '嚴禁大力揉搓或使用顆粒去角質',
+            '需加強防曬',
+            '禁止使用美白或酸類護膚品',
+            '如有結痂，須自然脫落，嚴禁手摳，以免留疤'
+          ],
+          alert: true
         }
       ];
 
       const renderSections = (sections) => {
         return sections.map(section => `
-              <div class="card p-7 rounded-3xl ${section.alert ? 'border-2' : ''}" style="background: ${section.alert ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.12); ${section.alert ? `border-color: ${config.primary_action || defaultConfig.primary_action};` : ''}">
+              <div class="card p-7 rounded-3xl ${section.alert ? 'border-2' : ''}" style="background: ${section.alert ? `linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%)` : config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(157, 126, 95, 0.15); ${section.alert ? `border-color: ${config.primary_action || defaultConfig.primary_action};` : ''}">
                 <div class="flex items-center justify-between mb-5 flex-wrap gap-3">
                   <h3 style="font-size: ${baseFont * 1.4}px; font-family: ${headingFontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
                     ${section.title}
@@ -593,12 +598,12 @@
           <div class="flex justify-center gap-4 mb-8">
             <button id="aftercare-btn-brow" onclick="switchAftercareType('brow')" 
                     class="px-8 py-3 rounded-full transition-all"
-                    style="background: ${config.primary_action || defaultConfig.primary_action}; color: white; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3);">
+                    style="background: ${config.primary_action || defaultConfig.primary_action}; color: white; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(157, 126, 95, 0.35);">
               霧眉
             </button>
             <button id="aftercare-btn-removal" onclick="switchAftercareType('removal')" 
                     class="px-8 py-3 rounded-full transition-all"
-                    style="background: ${config.secondary_action || defaultConfig.secondary_action}; color: ${config.primary_text || defaultConfig.primary_text}; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 3px 12px rgba(199, 162, 144, 0.2);">
+                    style="background: ${config.secondary_action || defaultConfig.secondary_action}; color: ${config.primary_text || defaultConfig.primary_text}; font-size: ${baseFont * 1.05}px; font-family: ${fontStack}; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 3px 12px rgba(157, 126, 95, 0.28);">
               淡色
             </button>
           </div>
@@ -661,7 +666,7 @@
           </h2>
           <div class="space-y-5">
             ${sections.map(section => `
-              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
+              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(157, 126, 95, 0.14);">
                 <div class="flex items-center gap-3 mb-5">
                   <span style="color: ${config.primary_action || defaultConfig.primary_action};">${getIcon(section.iconName, config.primary_action || defaultConfig.primary_action, 24)}</span>
                   <h3 style="font-size: ${baseFont * 1.4}px; font-family: ${headingFontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
@@ -726,7 +731,7 @@
           
           <div class="grid md:grid-cols-2 gap-6">
             ${locations.map(loc => `
-              <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.12);">
+              <div class="card rounded-3xl overflow-hidden" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(157, 126, 95, 0.15);">
                 <div class="p-6" style="background: ${config.background_color || defaultConfig.background_color}; border-bottom: 1px solid rgba(0,0,0,0.04);">
                   <h3 class="mb-4" style="font-size: ${baseFont * 1.3}px; font-family: ${headingFontStack}; color: ${config.primary_action || defaultConfig.primary_action}; font-weight: 500;">
                     ${loc.name}
@@ -770,7 +775,7 @@
             `).join('')}
           </div>
 
-          <div class="card p-8 rounded-3xl text-center mt-6" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+          <div class="card p-8 rounded-3xl text-center mt-6" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(157, 126, 95, 0.18);">
             <h3 class="mb-3" style="font-size: ${baseFont * 1.4}px; font-family: ${headingFontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px;">
               <span style="color: ${config.primary_action || defaultConfig.primary_action};">${getIcon('home', config.primary_action || defaultConfig.primary_action, 24)}</span> 個人工作室，環境舒適安靜
             </h3>
@@ -888,7 +893,7 @@
           </h2>
           <div class="space-y-5">
             ${faqs.map((faq, index) => `
-              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
+              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(157, 126, 95, 0.14);">
                 <div class="flex items-start gap-4 mb-4">
                   <span class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background: ${config.primary_action || defaultConfig.primary_action}; color: white; font-size: ${baseFont * 0.9}px; font-family: ${fontStack}; font-weight: 600;">
                     ${index + 1}
@@ -919,7 +924,7 @@
       const faqs = [
         {
           q: '什麼是無創淡色？',
-          a: `無創淡色是一種利用光和熱，將眉部色素溫和分解，再交由身體自然代謝的淡眉技術<br><br>
+          a: `無創淡色採用光熱解技術將頑固色素擊碎分解<br>淺層色素可由毛孔當場導出<br>深層色素則會浮出表皮，透過人體淋巴系統逐漸代謝，達到溫和除色的效果<br><br>
           ✔ 不破皮、不流血<br>
           ✔ 不會造成原生眉毛掉光<br>
           ✔ 沒有恢復期，當天正常生活<br>
@@ -935,17 +940,59 @@
         },
         {
           q: '無創淡色跟醫美雷射差別在哪？',
-          a: `不破皮、不流血<br>
-          非侵入性，不影響眉毛生長<br>
-          過程舒服、刺痛感低<br>
-          無需修復期，隔天即可上妝、卸妝和使用保養品<br>
-          安全又高效，是解決灰藍眉和橘紅眉的首選方法`
+          a: `
+          <div style="overflow-x: auto; margin: 16px 0;">
+            <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <thead>
+                <tr style="background: linear-gradient(135deg, #9D7E5F 0%, #B89977 100%);">
+                  <th style="padding: 16px 12px; text-align: left; color: white; font-weight: 500; font-size: 14px; border-right: 1px solid rgba(255,255,255,0.2);">比較項目</th>
+                  <th style="padding: 16px 12px; text-align: center; color: white; font-weight: 500; font-size: 14px; border-right: 1px solid rgba(255,255,255,0.2);">無創淡色<br><span style="font-size: 12px; opacity: 0.9;"></span></th>
+                  <th style="padding: 16px 12px; text-align: center; color: white; font-weight: 500; font-size: 14px;">醫美雷射<br><span style="font-size: 12px; opacity: 0.9;">(洗眉雷射/皮秒)</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #FAF8F6;">
+                  <td style="padding: 14px 12px; font-weight: 500; color: #9D7E5F; border-bottom: 1px solid #D4C4B0; border-right: 1px solid #D4C4B0; font-size: 13px;">施作原理</td>
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #D4C4B0; border-right: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6;">溫和光熱解，將色素震碎成粉末狀</td>
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6;">高能量瞬間爆破色素顆粒</td>
+                </tr>
+                <tr style="background: white;">
+                  <td style="padding: 14px 12px; font-weight: 500; color: #9D7E5F; border-bottom: 1px solid #D4C4B0; border-right: 1px solid #D4C4B0; font-size: 13px;">傷口狀況</td>
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #D4C4B0; border-right: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6; color: #2D7A3E; font-weight: 500;">✓ 不破皮、不流血</td>
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6;">常有細微傷口、易出血或出水泡</td>
+                </tr>
+                <tr style="background: #FAF8F6;">
+                  <td style="padding: 14px 12px; font-weight: 500; color: #9D7E5F; border-bottom: 1px solid #D4C4B0; border-right: 1px solid #D4C4B0; font-size: 13px;">結痂與恢復</td>
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #D4C4B0; border-right: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6; color: #2D7A3E; font-weight: 500;">✓ 無結痂、無恢復期，當天可洗臉</td>
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6;">會結痂，需 7-10 天掉痂，期間不能碰水</td>
+                </tr>
+                <tr style="background: white;">
+                  <td style="padding: 14px 12px; font-weight: 500; color: #9D7E5F; border-bottom: 1px solid #D4C4B0; border-right: 1px solid #D4C4B0; font-size: 13px;">原生毛髮</td>
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #D4C4B0; border-right: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6; color: #2D7A3E; font-weight: 500;">✓ 保護毛囊，原生眉毛不脫落、不變白</td>
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6;">能量過強可能導致眉毛變白或暫時脫落</td>
+                </tr>
+                <tr style="background: #FAF8F6;">
+                  <td style="padding: 14px 12px; font-weight: 500; color: #9D7E5F; border-bottom: 1px solid #D4C4B0; border-right: 1px solid #D4C4B0; font-size: 13px;">反黑風險</td>
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #D4C4B0; border-right: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6; color: #2D7A3E; font-weight: 500;">✓ 極低，過程溫和、不傷真皮層</td>
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6;">較高，術後需嚴格防曬否則易反黑</td>
+                </tr>
+                <tr style="background: white;">
+                  <td style="padding: 14px 12px; font-weight: 500; color: #9D7E5F; border-right: 1px solid #D4C4B0; font-size: 13px;">適合對象</td>
+                  <td style="padding: 14px 12px; border-right: 1px solid #D4C4B0; font-size: 13px; line-height: 1.6;">紅/橘/灰眉、想淡化後重作、怕痛者</td>
+                  <td style="padding: 14px 12px; font-size: 13px; line-height: 1.6;">黑色素極深、陳年老式紋眉、想徹底清空者</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="text-align: center; margin-top: 16px; font-size: 13px; color: #9D7E5F; font-weight: 500;">
+            ✨ 本工作室採用溫和無創淡色技術，讓您安心、舒適地改善眉色
+          </p>
+          `
         },
         {
           q: '淡色過程及需要的次數？',
-          a: `每個人的眉毛狀況不同，之前做過的次數、技術、色乳都會影響<br>
-          所需次數會依「色素堆積」而有所差異<br><br>
-          ▶ 建議間隔：2 – 4 週做一次淡色<br>
+          a: `每個人的眉毛狀況不同，所需次數會依之前「原色料重金屬含量、入針深度、堆疊層數」而有所差異<br><br><br>
+          ▶ 建議間隔：4 – 6 週做一次淡色<br>
           ▶ 大部分客人的實際狀況（參考）<br>
           ・淺咖啡變橘紅眉 → 通常 3 – 4 次<br>
           ・深褐、偏黑 → 3 – 5 次<br>
@@ -955,13 +1002,17 @@
         },
         {
           q: '淡色完有修復期嗎？',
-          a: `不破皮、不結痂、不影響上班生活<br>
-          有少數人卡色太深的地方會微出痧<br>
-          等待2-3天會跟著眉毛一起淡化<br><br>
-          操作完短暫反應（屬於正常）<br>
+          a: `不破皮、不結痂、不影響上班生活<br><br>
+          <strong>操作完「短暫」反應</strong><br>
           輕微泛紅（通常 數小時～1天內退）<br>
           微溫感、乾燥感<br>
-          顏色會暫時變淡或霧霧（不是最終效果）`
+          顏色變深、霧霧<br>
+          少數人卡色太深的地方會微出痧<br><br>
+          <strong>✦ 正常修復過程</strong><br>
+          <span style="color: #9D7E5F;">▸ 施作後 → 前三天</span><br>
+          顏色較深，因為深層的色素被提取到表層<br><br>
+          <span style="color: #9D7E5F;">▸ 施作後 → 一週後</span><br>
+          提取出的色素開始代謝，顏色會逐漸變淺`
         },
         {
           q: '淡色完可以上妝嗎？',
@@ -1013,7 +1064,7 @@
           </h2>
           <div class="space-y-5">
             ${faqs.map((faq, index) => `
-              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(199, 162, 144, 0.1);">
+              <div class="card p-7 rounded-3xl" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 3px 15px rgba(157, 126, 95, 0.14);">
                 <div class="flex items-start gap-4 mb-4">
                   <span class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background: ${config.primary_action || defaultConfig.primary_action}; color: white; font-size: ${baseFont * 0.9}px; font-family: ${fontStack}; font-weight: 600;">
                     ${index + 1}
@@ -1031,7 +1082,7 @@
             `).join('')}
           </div>
 
-          <div class="card p-8 rounded-3xl text-center mt-6" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+          <div class="card p-8 rounded-3xl text-center mt-6" style="background: linear-gradient(135deg, ${config.secondary_action || defaultConfig.secondary_action} 0%, ${config.card_background || defaultConfig.card_background} 100%); box-shadow: 0 4px 20px rgba(157, 126, 95, 0.18);">
             <h3 class="mb-4" style="font-size: ${baseFont * 1.5}px; font-family: ${headingFontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px;">
               <span style="color: ${config.primary_action || defaultConfig.primary_action};">${getIcon('lightbulb', config.primary_action || defaultConfig.primary_action, 24)}</span> 淡色前建議
             </h3>
@@ -1056,7 +1107,7 @@
         <div class="flex flex-wrap gap-4 justify-center">
           <a href="https://www.instagram.com/beautybrow__studio" target="_blank" rel="noopener noreferrer" 
              class="card px-8 py-4 rounded-full flex items-center gap-3 transition-transform hover:scale-105"
-             style="background: ${config.primary_action || defaultConfig.primary_action} !important; text-decoration: none; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3); border-radius: 9999px !important;">
+             style="background: ${config.primary_action || defaultConfig.primary_action} !important; text-decoration: none; box-shadow: 0 4px 15px rgba(157, 126, 95, 0.35); border-radius: 9999px !important;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="white"/>
             </svg>
@@ -1073,7 +1124,7 @@
                setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
              })"
              class="card px-8 py-4 rounded-full flex items-center gap-3 transition-transform hover:scale-105"
-             style="background: ${config.primary_action || defaultConfig.primary_action} !important; text-decoration: none; box-shadow: 0 4px 15px rgba(199, 162, 144, 0.3); border-radius: 9999px !important;">
+             style="background: ${config.primary_action || defaultConfig.primary_action} !important; text-decoration: none; box-shadow: 0 4px 15px rgba(157, 126, 95, 0.35); border-radius: 9999px !important;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
               <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.345 0 .63.285.63.63 0 .349-.285.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.058 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" fill="white"/>
             </svg>
@@ -1091,7 +1142,7 @@
                            font-weight: 500; 
                            border: none; 
                            cursor: pointer;
-                           box-shadow: 0 3px 12px rgba(199, 162, 144, 0.2);
+                           box-shadow: 0 3px 12px rgba(157, 126, 95, 0.28);
                            border-radius: 9999px !important;">
               🏠 返回首頁
             </button>
@@ -1125,12 +1176,28 @@
       }
 
       app.innerHTML = `
-        <div class="w-full min-h-screen p-4 md:p-6">
+        <!-- 頂部品牌橫幅 -->
+        <div class="top-brand-bar" style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, ${config.card_background || defaultConfig.card_background} 0%, ${config.secondary_action || defaultConfig.secondary_action} 100%); color: ${config.primary_action || defaultConfig.primary_action}; padding: 14px 20px; text-align: center; z-index: 9999; box-shadow: 0 2px 16px rgba(157, 126, 95, 0.15); border-bottom: 2px solid ${config.primary_action || defaultConfig.primary_action};">
+          <div style="font-size: ${baseFont * 1.15}px; font-family: ${config.heading_font_family || defaultConfig.heading_font_family}, ${fontStack}; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;">
+            BeautyBrow Studio
+          </div>
+        </div>
+        
+        <!-- 促銷訊息橫幅 -->
+        <div class="promo-bar" style="position: fixed; top: 54px; left: 0; right: 0; background: ${config.primary_action || defaultConfig.primary_action}; color: white; padding: 10px 20px; text-align: center; z-index: 9998; box-shadow: 0 2px 8px rgba(157, 126, 95, 0.2);">
+          <a href="https://line.me/R/ti/p/@816winfr?oat_content=url&ts=04170245" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: white; display: block; transition: opacity 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+            <div style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; font-weight: 500; letter-spacing: 0.5px;">
+              預約請加入官方LINE 領取隱藏折扣
+            </div>
+          </a>
+        </div>
+        
+        <div class="w-full min-h-screen main-content-wrapper">
           <div class="max-w-6xl mx-auto">
             <div class="mb-6 relative" style="--fade-color: ${config.card_background || defaultConfig.card_background};">
               <div class="scroll-fade-left hidden" id="scroll-fade-left"></div>
               <div class="scroll-fade-right" id="scroll-fade-right"></div>
-              <div class="p-3 rounded-3xl scroll-container overflow-x-auto" id="tabs-scroll-container" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 24px rgba(199, 162, 144, 0.18);" onscroll="updateScrollFade(this)">
+              <div class="p-3 rounded-3xl scroll-container overflow-x-auto" id="tabs-scroll-container" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 24px rgba(157, 126, 95, 0.22);" onscroll="updateScrollFade(this)">
                 <div class="flex gap-2 justify-start md:justify-center min-w-max md:min-w-0" id="tabs-container">
                 ${tabs.map(tab => `
                   <button onclick="switchTab('${tab.id}')" 
@@ -1155,7 +1222,7 @@
               ${tabContent}
             </div>
 
-            <div class="card p-8 rounded-3xl text-center" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(199, 162, 144, 0.15);">
+            <div class="card p-8 rounded-3xl text-center" style="background: ${config.card_background || defaultConfig.card_background}; box-shadow: 0 4px 20px rgba(157, 126, 95, 0.18);">
               <h3 class="mb-6" style="font-size: ${baseFont * 1.6}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; font-weight: 400; letter-spacing: 1px;">
                 聯繫我
               </h3>
@@ -1307,12 +1374,12 @@
         if (browBtn) {
           browBtn.style.background = config.primary_action || defaultConfig.primary_action;
           browBtn.style.color = 'white';
-          browBtn.style.boxShadow = '0 4px 15px rgba(199, 162, 144, 0.3)';
+          browBtn.style.boxShadow = '0 4px 15px rgba(157, 126, 95, 0.35)';
         }
         if (removalBtn) {
           removalBtn.style.background = config.secondary_action || defaultConfig.secondary_action;
           removalBtn.style.color = config.primary_text || defaultConfig.primary_text;
-          removalBtn.style.boxShadow = '0 3px 12px rgba(199, 162, 144, 0.2)';
+          removalBtn.style.boxShadow = '0 3px 12px rgba(157, 126, 95, 0.28)';
         }
         if (browContent) browContent.style.display = 'block';
         if (removalContent) removalContent.style.display = 'none';
@@ -1321,12 +1388,12 @@
         if (browBtn) {
           browBtn.style.background = config.secondary_action || defaultConfig.secondary_action;
           browBtn.style.color = config.primary_text || defaultConfig.primary_text;
-          browBtn.style.boxShadow = '0 3px 12px rgba(199, 162, 144, 0.2)';
+          browBtn.style.boxShadow = '0 3px 12px rgba(157, 126, 95, 0.28)';
         }
         if (removalBtn) {
           removalBtn.style.background = config.primary_action || defaultConfig.primary_action;
           removalBtn.style.color = 'white';
-          removalBtn.style.boxShadow = '0 4px 15px rgba(199, 162, 144, 0.3)';
+          removalBtn.style.boxShadow = '0 4px 15px rgba(157, 126, 95, 0.35)';
         }
         if (browContent) browContent.style.display = 'none';
         if (removalContent) removalContent.style.display = 'block';
@@ -1350,12 +1417,12 @@
         if (browBtn) {
           browBtn.style.background = config.primary_action || defaultConfig.primary_action;
           browBtn.style.color = 'white';
-          browBtn.style.boxShadow = '0 4px 15px rgba(199, 162, 144, 0.3)';
+          browBtn.style.boxShadow = '0 4px 15px rgba(157, 126, 95, 0.35)';
         }
         if (removalBtn) {
           removalBtn.style.background = config.secondary_action || defaultConfig.secondary_action;
           removalBtn.style.color = config.primary_text || defaultConfig.primary_text;
-          removalBtn.style.boxShadow = '0 3px 12px rgba(199, 162, 144, 0.2)';
+          removalBtn.style.boxShadow = '0 3px 12px rgba(157, 126, 95, 0.28)';
         }
         if (browContent) browContent.style.display = 'block';
         if (removalContent) removalContent.style.display = 'none';
@@ -1364,12 +1431,12 @@
         if (browBtn) {
           browBtn.style.background = config.secondary_action || defaultConfig.secondary_action;
           browBtn.style.color = config.primary_text || defaultConfig.primary_text;
-          browBtn.style.boxShadow = '0 3px 12px rgba(199, 162, 144, 0.2)';
+          browBtn.style.boxShadow = '0 3px 12px rgba(157, 126, 95, 0.28)';
         }
         if (removalBtn) {
           removalBtn.style.background = config.primary_action || defaultConfig.primary_action;
           removalBtn.style.color = 'white';
-          removalBtn.style.boxShadow = '0 4px 15px rgba(199, 162, 144, 0.3)';
+          removalBtn.style.boxShadow = '0 4px 15px rgba(157, 126, 95, 0.35)';
         }
         if (browContent) browContent.style.display = 'none';
         if (removalContent) removalContent.style.display = 'block';
@@ -1512,7 +1579,7 @@
               </p>
             </div>
 
-            <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(199, 162, 144, 0.2); text-align: center;">
+            <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(157, 126, 95, 0.3); text-align: center;">
               <p style="font-size: ${baseFont * 0.95}px; font-family: ${fontStack}; color: ${config.primary_text || defaultConfig.primary_text}; opacity: 0.7; line-height: 1.8; margin: 0;">
                 以上為一般建議，實際眉型設計會依照您的五官比例、眉骨結構與個人風格進行客製化調整
               </p>
